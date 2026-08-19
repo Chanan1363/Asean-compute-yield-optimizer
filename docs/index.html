@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The ASEAN Grid — Democratizing Compute</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Kanit','Leelawadee UI','Tahoma',sans-serif; background:linear-gradient(160deg,#0a0e1a,#101a35);
+    color:#e8ecf7; min-height:100vh; }
+  .wrap { max-width:860px; margin:0 auto; padding:60px 20px 60px; }
+  .langbar { text-align:right; margin-bottom:18px; }
+  .langbar button { background:#0d1530; color:#a9bce6; border:1px solid #2c3a63; border-radius:20px;
+    padding:6px 16px; font-size:14px; font-family:inherit; cursor:pointer; margin-left:6px; }
+  .langbar button.active { background:#ffd76a; color:#0a0e1a; font-weight:700; border-color:#ffd76a; }
+  .hero { text-align:center; margin-bottom:40px; }
+  .brand { font-size:16px; color:#7aa2ff; letter-spacing:3px; }
+  .title { font-size:46px; font-weight:700; color:#ffd76a; margin-top:10px; line-height:1.2; }
+  .subtitle { font-size:19px; color:#9fb4e8; margin-top:12px; line-height:1.6; }
+  .card { background:linear-gradient(160deg,#131a30,#0d1224); border:2px solid #243158; border-radius:18px;
+    padding:28px; margin-bottom:20px; }
+  .card h3 { font-size:20px; color:#7aa2ff; margin-bottom:12px; }
+  .card p { font-size:16px; color:#c3cdea; line-height:1.8; }
+  .btn { display:inline-block; background:#ffd76a; color:#0a0e1a; font-weight:700; font-size:19px;
+    padding:14px 34px; border-radius:40px; text-decoration:none; margin-top:8px; }
+  .btn:hover { background:#ffe08a; }
+  .badge { display:inline-block; background:#2c3a63; color:#9fb4e8; border-radius:30px; padding:4px 18px;
+    font-size:13px; margin:4px 4px 0 0; }
+  .footer { text-align:center; font-size:13px; color:#7c8cb8; margin-top:30px; line-height:1.9; }
+  .footer a { color:#7aa2ff; text-decoration:none; }
+  .badge2 { display:inline-block; background:#ffd76a; color:#0a0e1a; font-weight:700; border-radius:30px;
+    padding:3px 16px; font-size:13px; margin-top:10px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="langbar">
+    <button id="btnTh" onclick="setLang('th')" class="active">🇹🇭 ไทย</button>
+    <button id="btnEn" onclick="setLang('en')">🇬🇧 EN</button>
+  </div>
+
+  <div class="hero">
+    <div class="brand" data-i18n="brand">⚡ THE ASEAN GRID ⚡</div>
+    <div class="title" data-i18n="title">Democratizing Compute</div>
+    <div class="subtitle" data-i18n="subtitle">เปลี่ยนคอมพิวเตอร์ว่างของคนอาเซียน ให้เป็นโรงไฟฟ้าคำนวณที่คนทั้งโลกเช่าใช้<br>
+      Turning Southeast Asia's idle PCs into a compute grid the whole world can rent</div>
+  </div>
+
+  <div class="card">
+    <h3 data-i18n="toolTitle">🧮 ของฟรี: เครื่องคำนวณรายได้ GPU</h3>
+    <p data-i18n="toolDesc">อยากรู้ว่าเครื่องที่บ้าน/ร้านเน็ตของคุณปล่อยเช่าตอนว่างได้เดือนละเท่าไหร่? ลองกดคำนวณฟรี — เลือกการ์ดจอ ปรับชั่วโมง ดูผลทันที (มีไทย/อังกฤษ)</p>
+    <a class="btn" href="gpu-yield-calculator.html" data-i18n="toolBtn">🧮 ลองคำนวณเลย →</a>
+  </div>
+
+  <div class="card">
+    <h3 data-i18n="projTitle">⚡ โปรเจกต์ The ASEAN Grid</h3>
+    <p data-i18n="projDesc">โปรเจกต์โอเพนซอร์ส: รวบรวมพลังการ์ดจอว่างของเกมเมอร์และร้านเน็ตทั่วอาเซียน ไปรับงาน AI / เรนเดอร์ / Cloud Gaming จากทั่วโลก — จ่ายด้วยโมเดล SaaS + ระบบเติมเงินสไตล์ API Key ($GRID Token) — สถาปัตยกรรมเปิด อ้างอิงแนวทาง Nous Research (DisTrO)</p>
+    <div>
+      <span class="badge">AGPL-3.0</span>
+      <span class="badge">Open Architecture</span>
+      <span class="badge">DePIN</span>
+      <span class="badge">AI Compute</span>
+    </div>
+    <p style="margin-top:12px"><a href="https://github.com/Chanan1363/Asean-compute-yield-optimizer" target="_blank" data-i18n="projLink">🔗 ดูพิมพ์เขียวเต็มบน GitHub →</a></p>
+  </div>
+
+  <div class="footer">
+    <span data-i18n="footNote">© 2026 The ASEAN Grid — Democratizing Compute</span><br>
+    <span class="badge2">AGPL-3.0 — OPEN ARCHITECTURE</span>
+  </div>
+</div>
+
+<script>
+const I18N = {
+  th: {
+    brand:"⚡ THE ASEAN GRID ⚡",
+    title:"Democratizing Compute",
+    subtitle:"เปลี่ยนคอมพิวเตอร์ว่างของคนอาเซียน ให้เป็นโรงไฟฟ้าคำนวณที่คนทั้งโลกเช่าใช้",
+    toolTitle:"🧮 ของฟรี: เครื่องคำนวณรายได้ GPU",
+    toolDesc:"อยากรู้ว่าเครื่องที่บ้าน/ร้านเน็ตของคุณปล่อยเช่าตอนว่างได้เดือนละเท่าไหร่? ลองกดคำนวณฟรี — เลือกการ์ดจอ ปรับชั่วโมง ดูผลทันที (มีไทย/อังกฤษ)",
+    toolBtn:"🧮 ลองคำนวณเลย →",
+    projTitle:"⚡ โปรเจกต์ The ASEAN Grid",
+    projDesc:"โปรเจกต์โอเพนซอร์ส: รวบรวมพลังการ์ดจอว่างของเกมเมอร์และร้านเน็ตทั่วอาเซียน ไปรับงาน AI / เรนเดอร์ / Cloud Gaming จากทั่วโลก — จ่ายด้วยโมเดล SaaS + ระบบเติมเงินสไตล์ API Key ($GRID Token) — สถาปัตยกรรมเปิด อ้างอิงแนวทาง Nous Research (DisTrO)",
+    projLink:"🔗 ดูพิมพ์เขียวเต็มบน GitHub →",
+    footNote:"© 2026 The ASEAN Grid — Democratizing Compute"
+  },
+  en: {
+    brand:"⚡ THE ASEAN GRID ⚡",
+    title:"Democratizing Compute",
+    subtitle:"Turning Southeast Asia's idle PCs into a compute grid the whole world can rent",
+    toolTitle:"🧮 Free tool: GPU Yield Calculator",
+    toolDesc:"Wondering how much your home or internet-cafe PC could earn while idle? Calculate for free — pick your GPU, adjust hours, see results instantly (TH/EN)",
+    toolBtn:"🧮 Try the calculator →",
+    projTitle:"⚡ The ASEAN Grid project",
+    projDesc:"Open-source project: aggregating idle GPUs from gamers & internet cafes across Southeast Asia into a grid serving global AI / rendering / cloud-gaming workloads — monetized via SaaS + prepaid API-key token model ($GRID), guided by Nous Research's open architecture (DisTrO)",
+    projLink:"🔗 View the full blueprint on GitHub →",
+    footNote:"© 2026 The ASEAN Grid — Democratizing Compute"
+  }
+};
+function setLang(l){
+  document.getElementById('btnTh').classList.toggle('active', l==='th');
+  document.getElementById('btnEn').classList.toggle('active', l==='en');
+  document.documentElement.lang = l;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k = el.dataset.i18n;
+    if(I18N[l][k] !== undefined) el.textContent = I18N[l][k];
+  });
+}
+</script>
+</body>
+</html>
