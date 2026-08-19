@@ -1,7 +1,7 @@
 # ⚡ Project: Democratizing Compute — The ASEAN Grid ⚡
 
 > **The Anti-Fragile, Decentralized GPU Yield Optimizer Infrastructure for Southeast Asia.**
-> *A Non-Restrictive Open Architecture Guided by Frontier Computing, Bridging Global AI Demand with Regional Consumer Power.*
+> *A Non-Restrictive Open Architecture Guided by Frontier Computing, Bridging Global AI Demand with Regional Consumer Power — powered by a Hybrid "Prepaid API / On-Demand" Monetization Architecture.*
 
 ---
 
@@ -10,16 +10,16 @@
 ### 🇺🇸 ENGLISH
 In the current era of the **Global Compute Crisis**, centralized Big Tech data centers are hitting structural walls—facing energy caps, real-estate limits, and severe geopolitical chip sanctions. Meanwhile, billions of dollars worth of high-end consumer hardware sits idle inside gaming rigs and cyber cafes.
 
-**"The ASEAN Grid"** is a revolutionary, decentralized, and light-asset infrastructure that synthesizes fragmented GPU computing power across Southeast Asia into a unified, high-speed supercomputing monolith. By establishing an advanced **Hybrid Monetization Architecture (SaaS Subscription + On-Demand API Key Token)**, we create a direct pipeline routing global AI training and high-fidelity streaming revenues straight back to local node providers and our network ecosystem.
+**"The ASEAN Grid"** is a revolutionary, decentralized, and light-asset infrastructure that synthesizes fragmented GPU computing power across Southeast Asia into a unified, high-speed supercomputing monolith. By establishing an advanced **Hybrid Monetization Architecture (SaaS Subscription + Prepaid On-Demand API Token)**, we create a direct pipeline routing global AI training and high-fidelity streaming revenues straight back to local node providers and our network ecosystem.
 
 ### 🇹🇭 ภาษาไทย
 ท่ามกลางวิกฤตการณ์ **Global Compute Shortage** (การขาดแคลนพลังประมวลผล AI) และกำแพงภูมิรัฐศาสตร์ที่ทำให้ห้องแล็บ AI ยักษ์ใหญ่ทั่วโลกต้อง "ติดหล่มเทคโนโลยี" เนื่องจากคลาวด์ศูนย์กลาง (Centralized) มาถึงทางตัน... **เราไม่ได้มาสร้างแอปพลิเคชันทั่วไป แต่เรากำลังสร้าง "โรงไฟฟ้าดิจิทัลกระจายศูนย์แห่งภูมิภาคอาเซียน"**
 
-โครงการนี้จะเปลี่ยนพลังงานที่ซ่อนอยู่ — คือคอมพิวเตอร์สเปกเทพตามบ้านและร้านอินเทอร์เน็ตคาเฟ่นับหมื่นแห่งทั่วเอเชียตะวันออกเฉียงใต้ — ให้กลายเป็นเครือข่ายซูเปอร์คอมพิวเตอร์ขนาดยักษ์ (ASEAN Compute Consortium) เพื่อทำหน้าที่รับส่งและประมวลผลคำสั่ง AI และสตรีมมิ่งความเร็วสูง ผ่านโมเดลธุรกิจที่สมบูรณ์แบบที่สุดคือ **"SaaS Subscription + Prepaid API Token"** ดึงเม็ดเงินดอลลาร์สด ๆ จากทั่วโลกไหลเข้ากระเป๋าตลอด 24 ชั่วโมง โดยไม่ผ่านระบบราชการ
+โครงการนี้จะเปลี่ยนพลังงานที่ซ่อนอยู่ — คือคอมพิวเตอร์สเปกเทพตามบ้านและร้านอินเทอร์เน็ตคาเฟ่นับหมื่นแห่งทั่วเอเชียตะวันออกเฉียงใต้ — ให้กลายเป็นเครือข่ายซูเปอร์คอมพิวเตอร์ขนาดยักษ์ (ASEAN Compute Consortium) เพื่อทำหน้าที่รับส่งและประมวลผลคำสั่ง AI และสตรีมมิ่งความเร็วสูง ผ่านโมเดลธุรกิจที่สมบูรณ์แบบที่สุดคือ **"SaaS Subscription + Prepaid API Token (On-Demand)"** ดึงเม็ดเงินดอลลาร์สด ๆ จากทั่วโลกไหลเข้ากระเป๋าตลอด 24 ชั่วโมง โดยไม่ผ่านระบบราชการ
 
 ---
 
-## 💸 THE DISRUPTIVE HYBRID REVENUE MODEL (โมเดลธุรกิจฟาด 2 ขา)
+## 💸 THE DISRUPTIVE HYBRID REVENUE MODEL (โมเดลธุรกิจฟาด 2 ขา — Prepaid API / On-Demand)
 
 Our platform unlocks unprecedented cash flow liquidity by dual-targeting the market via a hybrid financial matrix:
 
@@ -28,11 +28,11 @@ Our platform unlocks unprecedented cash flow liquidity by dual-targeting the mar
         |
 +-------+--------------------------------+-------+
 |                                        |
-[ B2C: SUBSCRIPTION MODEL ]   [ B2B: ON-DEMAND API KEY MODEL ]
+[ B2C: SUBSCRIPTION MODEL ]   [ B2B: ON-DEMAND API KEY TOKEN ]
 Target: 350M+ World of Tanks  Target: Global AI Labs & Dev Houses
         Users & Gamers
 Price:  Low-cost $1/Month     Price: Prepaid Pay-per-Compute
-        SaaS Access                   (Micro-billing)
+        SaaS Access                   (Micro-billing, No usage = No cost)
 Moat:   Unlocks "Earn While   Moat: Replaces High-Cost Fixed
         You Sleep" Mode              Data Center Leases
 ```
@@ -43,10 +43,10 @@ Moat:   Unlocks "Earn While   Moat: Replaces High-Cost Fixed
 - **Mechanism:** Users pay a low-barrier **$1/Month SaaS subscription** to activate the background optimizer, allowing their high-end GPUs (e.g., RTX 4070 Ti Super / RTX 4090) to generate passive crypto/fiat payouts while they sleep or work.
 - **The Metric:** Capturing just 10% of this specific demographic yields **35,000,000 active subscribers**, generating a highly predictable **$35,000,000 (1.2+ Billion THB) in Monthly Recurring Revenue (MRR)**.
 
-### 2. B2B: The On-Demand API Token Core (เติมเงินตามจริงระดับองค์กร)
+### 2. B2B: The Prepaid On-Demand API Token Core (เติมเงินตามจริงระดับองค์กร — ใจความสำคัญของระบบ)
 
 - **Target:** Global AI Foundations, Gaming Studios, and Frontier Research Centers (e.g., Moonshot AI / Kimi, DeepSeek, and decentralized networks).
-- **Mechanism:** Replacing high-overhead, multi-year fixed Data Center leases with a fluid **Prepaid Token System**. Global organizations purchase and load tokens upfront via our developer center; their balances are deducted on a strict, second-by-second basis *only* when real-time AI inference requests are active. **No usage, no costs.**
+- **Mechanism:** Replacing high-overhead, multi-year fixed Data Center leases with a fluid **Prepaid Token System** (styled after API-key top-up wallets). Global organizations purchase and load tokens upfront via our developer center; their balances are deducted on a strict, second-by-second basis *only* when real-time AI inference requests are active. **No usage, no costs** — วินาทีไหนไม่ใช้งาน เงินค้างอยู่ในกระเป๋า ไม่มีการหักรายเดือนแบบ Data Center แบบเก่า.
 - **The Moat:** High-speed, terrestrial and short-sea fiber connections route data between East Asian tech clusters and our ASEAN grid at an astonishingly low latency **(20-40ms)**—outperforming Western alternatives by over **5x** in transmission efficiency.
 
 ---
@@ -85,6 +85,23 @@ Unlike speculative bubble assets, our platform's native token utility is rigidly
 
 - **Staking Deficit:** Home users and internet cafes *must* purchase and stake a specific volume of tokens to validate their hardware nodes and ensure zero-fraud uptimes.
 - **Buyback & Burn Loop:** A dedicated **3% - 5% System Fee** captured from global enterprise API billing is continuously routed to buy back tokens from the open market and burn them, systematically creating a permanent upward asset appreciation loop reminiscent of NVIDIA stock.
+- **Prepaid Liquidity:** The API top-up model (styled after OpenAI/Kimi API wallets) generates **upfront cash flow** before any compute second is consumed — a financial flywheel that funds operations and hardware expansion ahead of demand.
+
+---
+
+## 🚀 HOW TO JOIN THE GRID / IMPLEMENTATION STEPS (ขั้นตอนปฏิบัติจริง)
+
+### Step 1: Lock the Blueprint (ปักหมุดพิมพ์เขียว)
+- Repository: `asean-compute-yield-optimizer` (Public) with **AGPL-3.0 License** — legally forces any derivative enterprise software clones to remain open and transparent, destroying Big Tech's ability to privatize our business logic.
+
+### Step 2: Deploy the README (ประกาศวิสัยทัศน์สู่สากล)
+- Publish this blueprint (TH/EN) as the repository front page — attract global developers (5% Dev Treasury) and investors (Geopolitical Arbitrage opportunity).
+
+### Step 3: Initialize the Data Pipeline (เตรียมระบบหลังบ้านเว็บรถเช่า)
+- Cursor Composer: build `/backend/data-pipeline` to log user behavior + fleet availability (28-car fleet) for downstream **AI Fine-Tuning** — the continuous marketing engine that keeps the rental business selling 24/7.
+
+### Step 4: Aggregate the Supply (ระดมพลฝั่งอุปทาน)
+- Onboard internet cafe chains and home PC registries across Thailand and Vietnam (Phase 2 — ASEAN Alpha Grid), then open the Nous Strategic Corridor (Phase 3).
 
 ---
 
@@ -103,7 +120,7 @@ Unlike speculative bubble assets, our platform's native token utility is rigidly
 
 ---
 
-## 🛠️ THE IMPLEMENTATION ROADMAP (ขั้นตอนการปฏิบัติจริง)
+## 🛠️ THE IMPLEMENTATION ROADMAP (แผนการปฏิบัติจริง)
 
 ### Phase 1: The Blueprint & Structural Lockdown (CURRENT PHASE)
 - **Action:** Lockdown intellectual property on GitHub utilizing the global **AGPL-3.0 License**. This legally forces any derivative enterprise software clones to remain open and transparent, destroying Big Tech's ability to privatize our business logic.
