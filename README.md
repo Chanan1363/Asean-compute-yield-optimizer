@@ -77,7 +77,7 @@ To safeguard our proprietary algorithmic routing and commercial edge from instit
 
 ### 🛡️ Real-Sector Tokenomics Moat (คูเมืองเหรียญมูลค่าจริง ไม่ใช่ฟองสบู่)
 
-We completely reject speculative, bubble-based web3 metrics. Our native token velocity is driven strictly by **Real-Sector Utility and Corporate Demand**, mirroring the economic growth mechanics of NVIDIA stock:
+We completely reject speculative, bubble-based web3 metrics. Our native token — **$GRID (The ASEAN Grid Token)** — has its velocity driven strictly by **Real-Sector Utility and Corporate Demand**, mirroring the economic growth mechanics of NVIDIA stock:
 
 - **The Staking Deficit:** Home nodes and internet cafe hubs *must* secure and stake a specific volume of tokens to qualify as validated compute nodes, enforcing absolute system uptime and anti-fraud protocols.
 - **The Buyback & Burn Flywheel:** A guaranteed **3% - 5% System Fee** harvested from global enterprise prepaid API usage is continuously deployed to auto-buyback tokens from the open market and permanently burn them, creating an aggregate asset appreciation curve backed by real data consumption.
