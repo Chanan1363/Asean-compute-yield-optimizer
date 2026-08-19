@@ -1,62 +1,48 @@
 # ⚡ Project: Democratizing Compute — The ASEAN Grid ⚡
 
 > **The Anti-Fragile, Decentralized GPU Yield Optimizer Infrastructure for Southeast Asia.**
-> *A Non-Restrictive Open Architecture Guided by Frontier Computing, Bridging Global AI Demand with Regional Consumer Power — powered by a Hybrid "Prepaid API / On-Demand" Monetization Architecture.*
+> *An Open-Architecture Compute Network Guided by Frontier Computing, Bridging Global AI Demand with Regional Consumer Power via a Prepaid API Matrix.*
 
 ---
 
 ## 🌎 EXECUTIVE SUMMARY / บทสรุปผู้บริหาร
 
 ### 🇺🇸 ENGLISH
-In the current era of the **Global Compute Crisis**, centralized Big Tech data centers are hitting structural walls—facing energy caps, real-estate limits, and severe geopolitical chip sanctions. Meanwhile, billions of dollars worth of high-end consumer hardware sits idle inside gaming rigs and cyber cafes.
+In the current era of the **Global Compute Crisis (August 2026)**, centralized Big Tech data centers are hitting severe structural walls—facing massive energy caps, localized climate constraints, and harsh geopolitical chip embargoes. Concurrently, AI giants are experiencing catastrophic server overloads, leaving an immense market gap for immediate, scalable raw processing power.
 
-**"The ASEAN Grid"** is a revolutionary, decentralized, and light-asset infrastructure that synthesizes fragmented GPU computing power across Southeast Asia into a unified, high-speed supercomputing monolith. By establishing an advanced **Hybrid Monetization Architecture (SaaS Subscription + Prepaid On-Demand API Token)**, we create a direct pipeline routing global AI training and high-fidelity streaming revenues straight back to local node providers and our network ecosystem.
+**"The ASEAN Grid"** is a disruptive, light-asset distributed computing infrastructure that synthesizes fragmented, high-end consumer hardware (RTX 4070 Ti Super / RTX 4090) across Southeast Asia into a unified, low-latency supercomputing monolith. By implementing a highly strategic **Hybrid Monetization Architecture (SaaS Subscription + Prepaid API Key Token Model)**, we capture global enterprise AI inference demand and route fluid cash flows directly back to our network nodes and local communities, entirely bypassing sluggish bureaucratic systems.
 
 ### 🇹🇭 ภาษาไทย
-ท่ามกลางวิกฤตการณ์ **Global Compute Shortage** (การขาดแคลนพลังประมวลผล AI) และกำแพงภูมิรัฐศาสตร์ที่ทำให้ห้องแล็บ AI ยักษ์ใหญ่ทั่วโลกต้อง "ติดหล่มเทคโนโลยี" เนื่องจากคลาวด์ศูนย์กลาง (Centralized) มาถึงทางตัน... **เราไม่ได้มาสร้างแอปพลิเคชันทั่วไป แต่เรากำลังสร้าง "โรงไฟฟ้าดิจิทัลกระจายศูนย์แห่งภูมิภาคอาเซียน"**
+ท่ามกลางวิกฤตการณ์ **Global Compute Shortage** (การขาดแคลนพลังประมวลผล AI) และกำแพงภูมิรัฐศาสตร์ครั้งใหญ่ที่สุดในประวัติศาสตร์ที่ทำให้ห้องแล็บ AI ยักษ์ใหญ่ต้อง "ติดหล่มเทคโนโลยี" เนื่องจากระบบคลาวด์ศูนย์กลาง (Centralized) แบกรับภาระไม่ไหวจนเกิดวิกฤตเซิร์ฟเวอร์ล่มข้ามคืน... **เราไม่ได้มาสร้างแอปพลิเคชันทั่วไป แต่เรากำลังสร้าง "โรงไฟฟ้าดิจิทัลกระจายศูนย์แห่งภูมิภาคอาเซียน"**
 
-โครงการนี้จะเปลี่ยนพลังงานที่ซ่อนอยู่ — คือคอมพิวเตอร์สเปกเทพตามบ้านและร้านอินเทอร์เน็ตคาเฟ่นับหมื่นแห่งทั่วเอเชียตะวันออกเฉียงใต้ — ให้กลายเป็นเครือข่ายซูเปอร์คอมพิวเตอร์ขนาดยักษ์ (ASEAN Compute Consortium) เพื่อทำหน้าที่รับส่งและประมวลผลคำสั่ง AI และสตรีมมิ่งความเร็วสูง ผ่านโมเดลธุรกิจที่สมบูรณ์แบบที่สุดคือ **"SaaS Subscription + Prepaid API Token (On-Demand)"** ดึงเม็ดเงินดอลลาร์สด ๆ จากทั่วโลกไหลเข้ากระเป๋าตลอด 24 ชั่วโมง โดยไม่ผ่านระบบราชการ
+โครงการนี้จะเปลี่ยนพลังงานที่ซ่อนอยู่ — คือคอมพิวเตอร์สเปกเทพตามบ้านและร้านอินเทอร์เน็ตคาเฟ่นับหมื่นแห่งทั่วเอเชียตะวันออกเฉียงใต้ — ให้กลายเป็นเครือข่ายซูเปอร์คอมพิวเตอร์ขนาดยักษ์ (ASEAN Compute Consortium) เพื่อทำหน้าที่รับส่งและประมวลผลคำสั่ง AI และสตรีมมิ่งความเร็วสูง ผ่านโมเดลธุรกิจที่ฟาดทั้ง 2 ขาคือ **"SaaS Subscription + ระบบเติมเงินล่วงหน้าสไตล์ API Key"** ดึงเม็ดเงินดอลลาร์สด ๆ จากทั่วโลกไหลเข้ากระเป๋าเราตลอด 24 ชั่วโมง โดยไม่ผ่านระบบราชการที่ล่าช้า
 
 ---
 
-## 💸 THE DISRUPTIVE HYBRID REVENUE MODEL (โมเดลธุรกิจฟาด 2 ขา — Prepaid API / On-Demand)
+## 💸 THE DISRUPTIVE HYBRID REVENUE MATRIX (โมเดลธุรกิจฟาด 2 ขา)
 
-Our platform unlocks unprecedented cash flow liquidity by dual-targeting the market via a hybrid financial matrix:
-
-```
-[ REVENUE STREAM ]
-        |
-+-------+--------------------------------+-------+
-|                                        |
-[ B2C: SUBSCRIPTION MODEL ]   [ B2B: ON-DEMAND API KEY TOKEN ]
-Target: 350M+ World of Tanks  Target: Global AI Labs & Dev Houses
-        Users & Gamers
-Price:  Low-cost $1/Month     Price: Prepaid Pay-per-Compute
-        SaaS Access                   (Micro-billing, No usage = No cost)
-Moat:   Unlocks "Earn While   Moat: Replaces High-Cost Fixed
-        You Sleep" Mode              Data Center Leases
-```
+Our economic flywheel captures absolute market liquidity by converting target users into **Dual-Role Actors** (acting as both Supply nodes and Demand clients simultaneously within one single software ecosystem):
 
 ### 1. B2C: The Subscription Flywheel (รายเดือนมหาชน)
 
-- **Target:** Leveraging the massive global **350-million registered player base of titles like World of Tanks (WOT)** and PC home owners.
-- **Mechanism:** Users pay a low-barrier **$1/Month SaaS subscription** to activate the background optimizer, allowing their high-end GPUs (e.g., RTX 4070 Ti Super / RTX 4090) to generate passive crypto/fiat payouts while they sleep or work.
-- **The Metric:** Capturing just 10% of this specific demographic yields **35,000,000 active subscribers**, generating a highly predictable **$35,000,000 (1.2+ Billion THB) in Monthly Recurring Revenue (MRR)**.
+- **Target Demographic:** Harnessing the massive global **350-million registered player base of heavy-duty tactical titles like World of Tanks (WOT)** and high-end home PC owners.
+- **The Mechanism:** Users pay a hyper-affordable **$1/Month SaaS subscription** to run our background compiler package. This activates the "Earn While You Sleep" mode, turning their idle gaming setups into micro-generation node factories that yield them automated cash flows while they are asleep, at school, or at work.
+- **The Projection:** Converting a conservative 10% of this hyper-targeted demographic unlocks **35,000,000 recurring subscribers**, commanding a monumental **$35,000,000 (1.2+ Billion THB) in Monthly Recurring Revenue (MRR)**.
 
-### 2. B2B: The Prepaid On-Demand API Token Core (เติมเงินตามจริงระดับองค์กร — ใจความสำคัญของระบบ)
+### 2. B2B: The Prepaid API Key Core (ระบบเติมเงินองค์กรสไตล์ API Key)
 
-- **Target:** Global AI Foundations, Gaming Studios, and Frontier Research Centers (e.g., Moonshot AI / Kimi, DeepSeek, and decentralized networks).
-- **Mechanism:** Replacing high-overhead, multi-year fixed Data Center leases with a fluid **Prepaid Token System** (styled after API-key top-up wallets). Global organizations purchase and load tokens upfront via our developer center; their balances are deducted on a strict, second-by-second basis *only* when real-time AI inference requests are active. **No usage, no costs** — วินาทีไหนไม่ใช้งาน เงินค้างอยู่ในกระเป๋า ไม่มีการหักรายเดือนแบบ Data Center แบบเก่า.
-- **The Moat:** High-speed, terrestrial and short-sea fiber connections route data between East Asian tech clusters and our ASEAN grid at an astonishingly low latency **(20-40ms)**—outperforming Western alternatives by over **5x** in transmission efficiency.
+- **Target Demographic:** Institutional AI developers, frontier model laboratories, and sovereign tech clusters (e.g., Moonshot AI / Kimi, DeepSeek, and heavy data research centers).
+- **The Mechanism:** We eliminate capital-heavy, multi-year fixed Data Center leases. Organizations generate a specialized API Key on our developer platform and load it with upfront capital (Prepaid Cashflow Model). Our engine executes **strict, second-by-second micro-billing (Pay-per-Compute)**, deducting balances *only* when real-time AI workloads are active on our grid. **No computing, zero expenses.**
+- **The Geopolitical Arbitrage:** Terrestrial and short-sea optical fiber routing positions the ASEAN region as the definitive proximity haven for East Asian tech giants. We deliver an unprecedented **20-40ms ultra-low latency pipeline**—transferring massive data swarms **5x faster** than high-overhead transpacific Western cloud structures.
 
 ---
 
 ## ⚙️ TECHNICAL ARCHITECTURE (สถาปัตยกรรมระบบขั้นสูง)
 
-To protect our proprietary engineering logic from institutional exploitation, our production framework is strictly segmented. This repository functions as the **Functional Blueprint Layer**, while core routing microservices remain closed-source.
+To safeguard our proprietary algorithmic routing and commercial edge from institutional cloning, our repository is strictly partitioned. This repository houses the **Functional Architecture & Spec Sheets**, keeping core routing microservices private.
 
 ```
-[ GLOBAL AI INFERENCE DEMAND / ON-DEMAND API CLIENTS ]
+[ GLOBAL AI INFERENCE DEMAND / PREPAID API CLIENTS ]
                     | (20-40ms Low Latency Pipeline)
 +-------------------+-------------------+
 |                                      |
@@ -67,12 +53,12 @@ To protect our proprietary engineering logic from institutional exploitation, ou
 +-------------------+-------------------+
                     |
 [ AI-DRIVEN ARBITRAGE SWITCHER ENGINE ]
-                    | (Sub-30s Smart Routing)
-+-------------------+-------------------+
-|                  |                  |
-[ VAST.AI ]    [ IO.NET ]    [ NOUS PSYCHE NET ]
-                    |
-+-------------------+-------------------+
+                    | (Sub-30s Autonomous Workload Rerouting)
++-----------------------+-----------------------+
+|                       |                       |
+[ VAST.AI ]        [ IO.NET ]          [ NOUS PSYCHE NET ]
+|                       |                       |
++-----------------------+-----------------------+
                     |
 [ ONE-CLICK DOCKER SANDBOX ISOLATION ]
                     |
@@ -81,27 +67,10 @@ To protect our proprietary engineering logic from institutional exploitation, ou
 
 ### 🛡️ Real-Sector Tokenomics Moat (คูเมืองเหรียญมูลค่าจริง ไม่ใช่ฟองสบู่)
 
-Unlike speculative bubble assets, our platform's native token utility is rigidly driven by strict **Real-Sector Economics**:
+We completely reject speculative, bubble-based web3 metrics. Our native token velocity is driven strictly by **Real-Sector Utility and Corporate Demand**, mirroring the economic growth mechanics of NVIDIA stock:
 
-- **Staking Deficit:** Home users and internet cafes *must* purchase and stake a specific volume of tokens to validate their hardware nodes and ensure zero-fraud uptimes.
-- **Buyback & Burn Loop:** A dedicated **3% - 5% System Fee** captured from global enterprise API billing is continuously routed to buy back tokens from the open market and burn them, systematically creating a permanent upward asset appreciation loop reminiscent of NVIDIA stock.
-- **Prepaid Liquidity:** The API top-up model (styled after OpenAI/Kimi API wallets) generates **upfront cash flow** before any compute second is consumed — a financial flywheel that funds operations and hardware expansion ahead of demand.
-
----
-
-## 🚀 HOW TO JOIN THE GRID / IMPLEMENTATION STEPS (ขั้นตอนปฏิบัติจริง)
-
-### Step 1: Lock the Blueprint (ปักหมุดพิมพ์เขียว)
-- Repository: `asean-compute-yield-optimizer` (Public) with **AGPL-3.0 License** — legally forces any derivative enterprise software clones to remain open and transparent, destroying Big Tech's ability to privatize our business logic.
-
-### Step 2: Deploy the README (ประกาศวิสัยทัศน์สู่สากล)
-- Publish this blueprint (TH/EN) as the repository front page — attract global developers (5% Dev Treasury) and investors (Geopolitical Arbitrage opportunity).
-
-### Step 3: Initialize the Data Pipeline (เตรียมระบบหลังบ้านเว็บรถเช่า)
-- Cursor Composer: build `/backend/data-pipeline` to log user behavior + fleet availability (28-car fleet) for downstream **AI Fine-Tuning** — the continuous marketing engine that keeps the rental business selling 24/7.
-
-### Step 4: Aggregate the Supply (ระดมพลฝั่งอุปทาน)
-- Onboard internet cafe chains and home PC registries across Thailand and Vietnam (Phase 2 — ASEAN Alpha Grid), then open the Nous Strategic Corridor (Phase 3).
+- **The Staking Deficit:** Home nodes and internet cafe hubs *must* secure and stake a specific volume of tokens to qualify as validated compute nodes, enforcing absolute system uptime and anti-fraud protocols.
+- **The Buyback & Burn Flywheel:** A guaranteed **3% - 5% System Fee** harvested from global enterprise prepaid API usage is continuously deployed to auto-buyback tokens from the open market and permanently burn them, creating an aggregate asset appreciation curve backed by real data consumption.
 
 ---
 
@@ -109,36 +78,34 @@ Unlike speculative bubble assets, our platform's native token utility is rigidly
 
 ### 💻 For Developers: The 5% Treasury Fund (กองทุนล่าหัวกะทิ)
 
-- **The Guideline:** Our baseline roadmap uses the open-source breakthroughs of **Nous Research (DisTrO & Psyche network frameworks)** as a primary technical direction, bypassing the need to build cross-border low-bandwidth compression algorithms from scratch.
-- **Open Tech Autonomy:** We reject rigid vendor lock-ins. Our repository is an **Open Architecture**. If you possess an optimized container topology, a superior smart contract flow, or a sharper localized electricity calculator—**fork this repo, submit a PR, and show your worth.**
-- **The Incentive:** An immutable **5% Developer Treasury Pool** built into our system smart contracts distributes platform revenues directly to contributors who maintain core microservices and security protocols.
+- **The Compass:** Our engineering baseline uses the open-source breakthroughs of **Nous Research (DisTrO & Psyche network frameworks)** as a primary directional compass. We build upon established distributed breakthroughs so you never have to waste months reinventing the wheel.
+- **Unrestricted Code Autonomy:** We oppose vendor lock-in. This project is a strict **Open Architecture**. If you can deploy a tighter docker isolation cluster, a faster localized electricity tariff calculation matrix, or a superior arbitrage microservice—**fork this repo, submit a PR, and claim your code ownership.**
+- **The Incentive:** An immutable **5% Developer Treasury Pool** coded directly into the framework smart contracts continuously pays out dividends, equity shares, or bounties to engineers maintaining the core grid.
 
-### 💰 For Investors: Geopolitical Arbitrage (ถึงนักลงทุนกระเป๋าหนัก)
+### 💰 For Investors: Hyper-Scalable Asset-Light Infrastructure (ถึงนักลงทุนกระเป๋าหนัก)
 
-- **The Opportunity:** Capitalizing on the high-end chip squeeze in East Asia, we are capturing a multi-billion-dollar regional computing monopoly. We bypass capital-heavy hardware procurement by crowdsourcing idle, pre-existing consumer nodes.
-- **The Exit Strategy:** We are driving this venture towards an institutional acquisition and multi-billion baht valuation. We look for Angel Visionaries who understand foundational internet infrastructure and cashflow-backed assets to capitalize on Phase 1 development.
+- **The Valuation Trajectory:** By leveraging pre-existing, crowdsourced consumer nodes, we eliminate hardware depreciation risks and massive upfront overheads. We are positioning this regional network for a dominant corporate acquisition and a multi-billion baht valuation. We open entry for Angel Visionaries seeking cashflow-backed digital real estate to anchor Phase 1 deployment.
 
 ---
 
-## 🛠️ THE IMPLEMENTATION ROADMAP (แผนการปฏิบัติจริง)
+## 🛠️ THE IMPLEMENTATION ROADMAP (ขั้นตอนการปฏิบัติจริง)
 
-### Phase 1: The Blueprint & Structural Lockdown (CURRENT PHASE)
-- **Action:** Lockdown intellectual property on GitHub utilizing the global **AGPL-3.0 License**. This legally forces any derivative enterprise software clones to remain open and transparent, destroying Big Tech's ability to privatize our business logic.
-- **Cursor Integration:** Initialize the structural backend data pipelines (`/backend/data-pipeline`) in Cursor Composer to map user activity logs and fleet availability loops for downstream model adjustments.
+### Phase 1: The Intellectual Property Lockdown (CURRENT PHASE)
+- **Action:** Secure and deploy the global framework layout on GitHub utilizing the **AGPL-3.0 License**. This legally bars multi-billion-dollar institutions from cloning our layout into closed-source proprietary software.
+- **Cursor Core Dev:** Initialize the structural telemetry data pipelines (`/backend/data-pipeline`) in Cursor Composer to register local host availability metrics and fleet tracking logic.
 
-### Phase 2: Supply Aggregation (ASEAN Alpha Grid)
-- Onboard local internet cafe chains and home PC registries across Thailand and Vietnam to stress-test the container sandbox environment under mock rendering loads.
+### Phase 2: Regional Grid Onboarding
+- Deploy the alpha client container across internet cafe hubs in Thailand and Vietnam to stress-test sandbox boundaries under high-throughput rendering loads.
 
 ### Phase 3: The Nous Strategic Corridor
-- Bridge communication channels with **Nous Research (US)** using our regional hardware cluster as data proof, negotiating a primary advisory tier and formal network expansion alliance.
+- Interface directly with **Nous Research (US)** using our operational regional node proof to lock down a master technology alliance, establishing the primary international advisory channel.
 
 ---
 
-## 🚦 Join the Framework
+### 🚦 Join the Infrastructure Hub
 
-1. **Developers:** Review our issue tracker, submit pull requests for backend pipelines, and claim your share of the 5% Developer Pool.
-2. **Node Providers:** Register your hardware specifications (Minimum 16GB VRAM recommended) to join the local testing registry.
-3. **Angel Visionaries:** Open a private channel with the Founder to review the regional infrastructure growth matrix.
+- **Issues:** Flag routing inefficiencies or audit the decentralized transaction distribution loops.
+- **Inquiries:** Establish a private encrypted channel with the Founder for secure growth data access.
 
 ---
 
