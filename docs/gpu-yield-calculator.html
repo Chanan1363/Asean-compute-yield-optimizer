@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🧮 GPU Yield Calculator — เครื่องของคุณปล่อยเช่าได้เดือนละเท่าไหร่? | The ASEAN Grid</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Kanit','Leelawadee UI','Tahoma',sans-serif; background:linear-gradient(160deg,#0a0e1a,#101a35);
+    color:#e8ecf7; min-height:100vh; padding:30px 16px 50px; }
+  .wrap { max-width:760px; margin:0 auto; }
+  .header { text-align:center; margin-bottom:26px; }
+  .brand { font-size:15px; color:#7aa2ff; letter-spacing:2px; }
+  .title { font-size:34px; font-weight:700; color:#ffd76a; margin-top:6px; }
+  .subtitle { font-size:16px; color:#9fb4e8; margin-top:6px; }
+  .card { background:linear-gradient(160deg,#131a30,#0d1224); border:2px solid #243158; border-radius:16px;
+    padding:24px; margin-bottom:18px; }
+  .card h3 { font-size:18px; color:#7aa2ff; margin-bottom:14px; }
+  .row { display:flex; gap:14px; flex-wrap:wrap; }
+  .field { flex:1; min-width:150px; margin-bottom:14px; }
+  .field label { display:block; font-size:14px; color:#a9bce6; margin-bottom:6px; }
+  .field select, .field input { width:100%; padding:11px 12px; border-radius:10px; border:1px solid #2c3a63;
+    background:#0d1530; color:#fff; font-size:16px; font-family:inherit; }
+  input[type=range] { width:100%; accent-color:#ffd76a; }
+  .range-val { font-weight:700; color:#ffd76a; }
+  .result { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .metric { background:#0d1530; border:1px solid #243158; border-radius:12px; padding:14px 16px; }
+  .metric .k { font-size:13px; color:#8fa3d0; }
+  .metric .v { font-size:26px; font-weight:700; margin-top:2px; }
+  .v.gold { color:#ffd76a; } .v.green { color:#5ee6a8; } .v.red { color:#ff6b6b; } .v.blue { color:#7aa2ff; }
+  .metric .s { font-size:12px; color:#7c8cb8; }
+  .big { grid-column:1/-1; text-align:center; padding:18px; }
+  .big .v { font-size:40px; }
+  .note { font-size:12.5px; color:#7c8cb8; line-height:1.7; margin-top:12px; }
+  .footer { text-align:center; font-size:13px; color:#7c8cb8; margin-top:26px; line-height:1.8; }
+  .footer a { color:#7aa2ff; text-decoration:none; }
+  .badge { display:inline-block; background:#ffd76a; color:#0a0e1a; font-weight:700; border-radius:30px;
+    padding:3px 16px; font-size:13px; margin-top:8px; }
+  @media(max-width:520px){ .result { grid-template-columns:1fr; } .title{ font-size:26px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="header">
+    <div class="brand">⚡ THE ASEAN GRID — DEMOCRATIZING COMPUTE ⚡</div>
+    <div class="title">🧮 เครื่องของคุณปล่อยเช่าได้เดือนละเท่าไหร่?</div>
+    <div class="subtitle">GPU Yield Calculator — เปิดซอฟต์แวร์ทิ้งไว้ตอนไม่เล่นเกม เครื่องหาตังค์ให้เอง</div>
+  </div>
+
+  <div class="card">
+    <h3>⚙️ ตั้งค่าคอมพิวเตอร์ของคุณ</h3>
+    <div class="row">
+      <div class="field" style="flex:2">
+        <label>การ์ดจอ (GPU)</label>
+        <select id="gpu" onchange="calc()">
+          <option value="4070tis">RTX 4070 Ti Super (16GB) — เครื่อง ~51,000 บาท</option>
+          <option value="4090">RTX 4090 (24GB) — เครื่อง ~120,000 บาท</option>
+          <option value="4080s">RTX 4080 Super (16GB) — เครื่อง ~70,000 บาท</option>
+          <option value="4070s">RTX 4070 Super (12GB) — เครื่อง ~45,000 บาท</option>
+          <option value="3090">RTX 3090 (24GB) — เครื่อง ~48,000 บาท</option>
+          <option value="4060ti">RTX 4060 Ti (16GB) — เครื่อง ~35,000 บาท</option>
+          <option value="7900xtx">RX 7900 XTX (24GB) — เครื่อง ~55,000 บาท</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>ค่าไฟบ้าน (บาท/หน่วย)</label>
+        <input type="number" id="elec" value="4.5" min="1" max="10" step="0.1" oninput="calc()">
+      </div>
+    </div>
+    <div class="field">
+      <label>ชั่วโมงที่เครื่องว่างต่อวัน (ตอนเล่นเกมแค่ 2-4 ชม. ที่เหลือว่าง!) — <span class="range-val" id="hoursVal">12 ชม.</span></label>
+      <input type="range" id="hours" min="0" max="24" value="12" oninput="hoursVal.textContent=this.value+' ชม.';calc()">
+    </div>
+    <div class="note">💡 อัตรารายได้อ้างอิงจากราคาตลาดแพลตฟอร์มเช่า GPU สากล (Vast.ai / io.net) — เป็นค่าประมาณกลาง ๆ ตลาดผันผวนได้ครับ</div>
+  </div>
+
+  <div class="card">
+    <h3>📊 ผลลัพธ์ต่อเดือน</h3>
+    <div class="result">
+      <div class="metric"><div class="k">💰 รายได้รวม (ก่อนหักค่าไฟ)</div><div class="v gold" id="rev">—</div><div class="s" id="revNote">จากปล่อยเช่า 12 ชม./วัน</div></div>
+      <div class="metric"><div class="k">🔌 ค่าไฟที่ต้องจ่าย</div><div class="v red" id="cost">—</div><div class="s">คำนวณจากกำลังไฟจริง</div></div>
+      <div class="metric"><div class="k">⚡ กำไรสุทธิ (บาท/เดือน)</div><div class="v green" id="profit">—</div><div class="s">รายได้ − ค่าไฟ − ค่าธรรมเนียม 5%</div></div>
+      <div class="metric"><div class="k">⏱️ คืนทุน (เดือน)</div><div class="v blue" id="payback">—</div><div class="s">จากราคาเครื่องโดยประมาณ</div></div>
+      <div class="metric big"><div class="k">🏆 กำไรต่อปี (บาท)</div><div class="v gold" id="year">—</div><div class="s">ถ้าเครื่องทำงานให้ทุกคืนอย่างนี้</div></div>
+    </div>
+    <div class="note">⚠️ ตัวเลขเป็นค่าประมาณเพื่อให้เห็นภาพ — รายได้จริงขึ้นกับสภาพตลาด งานที่ได้รับ และความเสถียรของเน็ต/เครื่อง ครับ</div>
+  </div>
+
+  <div class="footer">
+    ⚡ Project: Democratizing Compute — The ASEAN Grid ⚡<br>
+    อยากให้เครื่องว่าง ๆ ทำงานหาเงินให้จริง ๆ ? ตามโปรเจกต์ไปได้ที่นี่:<br>
+    <a href="https://github.com/Chanan1363/Asean-compute-yield-optimizer" target="_blank">🔗 github.com/Chanan1363/Asean-compute-yield-optimizer</a><br>
+    <span class="badge">AGPL-3.0 — OPEN ARCHITECTURE</span>
+  </div>
+</div>
+
+<script>
+// ข้อมูลการ์ดจอ: rate $/hr (กลาง), กำลังไฟ W, ราคาเครื่อง บาท
+const GPUS = {
+  "4070tis": { rate:0.35, watt:285, price:51100, name:"RTX 4070 Ti Super" },
+  "4090":    { rate:0.55, watt:450, price:120000, name:"RTX 4090" },
+  "4080s":   { rate:0.42, watt:320, price:70000, name:"RTX 4080 Super" },
+  "4070s":   { rate:0.28, watt:220, price:45000, name:"RTX 4070 Super" },
+  "3090":    { rate:0.30, watt:350, price:48000, name:"RTX 3090" },
+  "4060ti":  { rate:0.18, watt:160, price:35000, name:"RTX 4060 Ti" },
+  "7900xtx": { rate:0.30, watt:355, price:55000, name:"RX 7900 XTX" }
+};
+const FEE = 0.05, USD = 35.5;
+function calc(){
+  const g = GPUS[document.getElementById('gpu').value];
+  const h = +document.getElementById('hours').value;
+  const elec = +document.getElementById('elec').value || 4.5;
+  const revUSD = g.rate * h * 30;
+  const revTHB = revUSD * USD;
+  const fee = revTHB * FEE;
+  const elecCost = (g.watt * h * 30 / 1000) * elec;
+  const profit = revTHB - fee - elecCost;
+  const payback = profit > 0 ? (g.price / profit) : Infinity;
+  const fmt = n => n.toLocaleString('th-TH', {maximumFractionDigits:0});
+  document.getElementById('rev').textContent = '$' + revUSD.toFixed(1) + ' ≈ ' + fmt(revTHB) + ' บาท';
+  document.getElementById('revNote').textContent = 'จากปล่อยเช่า ' + h + ' ชม./วัน (ไม่นับชั่วโมงเล่นเกม)';
+  document.getElementById('cost').textContent = fmt(elecCost) + ' บาท';
+  document.getElementById('profit').textContent = fmt(profit) + ' บาท';
+  document.getElementById('payback').textContent = profit > 0 ? '≈ ' + payback.toFixed(1) + ' เดือน' : 'ยังไม่คุ้ม';
+  document.getElementById('year').textContent = fmt(profit * 12) + ' บาท/ปี';
+}
+calc();
+</script>
+</body>
+</html>
