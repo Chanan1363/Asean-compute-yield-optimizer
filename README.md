@@ -19,6 +19,16 @@ In the current era of the **Global Compute Crisis (August 2026)**, centralized B
 
 ---
 
+## 🖼️ THE BLUEPRINT VISUALS (ภาพพิมพ์เขียว — อธิบายด้วยตัวเองได้ทั่วโลก)
+
+![RTX 4090 Power Squad](assets/rtx4090_power_squad.png)
+
+![GPU Revenue Arbitrage](assets/gpu_revenue_arbitrage.png)
+
+![Calculation Power Sharing](assets/compute_power_sharing.png)
+
+---
+
 ## 💸 THE DISRUPTIVE HYBRID REVENUE MATRIX (โมเดลธุรกิจฟาด 2 ขา)
 
 Our economic flywheel captures absolute market liquidity by converting target users into **Dual-Role Actors** (acting as both Supply nodes and Demand clients simultaneously within one single software ecosystem):
