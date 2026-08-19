@@ -21,6 +21,8 @@ In the current era of the **Global Compute Crisis (August 2026)**, centralized B
 
 ## 🖼️ THE BLUEPRINT VISUALS (ภาพพิมพ์เขียว — อธิบายด้วยตัวเองได้ทั่วโลก)
 
+![The ASEAN Grid — Market Size & $GRID Token-as-a-Product](assets/grid_market_token_chatgpt.png)
+
 ![RTX 4090 Power Squad](assets/rtx4090_power_squad.png)
 
 ![GPU Revenue Arbitrage](assets/gpu_revenue_arbitrage.png)
