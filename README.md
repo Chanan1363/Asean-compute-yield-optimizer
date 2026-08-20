@@ -177,6 +177,7 @@ We completely reject speculative, bubble-based web3 metrics. Our native token �
 
 - 👨‍💻 **Developers:** read [CONTRIBUTING.md](CONTRIBUTING.md) — fork → branch → test → pull request. Merged PRs qualify for the **5% Developer Pool** per the blueprint.
 - 📚 **Lessons from Psyche Network:** [docs/lessons-from-psyche.md](docs/lessons-from-psyche.md) — the 4 real obstacles of internet-scale decentralized training and their proven solutions / บทเรียนจากเครือข่าย Psyche — อุปสรรค 4 ข้อจริงของการเทรนกระจายและวิธีแก้ที่พิสูจน์แล้ว
+- 🧠 **Hybrid + Brain Strategy:** [docs/hybrid-brain-strategy.md](docs/hybrid-brain-strategy.md) — why we combine consumer GPUs + small data centers, what SLA means, and why we compete with intelligence not capital / กลยุทธ์ไฮบริด + สมอง — เหตุผลที่ผสม consumer GPU + Data Center เล็ก, SLA คืออะไร, และทำไมเราแข่งด้วยสมองไม่ใช่ทุน
 - 🖥️ **Compute Builders:** register your GPU (Google Form in the Genesis Pilot) → get engraved in the Genesis Ledger.
 - 📣 **Ambassadors:** share the calculator → climb the Ambassador Board.
 
