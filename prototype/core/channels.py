@@ -152,7 +152,7 @@ class RenderChannel(ComputeChannel):
 
 
 class DirectAIChannel(ComputeChannel):
-    """4. ช่องทางตรง — บริษัท AI/ห้องแล็บ (Moonshot/Kimi, DeepSeek...) ผ่าน Prepaid API"""
+    """4. ช่องทางตรง — บริษัท AI/สตาร์ทอัพ/ห้องแล็บ (ผ่าน Prepaid API)"""
     name = "direct_ai"
 
     def get_quote(self) -> Optional[ChannelQuote]:

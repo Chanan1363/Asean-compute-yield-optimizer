@@ -60,11 +60,11 @@ Our economic flywheel captures absolute market liquidity by converting target us
 
 ### 2. B2B: The Prepaid API Key Core (ระบบเติมเงินองค์กรสไตล์ API Key)
 
-- **Target Demographic:** Institutional AI developers, frontier model laboratories, and sovereign tech clusters (e.g., Moonshot AI / Kimi, DeepSeek, and heavy data research centers).
+- **Target Demographic (Phase 1 — immediate):** AI startups and scale-ups, university labs, and local AI application businesses across ASEAN (chatbots, OCR, translation, document processing) that need affordable GPU compute without data-center budgets. **Long-term vision:** frontier model laboratories and sovereign tech clusters (e.g., Moonshot AI / Kimi, DeepSeek) once the network has enterprise-grade SLAs.
 - **The Mechanism:** We eliminate capital-heavy, multi-year fixed Data Center leases. Organizations generate a specialized API Key on our developer platform and load it with upfront capital (Prepaid Cashflow Model). Our engine executes **strict, second-by-second micro-billing (Pay-per-Compute)**, deducting balances *only* when real-time AI workloads are active on our grid. **No computing, zero expenses.**
 - **The Geopolitical Arbitrage:** Terrestrial and short-sea optical fiber routing positions the ASEAN region as the definitive proximity haven for East Asian tech giants. We deliver an unprecedented **20-40ms ultra-low latency pipeline**—transferring massive data swarms **5x faster** than high-overhead transpacific Western cloud structures.
 
-- **กลุ่มเป้าหมาย:** นักพัฒนา AI สถาบัน ห้องแล็บโมเดลระดับแนวหน้า และคลัสเตอร์เทคโนโลยีรายรัฐ (เช่น Moonshot AI / Kimi, DeepSeek และศูนย์วิจัยข้อมูลขนาดใหญ่)
+- **กลุ่มเป้าหมาย (ระยะแรก — เข้าถึงได้ทันที):** สตาร์ทอัพ/บริษัท AI ขนาดเล็ก-กลาง, ห้องแล็บมหาวิทยาลัย, และธุรกิจแอป AI ท้องถิ่นทั่วอาเซียน (แชทบอท, OCR, แปลภาษา, ประมวลเอกสาร) ที่ต้องการพลัง GPU ราคาไม่แพงโดยไม่ต้องลงทุน Data Center **วิสัยทัศน์ระยะยาว:** ห้องแล็บโมเดลระดับแนวหน้าและคลัสเตอร์เทคโนโลยีรายรัฐ (เช่น Moonshot AI / Kimi, DeepSeek) เมื่อเครือข่ายมี SLA ระดับองค์กรแล้ว
 - **กลไก:** เราตัดภาระการเช่าดาต้าเซ็นเตอร์ระยะยาวหลายปี องค์กรสร้าง API Key บนแพลตฟอร์มแล้วเติมเงินล่วงหน้า (โมเดลเงินสดล่วงหน้า) — ระบบของเราคิดเงินแบบ **วินาทีต่อวินาที** หักยอดเฉพาะเมื่องาน AI รันจริงบนกริด **ไม่คำนวณ = ไม่จ่าย**
 - **จุดได้เปรียบภูมิรัฐศาสตร์:** เส้นใยแสงทางบกและทะเลสั้น ทำให้อาเซียนเป็น "ที่หลบภัยด้านระยะทาง" ของยักษ์ใหญ่เทคโนโลยีเอเชียตะวันออก — latency **20-40ms** ส่งข้อมูลมหาศาล **เร็วกว่าคลาวด์ตะวันตกข้ามแปซิฟิก 5 เท่า**
 

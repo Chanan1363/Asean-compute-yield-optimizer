@@ -11,7 +11,7 @@ class TestBilling(unittest.TestCase):
         self.billing = Billing(Config())
 
     def test_topup_and_balance(self):
-        tenant = self.billing.create_tenant("Moonshot AI (test)")
+        tenant = self.billing.create_tenant("Bangkok AI Startup (test)")
         self.billing.top_up(tenant, 500.0)
         self.assertAlmostEqual(tenant.balance_usd, 500.0)
 

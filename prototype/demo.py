@@ -40,7 +40,7 @@ def main() -> None:
     # ── 2. ลูกค้าเติมเงิน (B2B prepaid) ─────────────────────────
     print("\n[2] ลูกค้าองค์กรเติมเงินล่วงหน้า (Prepaid API Key)")
     billing = Billing(cfg)
-    tenant = billing.create_tenant("Moonshot AI / Kimi (จำลอง)")
+    tenant = billing.create_tenant("Bangkok AI Startup (จำลอง)")
     billing.top_up(tenant, 2000.00)
     key = billing.issue_api_key(tenant)
     print(f"    {tenant.name} เติมเงิน ${tenant.balance_usd:,.2f}")
