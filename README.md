@@ -176,6 +176,7 @@ We completely reject speculative, bubble-based web3 metrics. Our native token �
 **The ASEAN Grid is open architecture (AGPL-3.0): fork, build, send a PR.** / สถาปัตยกรรมเปิด: fork ได้ แก้ได้ ส่ง PR ได้
 
 - 👨‍💻 **Developers:** read [CONTRIBUTING.md](CONTRIBUTING.md) — fork → branch → test → pull request. Merged PRs qualify for the **5% Developer Pool** per the blueprint.
+- 📚 **Lessons from Psyche Network:** [docs/lessons-from-psyche.md](docs/lessons-from-psyche.md) — the 4 real obstacles of internet-scale decentralized training and their proven solutions / บทเรียนจากเครือข่าย Psyche — อุปสรรค 4 ข้อจริงของการเทรนกระจายและวิธีแก้ที่พิสูจน์แล้ว
 - 🖥️ **Compute Builders:** register your GPU (Google Form in the Genesis Pilot) → get engraved in the Genesis Ledger.
 - 📣 **Ambassadors:** share the calculator → climb the Ambassador Board.
 
