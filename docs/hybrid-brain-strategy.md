@@ -1,70 +1,52 @@
-# 🧠 The Hybrid + Brain Strategy — กลยุทธ์ไฮบริด + สมองอัจฉริยะ
+# 🧠 The Hybrid Network Approach — แนวคิดเครือข่ายไฮบริด
 
-> **We do not compete with capital — we compete with intelligence.** CoreWeave wins with billions of dollars in H100 clusters; we win with a hybrid network of consumer GPUs + small data centers, orchestrated by an arbitrage brain built on open research (DisTrO).
+> **A hybrid network combines consumer GPUs with small data centers to serve workloads of every kind — from budget jobs to enterprise-grade requirements.**
 >
-> **เราไม่แข่งด้วยทุน — เราแข่งด้วยสมอง** CoreWeave ชนะด้วยเงินหลายพันล้านซื้อ H100 เราชนะด้วยเครือข่ายไฮบริด (การ์ดจอผู้ใช้ทั่วไป + Data Center ขนาดเล็ก) ที่ประสานงานด้วยสมองจัดสรรงานที่สร้างจากงานวิจัยเปิด (DisTrO)
+> **เครือข่ายไฮบริด = การผสมการ์ดจอผู้ใช้ทั่วไปกับ Data Center ขนาดเล็ก เพื่อรองรับงานทุกระดับ — ตั้งแต่งานราคาประหยัดไปจนถึงงานระดับองค์กร**
 
 ---
 
-## 1. Why hybrid — ทำไมต้องไฮบริด
+## 1. What is a hybrid network — เครือข่ายไฮบริดคืออะไร
 
 | ชั้น / Tier | อะไร | จุดแข็ง | จุดอ่อน |
 |---|---|---|---|
-| **Consumer GPUs** (ร้านเน็ต/เกมเมอร์) | การ์ดจอเกมมิ่งตามบ้าน/ร้าน | ราคาถูกที่สุด, มีปริมาณมหาศาล, ขยายเร็ว | เสถียรภาพปานกลาง, SLA สูงไม่ได้, เครื่องหลากหลาย |
-| **Small Data Centers** (ไทย/อาเซียน) | เซิร์ฟเวอร์ในอาคารดูแลมืออาชีพ | เสถียรกว่า, ให้ SLA ได้, มีระบบสำรอง | ราคาแพงกว่า consumer, ปริมาณจำกัด |
+| **Consumer GPUs** (ร้านเน็ต/เกมเมอร์) | การ์ดจอเกมมิ่งตามบ้าน/ร้าน | ราคาถูกที่สุด, มีปริมาณมหาศาล, ขยายเร็ว | เสถียรภาพปานกลาง, ให้ SLA สูงไม่ได้ |
+| **Small Data Centers** (ไทย/อาเซียน) | เซิร์ฟเวอร์ในอาคารดูแลมืออาชีพ | เสถียรกว่า, ให้ SLA ได้, มีระบบสำรอง | ราคาแพงกว่า, ปริมาณจำกัด |
 
-**The insight / ข้อค้นพบ:** Neither tier alone wins. Consumer-only cannot serve enterprise-grade SLAs; DC-only is expensive and limited. A hybrid network routes each workload to the tier that fits — cheap jobs to consumer GPUs, SLA-sensitive jobs to small data centers — automatically, by the arbitrage engine. / ชั้นเดียวไม่พอ: consumer อย่างเดียวให้ SLA องค์กรไม่ได้; Data Center อย่างเดียวแพงและจำกัด — เครือข่ายไฮบริดส่งงานแต่ละประเภทไปชั้นที่เหมาะสม: งานราคาถูกไป consumer, งานต้องการ SLA ไป Data Center เล็ก — อัตโนมัติโดยสมองจัดสรรงาน
-
-**Proven in the market / พิสูจน์แล้วในตลาด:** Vast.ai itself combines independent hosts with "certified data center partners in professionally managed facilities." Hybrid is the industry standard that works. / Vast.ai เองก็ผสม host อิสระกับ "Data Center พาร์ทเนอร์ที่รับรอง" — ไฮบริดคือมาตรฐานที่ใช้ได้จริง
+**The insight / ข้อค้นพบ:** Neither tier alone is enough. Consumer-only cannot serve enterprise-grade requirements; data-center-only is expensive and limited. A hybrid network routes each workload to the tier that fits — automatically, by an intelligent scheduling engine. / ชั้นเดียวไม่พอ: consumer อย่างเดียวให้ระดับองค์กรไม่ได้; Data Center อย่างเดียวแพงและจำกัด — เครือข่ายไฮบริดส่งงานแต่ละประเภทไปชั้นที่เหมาะสมโดยอัตโนมัติด้วยระบบจัดสรรงานอัจฉริยะ
 
 ---
 
-## 2. What is SLA (and why it matters) — SLA คืออะไร ทำไมสำคัญ
+## 2. What is SLA — SLA คืออะไร
 
 **SLA = Service Level Agreement = a contract that guarantees a level of service, with penalties (usually refunds) if missed.** / SLA = สัญญารับประกันระดับบริการ ถ้าทำไม่ได้ตามสัญญา มีบทลงโทษ (ส่วนใหญ่คืนเงิน/ลดราคา)
 
 Typical SLA metrics in GPU rental / ตัวชี้วัดทั่วไปในธุรกิจเช่า GPU:
-- **Uptime:** 99.9% guaranteed = total downtime under ~43 min/month, else refund / รับประกันเครื่องทำงาน 99.9% = ล่มรวมไม่เกิน ~43 นาที/เดือน เกิน = คืนเงิน
+- **Uptime:** 99.9% guaranteed = total downtime under ~43 min/month / รับประกันเครื่องทำงาน 99.9% = ล่มรวมไม่เกิน ~43 นาที/เดือน
 - **Latency:** guaranteed response time in ms / รับประกันความหน่วงตอบสนอง (ms)
 - **Recovery time:** if a machine fails, fix within X hours / ถ้าเครื่องพัง ต้องกู้คืนภายใน X ชั่วโมง
 - **Security:** encrypted, isolated workloads / ข้อมูลเข้ารหัส แยกโซน
 
-**Why enterprises demand it:** downtime costs them real money — SLA is the trust guarantee that lets organizations commit. / องค์กรต้องการเพราะเครื่องพัง = เขาเสียเงินจริง — SLA คือหลักประกันความไว้วางใจที่ทำให้องค์กรกล้าจ่ายเงิน
+**Why it matters:** downtime costs organizations real money — SLA is the trust guarantee that lets them commit. / องค์กรต้องการเพราะเครื่องพัง = เสียเงินจริง — SLA คือหลักประกันความไว้วางใจที่ทำให้องค์กรกล้าจ่ายเงิน
 
-**Our position:** consumer GPUs cannot offer strong SLAs; small data centers can. Hybrid = we can offer SLA-graded service (basic for consumer tier, enterprise for DC tier) without building our own data center. / consumer ให้ SLA แรงไม่ได้; Data Center เล็กให้ได้ — ไฮบริด = เราให้บริการแบบแบ่งระดับ SLA ได้ (พื้นฐานสำหรับ consumer, ระดับองค์กรสำหรับ DC) โดยไม่ต้องสร้าง Data Center เอง
-
----
-
-## 3. Why we do NOT compete with CoreWeave — ทำไมไม่แข่งกับ CoreWeave
-
-CoreWeave wins with capital: ~$2.1B quarterly revenue, ~$99B in signed contracts, thousands of H100s funded by massive debt. We cannot and should not fight that battle — their weapon is money, and we do not have it. / CoreWeave ชนะด้วยทุน: รายได้ ~$2.1 พันล้าน/ไตรมาส, สัญญา ~$99 พันล้าน, H100 นับแสนตัวที่กู้เงินมาซื้อ — เราไม่ควรสู้ในสนามนั้น อาวุธเขาคือเงิน ซึ่งเราไม่มี
-
-**The trap of following giants:** competing on hardware scale against funded giants is a losing game — they will always outspend us. / กับดักของการตามยักษ์: แข่งขนาดฮาร์ดแวร์กับบริษัทมีทุน = แพ้แน่นอน เขาทุ่มเงินมากกว่าเราเสมอ
+**Hybrid benefit:** consumer GPUs offer basic service; data centers offer stronger SLAs. A hybrid network can offer SLA-graded service across tiers without building its own data center. / ประโยชน์ของไฮบริด: consumer ให้บริการระดับพื้นฐาน, Data Center ให้ SLA แรงกว่า — เครือข่ายไฮบริดให้บริการแบ่งระดับ SLA ได้โดยไม่ต้องสร้าง Data Center เอง
 
 ---
 
-## 4. Our weapon: the Brain — อาวุธของเรา: สมอง
+## 3. Why intelligence over hardware — ทำไมสมองสำคัญกว่าฮาร์ดแวร์
 
-We compete on intelligence, not hardware. / เราแข่งด้วยความฉลาด ไม่ใช่ฮาร์ดแวร์
+The core value of a compute network is not the machines alone — it is how well the system *chooses* where each job runs: which channel pays best, which node is most reliable, which hour has the cheapest power. A smart orchestration layer turns many ordinary machines into something greater than the sum of their parts. / คุณค่าของเครือข่ายคำนวณไม่ใช่แค่ตัวเครื่อง — แต่อยู่ที่ระบบ *เลือก* ว่าแต่ละงานควรไปที่ไหน: ช่องทางไหนจ่ายดีสุด, โหนดไหนน่าเชื่อถือสุด, ชั่วโมงไหนค่าไฟถูกสุด — ชั้นจัดสรรอัจฉริยะเปลี่ยนเครื่องธรรมดาหลายเครื่องให้เป็นอะไรที่ยิ่งใหญ่กว่าผลรวมของส่วนประกอบ
 
-| อาวุธ / Weapon | หน้าที่ / Role | ที่มา / Source |
-|---|---|---|
-| **Arbitrage Engine** | สแกน 5 ช่องทาง เลือกงานที่จ่ายสูงสุดทุกวินาที (Maximizing Profit Seconds) — ไม่มีคู่แข่งรายใดมีสมองสลับงานแบบนี้ | ของเรา (prototype ทำงานแล้ว) |
-| **DisTrO / DeMo** | เทรนโมเดลข้ามเครื่องกระจาย ลดการสื่อสาร 1,000-10,000 เท่า — พิสูจน์แล้วกับโมเดล 40B | งานวิจัยเปิดของ Nous (Apache-2.0) |
-| **AI Hooks** | จุดปลั๊กอินโมเดลจูน (พยากรณ์ราคา/ดีมานด์/ความน่าเชื่อถือ) — Dev ทั่วโลกต่อยอดได้ | ของเรา (prototype มีแล้ว) |
-
-**CoreWeave sells powerful machines. We sell smart machines.** Customers who need cheap + fast + flexible choose us; customers who need only raw power at any cost choose them. / CoreWeave ขายเครื่องแรง เราขายเครื่องฉลาด — ลูกค้าที่ต้องการถูก+เร็ว+ยืดหยุ่น เลือกเรา ลูกค้าที่ต้องการพลังดิบไม่สนใจราคา เลือกเขา
+Open research (e.g., distributed-training optimizers that cut inter-node communication by orders of magnitude) has proven that geographically distributed hardware can be coordinated effectively. The ASEAN Grid prototype implements this orchestration layer with pluggable AI hooks. / งานวิจัยเปิด (เช่น ออปติไมเซอร์เทรนแบบกระจายที่ลดการสื่อสารระหว่างโหนดลงหลายเท่า) พิสูจน์แล้วว่าฮาร์ดแวร์ที่กระจายตามภูมิศาสตร์สามารถประสานงานได้อย่างมีประสิทธิภาพ — prototype ของ ASEAN Grid ใช้ชั้นจัดสรรนี้พร้อมปลั๊กอิน AI hooks
 
 ---
 
-## 5. The positioning — ตำแหน่งทางการตลาด
+## 4. The vision — วิสัยทัศน์
 
-> **Cheaper than CoreWeave, more stable than Vast.ai, smarter than everyone.**
-> **ถูกกว่า CoreWeave, เสถียรกว่า Vast.ai, ฉลาดกว่าทุกเจ้า**
-
-This is a position no one currently occupies. / นี่คือตำแหน่งที่ยังไม่มีใครยืนอยู่
+> **A network that is affordable, dependable, and intelligent — serving Southeast Asia's AI builders with power that fits every budget and every requirement.**
+>
+> **เครือข่ายที่ประหยัด เชื่อถือได้ และฉลาด — ให้บริการผู้สร้าง AI ทั่วอาเซียนด้วยพลังที่เหมาะกับทุกระดับงบประมาณและทุกความต้องการ**
 
 ---
 
-*Sources: Vast.ai About page (vast.ai/about), TechCrunch (RunPod ARR), TIKR (CoreWeave revenue), Nous Research (DisTrO/Psyche), CoinDesk (io.net), Messari (Akash). Licensed under AGPL-3.0.*
-*แหล่งอ้างอิง: หน้า About Vast.ai, TechCrunch (RunPod), TIKR (CoreWeave), Nous Research (DisTrO/Psyche), CoinDesk (io.net), Messari (Akash)*
+*Licensed under AGPL-3.0*

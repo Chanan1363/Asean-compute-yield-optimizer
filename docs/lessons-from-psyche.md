@@ -20,8 +20,6 @@ Psyche Network พิสูจน์แล้วว่าการเทรน�
 
 **Psyche's answer / วิธีแก้ของ Psyche:** Three client roles enforce honesty: *Training* (compute gradients and share), *Witnessing* (verify other clients are alive and correct), and *Verifying* (recompute and compare results to detect malicious actors). / บทบาท 3 ชั้นของ client บังคับความซื่อสัตย์: *Training* (คำนวณ gradient และแบ่งปัน), *Witnessing* (ตรวจว่า client อื่นยังทำงานและถูกต้อง), และ *Verifying* (คำนวณซ้ำและเทียบผลเพื่อตรวจจับผู้ไม่หวังดี)
 
-**Our application / การประยุกต์ใน ASEAN Grid:** Our Docker Sandbox isolates tenant workloads, and our node trust scoring (planned in the Scheduler) mirrors the witness/verify layers — paying only for verified, completed compute. / Docker Sandbox ของเราแยกงานลูกค้าออกจากเครื่องเจ้าของ และการให้คะแนนความน่าเชื่อถือโหนด (ในแผนของ Scheduler) สะท้อนชั้น witness/verify — จ่ายเฉพาะงานที่ตรวจสอบแล้วว่าทำจริงและเสร็จ
-
 ---
 
 ## Obstacle 2: Nodes churn in and out — อุปสรรคที่ 2: เครื่องเข้าออกตลอดเวลา
@@ -29,8 +27,6 @@ Psyche Network พิสูจน์แล้วว่าการเทรน�
 **The problem / ปัญหา:** Compute providers can stop contributing on short notice — a machine that joins today may leave tomorrow for a better-paying job. / ผู้ให้พลังสามารถหยุดร่วมได้ตลอดเวลา — เครื่องที่เข้ามาวันนี้อาจออกพรุ่งนี้เพื่อไปทำงานที่จ่ายดีกว่า
 
 **Psyche's answer / วิธีแก้ของ Psyche:** Training is divided into *epochs* with natural pause points. New clients download a checkpoint of the model during onboarding; clients can safely off-board between epochs. / การเทรนแบ่งเป็น *epoch* มีจุดพักตามธรรมชาติ Client ใหม่ดาวน์โหลด checkpoint ของโมเดลตอนเข้ามา และออกได้อย่างปลอดภัยระหว่าง epoch
-
-**Our application / การประยุกต์ใน ASEAN Grid:** Our pay-per-compute billing (no compute = no charge) and daily payouts naturally reward only the hours actually worked — a node that leaves simply stops earning, with no penalty to the network. / การคิดเงินตามงานจริง (ไม่ทำงาน = ไม่จ่าย) และการจ่ายรายวัน ให้รางวัลเฉพาะชั่วโมงที่ทำงานจริง — เครื่องที่ออกก็แค่หยุดรับเงิน ไม่สร้างความเสียหายต่อเครือข่าย
 
 ---
 
@@ -40,8 +36,6 @@ Psyche Network พิสูจน์แล้วว่าการเทรน�
 
 **Psyche's answer / วิธีแก้ของ Psyche:** DisTrO compresses inter-node communication by three to four orders of magnitude, and further reduces bandwidth by "quantizing" the Discrete Cosine Transform of momentums — sending only the *sign* of the transformed data. Communication latency stops being the bottleneck as models scale. / DisTrO บีบอัดการสื่อสารระหว่างโหนดลง 1,000-10,000 เท่า และลดแบนด์วิดท์อีกขั้นด้วยการ "quantize" DCT ของ momentum — ส่งเพียง *เครื่องหมาย* ของข้อมูลที่แปลงแล้ว ทำให้ latency การสื่อสารไม่เป็นคอขวดอีกต่อไปเมื่อโมเดลใหญ่ขึ้น
 
-**Our application / การประยุกต์ใน ASEAN Grid:** For our core Phase-1 workloads (inference, rendering), jobs are naturally parallel — each machine works independently, so inter-node bandwidth barely matters. Distributed training (DisTrO-style) is a later phase, and we can adopt the same open-source techniques when we get there. / สำหรับงานหลักระยะแรกของเรา (inference, rendering) งานแบ่งเป็นชิ้นอิสระ — แต่ละเครื่องทำงานเดี่ยวๆ แบนด์วิดท์ระหว่างโหนดแทบไม่สำคัญ ส่วนการเทรนแบบกระจาย (สไตล์ DisTrO) เป็นเฟสหลัง ซึ่งเราสามารถใช้เทคนิค open-source เดียวกันได้เมื่อถึงเวลา
-
 ---
 
 ## Obstacle 4: Untrusted, heterogeneous hardware — อุปสรรคที่ 4: ฮาร์ดแวร์หลากหลายที่ไม่น่าเชื่อถือ
@@ -50,15 +44,13 @@ Psyche Network พิสูจน์แล้วว่าการเทรน�
 
 **Psyche's answer / วิธีแก้ของ Psyche:** Every peer connection is end-to-end encrypted and authenticated by default: NodeIds are cryptographic keys, verified during the handshake, over QUIC. / ทุกการเชื่อมต่อ peer เข้ารหัสและพิสูจน์ตัวตนแบบ end-to-end โดยค่าเริ่มต้น: NodeId เป็นคีย์เข้ารหัส ตรวจสอบระหว่าง handshake ผ่าน QUIC
 
-**Our application / การประยุกต์ใน ASEAN Grid:** Our API keys are stored as hashes only (never raw), and every node registers with a verifiable identity — the foundation for encrypted, authenticated connections as the grid grows. / API key ของเราเก็บเป็น hash เท่านั้น (ไม่เก็บ key ดิบ) และทุกโหนดลงทะเบียนด้วยตัวตนที่ตรวจสอบได้ — เป็นรากฐานของการเชื่อมต่อที่เข้ารหัสและพิสูจน์ตัวตนเมื่อกริดเติบโต
-
 ---
 
 ## The takeaway — บทสรุป
 
-> **Every obstacle the Psyche Network faced is an obstacle we will face. Every answer they designed is an answer we can adopt. They proved the path exists — we build the commercial network on it.**
+> **Every obstacle the Psyche Network faced is an obstacle any distributed network will face. Every answer they designed is an answer others can adopt. They proved the path exists.**
 >
-> **ทุกอุปสรรคที่ Psyche เจอ คืออุปสรรคที่เราจะเจอ ทุกคำตอบที่เขาออกแบบ คือคำตอบที่เรานำมาใช้ได้ เขาพิสูจน์ว่าเส้นทางมีอยู่จริง — เราสร้างเครือข่ายเชิงพาณิชย์บนเส้นทางนั้น**
+> **ทุกอุปสรรคที่ Psyche เจอ คืออุปสรรคที่เครือข่ายกระจายทุกระบบจะเจอ ทุกคำตอบที่เขาออกแบบ คือคำตอบที่ผู้อื่นนำมาใช้ได้ เขาพิสูจน์ว่าเส้นทางมีอยู่จริง**
 
 ---
 

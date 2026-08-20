@@ -216,3 +216,6 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# เอกสารภายใน — ความลับทางการค้า (ห้าม push)
+internal/
