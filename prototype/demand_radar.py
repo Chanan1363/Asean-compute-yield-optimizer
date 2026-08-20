@@ -21,9 +21,17 @@ BUY_INTENT = [
     "looking for compute", "affordable compute", "cheap compute",
     "gpu cloud", "rent compute", "need a cluster", "gpu prices too high",
     "can't afford", "too expensive", "h100 rental", "4090 rental",
+    # ── กลุ่มเป้าหมาย Phase 1 (มหาวิทยาลัย/นักวิจัย/ธุรกิจ) ──
+    "fine-tune", "fine tuning", "finetune", "finetuning", "fine tune",
+    "research gpu", "gpu for research", "research compute", "university gpu",
+    "student gpu", "academic compute", "lab gpu", "gpu for lab",
+    "corporate ai", "business ai", "small model", "small-scale training",
+    "gpu grant", "gpu budget", "research budget", "student budget",
 ]
 CONTEXT_WORDS = ["ai", "ml", "model", "training", "inference", "llm", "fine-tune",
-                 "render", "startup", "research", "experiment", "server", "workstation"]
+                 "render", "startup", "research", "researcher", "university",
+                 "student", "academic", "corporate", "business", "experiment",
+                 "server", "workstation", "lab", "laboratory", "thesis", "paper"]
 
 
 def fetch_json(url: str, timeout: int = 20) -> dict:
@@ -91,7 +99,10 @@ def scan_reddit(max_per_sub: int = 8) -> List[dict]:
 def scan_hackernews(max_items: int = 10) -> List[dict]:
     found = []
     # รอบ 1: ล่าสุด 45 วัน (สัญญาณสด — ยิงได้เลย)
-    for query in ["rent GPU", "cheap GPU compute", "need compute AI", "GPU cloud affordable", "where rent GPU", "looking for GPU"]:
+    for query in ["rent GPU", "cheap GPU compute", "need compute AI", "GPU cloud affordable",
+                  "where rent GPU", "looking for GPU", "fine-tune GPU", "fine tuning GPU",
+                  "GPU for research", "university GPU", "student GPU", "academic compute",
+                  "GPU for lab", "small model training", "research compute budget"]:
         q = urllib.parse.quote(query)
         url = f"https://hn.algolia.com/api/v1/search?query={q}&tags=story&hitsPerPage=8&numericFilters=created_at_i>{int(time.time())-45*86400}"
         try:
@@ -155,6 +166,138 @@ def scan_lobsters(max_items: int = 15) -> List[dict]:
     return found
 
 
+# ── 4. Area Sweep — กวาดพื้นที่หาลูกค้าเป้าหมายทั่วอาเซียน (OSM ฟรี) ──
+# ใช้ Overpass API ตรงๆ (OpenStreetMap) — หาบริษัท IT/บริษัทรับจ้างเทรน AI/
+# สถาบันวิจัย/มหาวิทยาลัย ในเมืองหลักอาเซียน — เหมือน Google Maps กวาดพื้นที่
+# แต่ฟรี ไม่ต้องใช้ API key
+ASEAN_CITIES = [
+    # (เมือง, ประเทศ, lat, lon, รัศมี กม.)
+    ("Bangkok", "Thailand", 13.7563, 100.5018, 12),
+    ("Singapore", "Singapore", 1.3521, 103.8198, 10),
+    ("Kuala Lumpur", "Malaysia", 3.1390, 101.6869, 12),
+    ("Manila", "Philippines", 14.5995, 120.9842, 10),
+    ("Ho Chi Minh City", "Vietnam", 10.8231, 106.6297, 10),
+    ("Hanoi", "Vietnam", 21.0278, 105.8342, 10),
+    ("Yangon", "Myanmar", 16.8409, 96.1735, 10),
+    ("Vientiane", "Laos", 17.9757, 102.6331, 8),
+    ("Jakarta", "Indonesia", -6.2088, 106.8456, 12),
+]
+
+# ประเภทสถานที่ที่อาจเป็นลูกค้า (บริษัทเทรน AI/สถาบันวิจัย/มหาวิทยาลัย)
+SWEEP_TAGS = [
+    ("office=it", "บริษัท IT/tech", 12.0),
+    ("amenity=research_institute", "สถาบันวิจัย", 14.0),
+    ("amenity=university", "มหาวิทยาลัย", 15.0),
+]
+
+
+def _overpass_query(bbox_s: float, bbox_w: float, bbox_n: float, bbox_e: float,
+                    tag: str, limit: int = 12) -> list:
+    """ยิง Overpass API — หา node/way ตาม tag ในกรอบพื้นที่ (มี mirror + retry)"""
+    query = f"""
+    [out:json][timeout:20];
+    (node["{tag.split('=')[0]}"="{tag.split('=')[1]}"]({bbox_s},{bbox_w},{bbox_n},{bbox_e});
+     way["{tag.split('=')[0]}"="{tag.split('=')[1]}"]({bbox_s},{bbox_w},{bbox_n},{bbox_e}););
+    out center {limit};
+    """
+    mirrors = [
+        "https://overpass-api.de/api/interpreter",
+        "https://overpass.kumi.systems/api/interpreter",
+        "https://overpass.private.coffee/api/interpreter",
+    ]
+    last_err = None
+    for m in mirrors:
+        try:
+            data = urllib.parse.urlencode({"data": query}).encode()
+            req = urllib.request.Request(m, data=data,
+                                         headers={"User-Agent": "ASEAN-Grid-DemandRadar/0.2"})
+            with urllib.request.urlopen(req, timeout=25) as resp:
+                return json.loads(resp.read().decode("utf-8")).get("elements", [])
+        except Exception as e:
+            last_err = e
+            continue
+    raise last_err if last_err else RuntimeError("overpass all mirrors failed")
+
+
+# จุดสำคัญถาวร (anchor targets) — หน่วยงาน/สถานที่ที่รู้อยู่แล้วว่าเป็นเป้าหมาย
+ANCHOR_TARGETS = [
+    {
+        "name": "กระทรวงการอุดมศึกษา วิทยาศาสตร์ วิจัยและนวัตกรรม (อว.) — ถนนศรีอยุธยา (ข้าง สน.พญาไท)",
+        "city": "Bangkok, Thailand",
+        "lat": 13.75941, "lon": 100.53018,
+        "score": 16.0, "category": "หน่วยงานรัฐ/วิจัย",
+        "url": "https://www.google.com/maps/search/?api=1&query=13.75941,100.53018",
+    },
+    {
+        "name": "สวทช. / NSTDA — อุทยานวิทยาศาสตร์ประเทศไทย (คลองหลวง)",
+        "city": "Pathum Thani, Thailand",
+        "lat": 14.0775833, "lon": 100.6026353,
+        "score": 17.0, "category": "หน่วยงานวิจัยแห่งชาติ",
+        "url": "https://www.google.com/maps/search/?api=1&query=14.0775833,100.6026353",
+    },
+    {
+        "name": "AIT — สถาบันเทคโนโลยีแห่งเอเชีย (คลองหลวง)",
+        "city": "Pathum Thani, Thailand",
+        "lat": 14.0803261, "lon": 100.611434,
+        "score": 15.0, "category": "มหาวิทยาลัยนานาชาติ/วิจัย",
+        "url": "https://www.google.com/maps/search/?api=1&query=14.0803261,100.611434",
+    },
+    {
+        "name": "มหาวิทยาลัยธรรมศาสตร์ ศูนย์รังสิต",
+        "city": "Pathum Thani, Thailand",
+        "lat": 14.0727746, "lon": 100.6069099,
+        "score": 15.0, "category": "มหาวิทยาลัย",
+        "url": "https://www.google.com/maps/search/?api=1&query=14.0727746,100.6069099",
+    },
+]
+
+
+def sweep_asean(limit_per_tag: int = 8) -> List[dict]:
+    """กวาด 9 เมืองอาเซียน → หาบริษัท/สถาบันที่อาจต้องการ GPU ราคาถูก"""
+    found = []
+    # anchor targets ก่อน (รู้อยู่แล้วว่าเป็นเป้าหมาย)
+    for a in ANCHOR_TARGETS:
+        found.append({
+            "source": f"anchor/{a['city']}",
+            "title": f"[{a['category']}] {a['name']}",
+            "score": a["score"],
+            "keywords": [a["category"]],
+            "age_days": 0.0,
+            "url": a["url"],
+            "category": a["category"],
+        })
+    for city, country, lat, lon, radius_km in ASEAN_CITIES:
+        # แปลงรัศมี กม. → องศา (1 องศา ≈ 111 กม.)
+        d = radius_km / 111.0
+        bbox = (lat - d, lon - d, lat + d, lon + d)
+        city_hits = 0
+        for tag, label, base_score in SWEEP_TAGS:
+            try:
+                elems = _overpass_query(*bbox, tag, limit_per_tag)
+                for el in elems[:limit_per_tag]:
+                    name = el.get("tags", {}).get("name", "")
+                    if not name:
+                        continue
+                    clat = el.get("lat") or el.get("center", {}).get("lat")
+                    clon = el.get("lon") or el.get("center", {}).get("lon")
+                    if clat is None:
+                        continue
+                    found.append({
+                        "source": f"area/{city}, {country}",
+                        "title": f"[{label}] {name[:90]}",
+                        "score": base_score,
+                        "keywords": [label],
+                        "age_days": 0.0,
+                        "url": f"https://www.google.com/maps/search/?api=1&query={clat:.5f},{clon:.5f}",
+                        "category": label,
+                    })
+                    city_hits += 1
+            except Exception as e:
+                print(f"  [skip] {city}/{tag}: {str(e)[:50]}")
+        print(f"    {city:<20} ({country}) → เจอ {city_hits} แห่ง")
+    return found
+
+
 # ── main ─────────────────────────────────────────────────────────────
 def main() -> None:
     print("=" * 64)
@@ -174,7 +317,20 @@ def main() -> None:
     reddit = []
     print(f"    เจอ {len(reddit)} โพสต์ที่มีสัญญาณต้องการ (ข้าม — 403/404)")
 
-    all_hits = sorted(hn + lob + reddit, key=lambda x: -x["score"])
+    print("\n[4] กวาดพื้นที่อาเซียน 9 เมือง (Area Sweep): หาบริษัท IT/สถาบันวิจัย/มหาวิทยาลัย...")
+    area = sweep_asean(limit_per_tag=6)
+    print(f"    รวม: เจอ {len(area)} สถานที่เป้าหมายทั่วอาเซียน")
+
+    all_hits = sorted(hn + lob + reddit + area, key=lambda x: -x["score"])
+    # dedupe — เอา URL ซ้ำออก เหลือรายการเดียว (คะแนนสูงสุด)
+    seen_urls = set()
+    deduped = []
+    for h in all_hits:
+        u = h["url"]
+        if u not in seen_urls:
+            seen_urls.add(u)
+            deduped.append(h)
+    all_hits = deduped
     print("\n" + "=" * 64)
     print(f"  ผลรวม: {len(all_hits)} สัญญาณดีมานด์ (คะแนน 15+ / 100)")
     print("=" * 64)
