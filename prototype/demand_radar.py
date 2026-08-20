@@ -249,6 +249,20 @@ ANCHOR_TARGETS = [
         "score": 15.0, "category": "มหาวิทยาลัย",
         "url": "https://www.google.com/maps/search/?api=1&query=14.0727746,100.6069099",
     },
+    {
+        "name": "โรงเรียนกำเนิดวิทย์ (KVIS) — วังจันทร์วัลเลย์",
+        "city": "Rayong, Thailand",
+        "lat": 13.0016351, "lon": 101.4482155,
+        "score": 14.0, "category": "โรงเรียนวิทยาศาสตร์/วิจัย",
+        "url": "https://www.google.com/maps/search/?api=1&query=13.0016351,101.4482155",
+    },
+    {
+        "name": "VISTEC — สถาบันวิทยสิริเมธี (วังจันทร์วัลเลย์)",
+        "city": "Rayong, Thailand",
+        "lat": 12.9999463, "lon": 101.4473997,
+        "score": 16.0, "category": "สถาบันวิจัยบัณฑิตศึกษา",
+        "url": "https://www.google.com/maps/search/?api=1&query=12.9999463,101.4473997",
+    },
 ]
 
 
