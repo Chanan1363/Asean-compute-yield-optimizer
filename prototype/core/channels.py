@@ -60,7 +60,7 @@ class VastAIChannel(ComputeChannel):
     VAST_API = "https://console.vast.ai/api/v0/bundles/"
     _cache: Optional[ChannelQuote] = None
     _cache_ts: float = 0.0
-    CACHE_SEC: int = 60          # prototype: ยิง API ทุก 60 วิ (จริง: 5 วิ)
+    CACHE_SEC: int = 5            # MAXIMIZING PROFIT SECONDS — สแกนตลาดทุก 5 วิ (ตาม blueprint)
 
     def _fetch_live_quote(self) -> Optional[ChannelQuote]:
         """ยิง API จริง → หา offers GPU เกมมิ่ง (RTX 4090/3090/4070) → ราคาเฉลี่ย"""
