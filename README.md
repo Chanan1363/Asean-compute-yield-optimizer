@@ -3,6 +3,8 @@
 > **The Anti-Fragile, Decentralized GPU Yield Optimizer Infrastructure for Southeast Asia.**
 > *An Open-Architecture Compute Network Guided by Frontier Computing, Bridging Global AI Demand with Regional Consumer Power via a Prepaid API Matrix.*
 
+> 🌐 **Live Demo:** [GPU Yield Calculator](https://chanan1363.github.io/Asean-compute-yield-optimizer/) — ลองคำนวณรายได้การ์ดจอฟรี / Try the free calculator
+
 ---
 
 ## 🌎 EXECUTIVE SUMMARY / บทสรุปผู้บริหาร

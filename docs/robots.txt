@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://chanan1363.github.io/Asean-compute-yield-optimizer/sitemap.xml
