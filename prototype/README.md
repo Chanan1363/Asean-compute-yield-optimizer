@@ -19,6 +19,10 @@
 
 ## 🏗️ Architecture at a Glance — สถาปัตยกรรมโดยย่อ
 
+![ASEAN Grid Prototype Architecture](assets/prototype_architecture.png)
+
+*System overview: Global Tenants → API/Billing → Arbitrage Engine (AI hooks) → 5 channels → Scheduler → Docker Sandbox → Home GPU Nodes → Revenue Split 75/20/5 → Genesis Ledger. / ภาพรวมระบบ: ลูกค้าโลก → API/บิลลิ่ง → สมอง Arbitrage (AI) → 5 ช่องทาง → จัดคิว → Sandbox → เครื่องเจ้าของ → แบ่งรายได้ 75/20/5 → บันทึกถาวร*
+
 ```
 [ GLOBAL TENANTS ]  (AI Labs / Studios / Game Cos. / Devs)
         │  จ่าย USD/Crypto — Prepaid API Key
