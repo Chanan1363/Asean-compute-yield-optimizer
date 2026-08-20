@@ -3,9 +3,15 @@ ASEAN Grid — Program Prototype Live Demo
 สาธิตการทำงานจริงของระบบครบวงจร: ตั้งค่า → ลูกค้าเติมเงิน → Arbitrage เลือกช่องทาง
 → คิดเงินวินาทีต่อวินาที → แบ่งรายได้ 75/20/5 → จ่ายรายวันบาท → จารึก Genesis Ledger
 
-วิธีรัน (จากโฟลเดอร์ repo root):
+วิธีรัน (รันจากที่ไหนก็ได้):
     python prototype/demo.py
 """
+import os
+import sys
+
+# ให้ import prototype.* ทำงาน ไม่ว่าจะรันจากโฟลเดอร์ใด
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 from prototype.core.config import Config
 from prototype.core.models import Node, Workload, WorkloadType, NodeStatus
 from prototype.core.billing import Billing
