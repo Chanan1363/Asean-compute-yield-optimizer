@@ -4,6 +4,7 @@
 > *An Open-Architecture Compute Network Guided by Frontier Computing, Bridging Global AI Demand with Regional Consumer Power via a Prepaid API Matrix.*
 
 > 🌐 **Live Demo:** [GPU Yield Calculator](https://chanan1363.github.io/Asean-compute-yield-optimizer/) — ลองคำนวณรายได้การ์ดจอฟรี / Try the free calculator
+> 🧪 **Program Prototype:** [Run the code now](prototype/) — สาธิตระบบจริงด้วยคำสั่งเดียว / one-command live demo (`python prototype/demo.py`)
 
 ---
 
@@ -151,6 +152,32 @@ We completely reject speculative, bubble-based web3 metrics. Our native token �
 - Interface directly with **Nous Research (US)** using our operational regional node proof to lock down a master technology alliance, establishing the primary international advisory channel.
 
 - ติดต่อ **Nous Research (US)** โดยตรง พร้อมหลักฐานโหนดภูมิภาคที่ทำงานจริง เพื่อล็อกพันธมิตรเทคโนโลยีระดับแม่บท — สร้างช่องทางที่ปรึกษาระหว่างประเทศหลัก
+
+---
+
+## 🧪 Program Prototype — ลองโค้ดจริง / Run the Code Now
+
+**A working, testable program — not just documents.** / โปรแกรมที่รันได้จริง ไม่ใช่แค่เอกสาร
+
+| วิธี / How | คำสั่ง / Command |
+|---|---|
+| Full live demo (no install) / สาธิตเต็มระบบ (ไม่ต้องติดตั้ง) | `python prototype/demo.py` |
+| Run 16 tests / รันทดสอบ 16 ตัว | `python -m unittest discover -s prototype/tests -v` |
+| Customer Portal web UI (needs fastapi/uvicorn) / หน้าเว็บลูกค้า | `pip install fastapi uvicorn && uvicorn prototype.api.app:app` → http://127.0.0.1:8000/ |
+
+**Live data:** Vast.ai channel already pulls real market prices from `console.vast.ai/api/v0/bundles` (60s cache, automatic fallback). / **ข้อมูลสด:** ช่องทาง Vast.ai ดึงราคาตลาดจริงจาก API แล้ว (cache 60 วิ, fallback อัตโนมัติ)
+
+**Extend it:** channel #6, real smart contract, Docker sandbox, your own tuned AI model — all documented in [prototype/README.md](prototype/README.md). / **ต่อยอดได้:** ช่องทางที่ 6, smart contract จริง, Docker sandbox, AI โมเดลจูนของตัวเอง — อ่านคู่มือได้ใน prototype/README.md
+
+---
+
+## 🤝 Contributing — ร่วมพัฒนา
+
+**The ASEAN Grid is open architecture (AGPL-3.0): fork, build, send a PR.** / สถาปัตยกรรมเปิด: fork ได้ แก้ได้ ส่ง PR ได้
+
+- 👨‍💻 **Developers:** read [CONTRIBUTING.md](CONTRIBUTING.md) — fork → branch → test → pull request. Merged PRs qualify for the **5% Developer Pool** per the blueprint.
+- 🖥️ **Compute Builders:** register your GPU (Google Form in the Genesis Pilot) → get engraved in the Genesis Ledger.
+- 📣 **Ambassadors:** share the calculator → climb the Ambassador Board.
 
 ---
 
