@@ -5,6 +5,8 @@
 
 > **Core Principle:** There is no "best" — only "better than the last quarter."
 > **หลักคิด:** ไม่มีคำว่า "ดีที่สุด" — มีเพียง "ดีขึ้นกว่าไตรมาสที่ผ่านมา" ทุกไตรมาสต้องดีขึ้นเรื่อยๆ ไม่มีที่สิ้นสุด
+>
+> *This program's guiding philosophy — "Imagination is more important than Knowledge" — was taught to our founder by his beloved teacher, Ajarn Banpit Ungrangsi (อาจารย์บัณพิต อึ้งรังษี). We carry his wisdom forward as part of our knowledge heritage. / ปรัชญานำทางของโปรแกรมนี้ — "จินตนาการสำคัญกว่าความรู้" — สืบทอดจากอาจารย์บัณพิต อึ้งรังษี อาจารย์ผู้เป็นที่เคารพของเรา เราสืบสานภูมิปัญญาของท่านต่อเป็นส่วนหนึ่งของมรดกความรู้ (Knowledge Heritage)*
 
 This document defines every program goal in measurable levels with target dates. Each goal improves continuously — there is no final ceiling.
 

@@ -4,6 +4,8 @@
 
 *An Open-Architecture Compute Network Guided by Frontier Computing, Bridging Global AI Demand with Regional Consumer Power via a Prepaid API Matrix.*
 
+> **Guiding Philosophy — from our founder's teacher, Ajarn Banpit Ungrangsi (อาจารย์บัณพิต อึ้งรังษี):** "Imagination is more important than Knowledge." We reference the real world, but never let current knowledge limit our vision — what changes the world begins as imagination. / **ปรัชญานำทาง — จากอาจารย์บัณพิต อึ้งรังษี อาจารย์ของเรา:** "จินตนาการสำคัญกว่าความรู้" เราอ้างอิงโลกจริงได้ แต่ไม่ยอมให้ความรู้ปัจจุบันจำกัดความฝัน — สิ่งที่เปลี่ยนโลก เริ่มจากจินตนาการเสมอ
+
 ---
 
 ## 🌎 โปรแกรมนี้เกิดมาทำไม — มีไว้เพื่อประโยชน์อะไร และเราจะได้อะไรจากโปรแกรมนี้ / Why This Program Exists & What We Gain
