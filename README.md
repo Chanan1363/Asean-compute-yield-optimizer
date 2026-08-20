@@ -137,10 +137,10 @@ We completely reject speculative, bubble-based web3 metrics. Our native token �
 
 ### Phase 1: The Intellectual Property Lockdown (CURRENT PHASE)
 - **Action:** Secure and deploy the global framework layout on GitHub utilizing the **AGPL-3.0 License**. This legally bars multi-billion-dollar institutions from cloning our layout into closed-source proprietary software.
-- **Cursor Core Dev:** Initialize the structural telemetry data pipelines (`/backend/data-pipeline`) in Cursor Composer to register local host availability metrics and fleet tracking logic.
+- **Core Dev (stack-agnostic):** Initialize the structural telemetry data pipelines (`/backend/data-pipeline`) to register local host availability metrics and fleet tracking logic — contributors are free to use any architecture or tooling they prefer.
 
 - **การล็อกทรัพย์สินทางปัญญา (เฟสปัจจุบัน):** วางกรอบโครงสร้างระดับโลกบน GitHub ด้วยสัญญา **AGPL-3.0** — ป้องกันสถาบันมูลค่าพันล้านดอลลาร์ลอกกรอบไปทำซอฟต์แวร์ปิดโดยชอบด้วยกฎหมาย
-- **Cursor Core Dev:** เริ่มสร้าง data pipeline telemetry (`/backend/data-pipeline`) ใน Cursor Composer เพื่อบันทึกเมตริกความพร้อมของโฮสต์และตรรกะติดตามฝูงเครื่อง
+- **Core Dev (อิสระทุกเครื่องมือ):** เริ่มสร้าง data pipeline telemetry (`/backend/data-pipeline`) เพื่อบันทึกเมตริกความพร้อมของโฮสต์และตรรกะติดตามฝูงเครื่อง — นักพัฒนาแต่ละคนเลือกสถาปัตยกรรม/เครื่องมือที่ถนัดได้อิสระ
 
 ### Phase 2: Regional Grid Onboarding
 - Deploy the alpha client container across internet cafe hubs in Thailand and Vietnam to stress-test sandbox boundaries under high-throughput rendering loads.
