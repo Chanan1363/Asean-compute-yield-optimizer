@@ -8,6 +8,7 @@ from typing import Dict, Optional
 
 try:
     from fastapi import FastAPI, HTTPException
+    from fastapi.responses import FileResponse
     from pydantic import BaseModel
     _FASTAPI_AVAILABLE = True
 except ImportError:  # pragma: no cover — prototype รันโดยไม่ต้องมี fastapi ก็ได้
@@ -37,14 +38,24 @@ if _FASTAPI_AVAILABLE:
         role: str          # compute | developer | ambassador
         detail: str = ""
 
+    @app.get("/", include_in_schema=False)
+    def portal() -> FileResponse:
+        """หน้า Customer Portal — มุมมองลูกค้า (UI สวยงาม)"""
+        return FileResponse("prototype/customer_portal.html")
+
     @app.get("/health")
     def health() -> Dict[str, str]:
         return {"status": "ok", "region": _config.REGION}
 
     @app.get("/market")
     def market() -> Dict:
-        """สแกนราคาทุกช่องทาง (Arbitrage Engine)"""
-        return {"quotes": [q.__dict__ for q in _engine.scan_market()]}
+        """สแกนราคาทุกช่องทาง (Arbitrage Engine) — รวมคะแนน AI strategy"""
+        quotes = []
+        for q in _engine.scan_market():
+            item = q.__dict__.copy()
+            item["score"] = round(q.score, 4)   # score เป็น property — ต้องคำนวณส่งออกเอง
+            quotes.append(item)
+        return {"quotes": quotes}
 
     @app.get("/market/best")
     def best_channel() -> Dict:

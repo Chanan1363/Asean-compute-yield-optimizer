@@ -57,6 +57,8 @@ prototype/
 ├── README.md               ← ไฟล์นี้ — เริ่มต้นจากตรงนี้
 ├── architecture.md         ← สถาปัตยกรรมละเอียด + จุดต่อขยายทุกจุด
 ├── requirements.txt        ← deps (fastapi/uvicorn/pydantic — ทั้งหมด optional)
+├── demo.py                 ← รันคำสั่งเดียว: python prototype/demo.py — เห็นทั้งระบบทำงาน
+├── customer_portal.html    ← หน้าเว็บลูกค้า (UI สวยงาม — เสิร์ฟโดย FastAPI ที่ /)
 │
 ├── core/                   ← แกนระบบ (Python 3.11, stdlib เป็นหลัก)
 │   ├── config.py           ← ค่าตั้งศูนย์กลาง (75/20/5, fees, timeouts)
@@ -108,9 +110,10 @@ result = rs.split(1000.00)          # ลูกค้าจ่าย 1,000 USD
 print(result)                        # {'node': 750.0, 'platform': 200.0, 'developer': 50.0}
 EOF
 
-# 3. (Optional) รัน API — ต้องติดตั้ง fastapi/uvicorn
+# 3. (Optional) รันเว็บ Customer Portal — ต้องติดตั้ง fastapi/uvicorn
 # pip install fastapi uvicorn
 # uvicorn prototype.api.app:app --reload
+# แล้วเปิด http://127.0.0.1:8000/ — หน้าเว็บลูกค้า (ดูราคาสด/คำนวณรายได้/จารึกชื่อ)
 ```
 
 ---
@@ -162,10 +165,13 @@ StrategyRegistry.register("my-tuned", MyTunedStrategy())
 
 - [x] แกนระบบ: config / models / 5 channels / arbitrage + hooks / billing / 75/20/5 / scheduler / sandbox interface / genesis registry
 - [x] tests รันผ่าน (unittest — stdlib ล้วน)
+- [x] demo.py — สาธิตทั้งระบบด้วยคำสั่งเดียว
+- [x] Customer Portal — หน้าเว็บลูกค้า (FastAPI + UI สองภาษา)
+- [x] เชื่อม Vast.ai API จริงแล้ว (console.vast.ai/api/v0/bundles — ราคาสดจากตลาดจริง, cache 60 วิ, fallback อัตโนมัติ)
 - [ ] Docker sandbox จริง (ต้องมี docker runtime)
 - [ ] Smart contract จริงบน chain (มี interface แล้ว)
 - [ ] AI โมเดลจูนจริง (มี hooks + schema แล้ว — รอ data จริง)
-- [ ] เชื่อม Vast.ai / io.net / Render API จริง (มี stub แล้ว)
+- [ ] เชื่อม io.net / Render API จริง (ต้องสมัครเป็น approved supplier / node operator ก่อน)
 
 ---
 
