@@ -10,8 +10,14 @@ import json
 import time
 import urllib.request
 from abc import ABC, abstractmethod
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Dict, List, Optional
+
+
+# ── สถานะการเชื่อมต่อช่องทาง ─────────────────────────────────────────
+CONNECTED = "connected"      # ✅ เชื่อม API แล้ว พร้อมรับงานจริง
+PENDING = "pending"          # ⏳ สมัคร/รออนุมัติ (ยังรับงานไม่ได้)
+NOT_CONNECTED = "not_connected"  # 🔒 ยังไม่ได้เชื่อมต่อ
 
 
 @dataclass
@@ -24,10 +30,14 @@ class ChannelQuote:
     latency_ms: int
     reliability: float                   # 0-1
     currency: str = "USD"
+    status: str = CONNECTED              # สถานะการเชื่อมต่อ (default: พร้อมรับงาน)
 
     @property
     def score(self) -> float:
-        """คะแนนดิบก่อน AI strategy ปรับ — ยิ่งสูงยิ่งน่าส่งงาน"""
+        """คะแนนดิบก่อน AI strategy ปรับ — ยิ่งสูงยิ่งน่าส่งงาน
+        ช่องทางที่ยังเชื่อมต่อไม่ได้ (pending/not_connected) ได้คะแนน 0 — ห้ามส่งงาน"""
+        if self.status != CONNECTED:
+            return 0.0
         return (self.price_usd_per_hour * self.reliability
                 / max(1, self.queue_depth) * (100.0 / max(1, self.latency_ms)))
 
@@ -127,7 +137,7 @@ class IoNetChannel(ComputeChannel):
 
     def get_quote(self) -> Optional[ChannelQuote]:
         # TODO: io.net API (ต้องเป็น approved supplier)
-        return ChannelQuote("io_net", 0.38, 900, 5, 40, 0.95)
+        return ChannelQuote("io_net", 0.38, 900, 5, 40, 0.95, status=PENDING)
 
     def submit_workload(self, workload) -> str:
         return f"io-{workload.workload_id}"
@@ -141,8 +151,8 @@ class RenderChannel(ComputeChannel):
     name = "render"
 
     def get_quote(self) -> Optional[ChannelQuote]:
-        # TODO: Render Network API
-        return ChannelQuote("render", 0.30, 600, 2, 45, 0.96)
+        # TODO: Render Network API (ต้องเป็น node operator)
+        return ChannelQuote("render", 0.30, 600, 2, 45, 0.96, status=PENDING)
 
     def submit_workload(self, workload) -> str:
         return f"rnd-{workload.workload_id}"

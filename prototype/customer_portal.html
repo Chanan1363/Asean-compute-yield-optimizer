@@ -186,9 +186,9 @@
       <span class="loading" id="loadMarket">สแกนตลาด...</span>
       <table style="margin-top:10px">
         <thead>
-          <tr><th>ช่องทาง / Channel</th><th class="num">ราคา ($/ชม.)</th><th class="num">คิว</th><th class="num">Latency</th><th class="num">คะแนน AI</th><th></th></tr>
+          <tr><th>ช่องทาง / Channel</th><th>สถานะ</th><th class="num">ราคา ($/ชม.)</th><th class="num">คิว</th><th class="num">Latency</th><th class="num">คะแนน AI</th><th></th></tr>
         </thead>
-        <tbody id="marketBody"><tr><td colspan="6" style="color:var(--dim)">กดปุ่มสแกนเพื่อดูราคา</td></tr></tbody>
+        <tbody id="marketBody"><tr><td colspan="7" style="color:var(--dim)">กดปุ่มสแกนเพื่อดูราคา</td></tr></tbody>
       </table>
       <div class="hint" id="bestHint" style="display:none">🧠 <b>AI Strategy แนะนำ:</b> <span id="bestName" style="color:var(--gold)"></span> — ช่องทางที่จ่ายสูงสุดสุทธิตอนนี้</div>
     </div>
@@ -283,13 +283,21 @@ async function scanMarket() {
     bestChannel = best.best;
     const rows = d.quotes.map(q => {
       const isBest = q.channel === best.best;
-      return `<tr class="${isBest ? 'best-row' : ''}">
-        <td>${isBest ? '🏆 ' : ''}${q.channel}</td>
+      const st = q.status || "connected";
+      const stMap = {
+        connected: '<span style="color:var(--green)">✅ พร้อมรับงาน</span>',
+        pending: '<span style="color:var(--gold)">⏳ รออนุมัติ</span>',
+        not_connected: '<span style="color:var(--dim)">🔒 ยังไม่เปิด</span>'
+      };
+      const canWork = st === "connected";
+      return `<tr class="${isBest && canWork ? 'best-row' : ''}" ${!canWork ? 'style="opacity:0.55"' : ''}>
+        <td>${isBest && canWork ? '🏆 ' : ''}${q.channel}</td>
+        <td>${stMap[st] || st}</td>
         <td class="num">$${q.price_usd_per_hour.toFixed(2)}</td>
         <td class="num">${q.queue_depth}</td>
         <td class="num">${q.latency_ms}ms</td>
-        <td class="num up">${q.score.toFixed(2)}</td>
-        <td>${isBest ? '<span style="color:var(--gold);font-size:11px">AI เลือก</span>' : ''}</td>
+        <td class="num ${canWork ? 'up' : ''}">${q.score.toFixed(2)}</td>
+        <td>${isBest && canWork ? '<span style="color:var(--gold);font-size:11px">AI เลือก</span>' : (canWork ? '' : '<span style="color:var(--dim);font-size:11px">รอปลดล็อก</span>')}</td>
       </tr>`;
     }).join("");
     document.getElementById("marketBody").innerHTML = rows;
