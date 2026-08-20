@@ -23,13 +23,21 @@ In the current era of the **Global Compute Crisis (August 2026)**, centralized B
 
 ## 🖼️ THE BLUEPRINT VISUALS (ภาพพิมพ์เขียว — อธิบายด้วยตัวเองได้ทั่วโลก)
 
-![The ASEAN Grid — Market Size & $GRID Token-as-a-Product](assets/grid_market_token_chatgpt.png)
-
 ![RTX 4090 Power Squad](assets/rtx4090_power_squad.png)
 
-![GPU Revenue Arbitrage](assets/gpu_revenue_arbitrage.png)
+*The original idea: one powerful machine (RTX 4090, ~120,000 THB) serving many professions through fast internet — but heavy investment and slow payback led us to keep thinking. / แนวคิดแรกเริ่ม: เครื่องเดียว (RTX 4090, ~120,000 บาท) รับงานหลายอาชีพผ่านเน็ตเร็ว — แต่ลงทุนสูง คืนทุนนาน เลยคิดต่อ*
+
+![GPU Revenue Arbitrage](assets/gpu_revenue_arbitrage_v2.png)
+
+*Guided by Nous Research's open, distributed philosophy (DisTrO), we evolved the idea: pool idle GPUs and let AI switch workloads to the highest-paying channel every second — the blueprint was born. / จากหลักคิดของ Nous Research (กระจายศูนย์ เปิดเผย — DisTrO) เราเลยคิดต่อ: รวมพลังการ์ดจอว่าง + AI สลับงานไปช่องทางที่จ่ายสูงสุดทุกวินาที — ได้พิมพ์เขียวมาแบบนี้*
 
 ![Calculation Power Sharing](assets/compute_power_sharing.png)
+
+*The full blueprint: pool idle power from cafes & users → 4 orchestration modules (aggregation, AI training, mining, scheduling) → 3 services (simulations, rendering, marketplace), with smart-contract split 75/20/5. / พิมพ์เขียวเต็มรูปแบบ: รวบรวมพลังว่างจากร้านเน็ต/ผู้ใช้ → 4 โมดูลจัดสรรงาน (รวมงาน/เทรน AI/ขุด/จัดคิว) → 3 บริการ (ซิมูเลชัน/เรนเดอร์/ตลาดโลก) — Smart Contract แบ่งรายได้ 75/20/5 อัตโนมัติ*
+
+![The ASEAN Grid — Market Size & $GRID Token-as-a-Product](assets/grid_market_token_chatgpt.png)
+
+*The market & $GRID token overview: B2C 100M+ users, B2B AI labs & studios, prepaid pay-per-compute token model. / ภาพรวมตลาดและโทเคน $GRID: B2C กว่า 100 ล้านคน + B2B ห้องแล็บ AI/สตูดิโอ + โมเดลโทเคนเติมเงินจ่ายตามการใช้งานจริง*
 
 ---
 
