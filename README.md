@@ -2,9 +2,20 @@
 
 > **The Anti-Fragile, Decentralized GPU Yield Optimizer Infrastructure for Southeast Asia.**
 > *An Open-Architecture Compute Network Guided by Frontier Computing, Bridging Global AI Demand with Regional Consumer Power via a Prepaid API Matrix.*
+>
+> **Built on the open-source ethos of Nous Research (DisTrO). Democratizing AI compute across ASEAN.**
+> **ยึดมั่นในปรัชญา Open Source แบบ Nous Research (DisTrO) — เปิดโอกาสการประมวลผล AI ให้ทั่วอาเซียน**
 
 > 🌐 **Live Demo:** [GPU Yield Calculator](https://chanan1363.github.io/Asean-compute-yield-optimizer/) — ลองคำนวณรายได้การ์ดจอฟรี / Try the free calculator
 > 🧪 **Program Prototype:** [Run the code now](prototype/) — สาธิตระบบจริงด้วยคำสั่งเดียว / one-command live demo (`python prototype/demo.py`)
+
+---
+
+## 🖼️ THE BIG PICTURE (ภาพรวมระบบ — เห็นปุ๊บเข้าใจปั๊บ)
+
+![GPU Revenue Arbitrage — The ASEAN Grid](assets/gpu_revenue_arbitrage_v4_3.png)
+
+*The full picture: idle SEA gaming GPUs → arbitrage engine → global AI demand → 75/20/5 revenue split back to the community. / ภาพรวมทั้งหมด: GPU ว่างในอาเซียน → สมองจัดสรรงาน → ดีมานด์ AI ทั่วโลก → แบ่งรายได้ 75/20/5 กลับสู่ชุมชน*
 
 ---
 
