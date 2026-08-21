@@ -82,7 +82,7 @@ Check our [GitHub Issues](https://github.com/Chanan1363/Asean-compute-yield-opti
 
 | Label / ป้าย | Meaning / ความหมาย | Best for / เหมาะกับ |
 |---|---|---|
-| `good-first-issue` | Great for beginners — easy to pick up / งานเริ่มต้น อ่านโค้ดแล้วแก้ง่าย | New devs / Dev ใหม่ |
+| `good first issue` | Great for beginners — easy to pick up / งานเริ่มต้น อ่านโค้ดแล้วแก้ง่าย | New devs / Dev ใหม่ |
 | `genesis-bounty` | Bounty work — merged PRs qualify for the 5% Developer Pool / งานประกาศรางวัล — PR ที่รวมได้สิทธิ์กองทุน 5% | Experienced devs / Dev ที่มีประสบการณ์ |
 | `ai-hook` | AI integration points (strategy/pricing/trust/forecast) / งานจุดแทรก AI | ML/AI folks / สาย ML/AI |
 
