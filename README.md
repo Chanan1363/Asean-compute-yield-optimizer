@@ -13,12 +13,12 @@
 ### 🇺🇸 ENGLISH
 In the current era of the **Global Compute Crisis (August 2026)**, centralized Big Tech data centers are hitting severe structural walls—facing massive energy caps, localized climate constraints, and harsh geopolitical chip embargoes. Concurrently, AI giants are experiencing catastrophic server overloads, leaving an immense market gap for immediate, scalable raw processing power.
 
-**"The ASEAN Grid"** is a disruptive, light-asset distributed computing infrastructure that synthesizes fragmented, high-end consumer hardware (RTX 4070 Ti Super / RTX 4090) across Southeast Asia into a unified, low-latency supercomputing monolith. By implementing a highly strategic **Hybrid Monetization Architecture (SaaS Subscription + Prepaid API Key Token Model)**, we capture global enterprise AI inference demand and route fluid cash flows directly back to our network nodes and local communities, entirely bypassing sluggish bureaucratic systems.
+**"The ASEAN Grid"** is a disruptive, light-asset distributed computing infrastructure that synthesizes fragmented, high-end consumer hardware (RTX 4070 Ti Super / RTX 4090) across Southeast Asia into a unified, low-latency supercomputing monolith. By implementing a highly strategic **Hybrid Monetization Architecture (SaaS Subscription + Prepaid API Key Token Model)**, we are positioned to capture global enterprise AI inference demand and route fluid cash flows directly back to our network nodes and local communities, entirely bypassing sluggish bureaucratic systems.
 
 ### 🇹🇭 ภาษาไทย
 ท่ามกลางวิกฤตการณ์ **Global Compute Shortage** (การขาดแคลนพลังประมวลผล AI) และกำแพงภูมิรัฐศาสตร์ครั้งใหญ่ที่สุดในประวัติศาสตร์ที่ทำให้ห้องแล็บ AI ยักษ์ใหญ่ต้อง "ติดหล่มเทคโนโลยี" เนื่องจากระบบคลาวด์ศูนย์กลาง (Centralized) แบกรับภาระไม่ไหวจนเกิดวิกฤตเซิร์ฟเวอร์ล่มข้ามคืน... **เราไม่ได้มาสร้างแอปพลิเคชันทั่วไป แต่เรากำลังสร้าง "โรงไฟฟ้าดิจิทัลกระจายศูนย์แห่งภูมิภาคอาเซียน"**
 
-โครงการนี้จะเปลี่ยนพลังงานที่ซ่อนอยู่ — คือคอมพิวเตอร์สเปกเทพตามบ้านและร้านอินเทอร์เน็ตคาเฟ่นับหมื่นแห่งทั่วเอเชียตะวันออกเฉียงใต้ — ให้กลายเป็นเครือข่ายซูเปอร์คอมพิวเตอร์ขนาดยักษ์ (ASEAN Compute Consortium) เพื่อทำหน้าที่รับส่งและประมวลผลคำสั่ง AI และสตรีมมิ่งความเร็วสูง ผ่านโมเดลธุรกิจที่ฟาดทั้ง 2 ขาคือ **"SaaS Subscription + ระบบเติมเงินล่วงหน้าสไตล์ API Key"** ดึงเม็ดเงินดอลลาร์สด ๆ จากทั่วโลกไหลเข้ากระเป๋าเราตลอด 24 ชั่วโมง โดยไม่ผ่านระบบราชการที่ล่าช้า
+โครงการนี้จะเปลี่ยนพลังงานที่ซ่อนอยู่ — คือคอมพิวเตอร์สเปกเทพตามบ้านและร้านอินเทอร์เน็ตคาเฟ่นับหมื่นแห่งทั่วเอเชียตะวันออกเฉียงใต้ — ให้กลายเป็นเครือข่ายซูเปอร์คอมพิวเตอร์ขนาดยักษ์ (The ASEAN Grid Consortium) เพื่อทำหน้าที่รับส่งและประมวลผลคำสั่ง AI และสตรีมมิ่งความเร็วสูง ผ่านโมเดลธุรกิจ 2 แกนหลัก (Dual-Revenue Engine) คือ **"SaaS Subscription + ระบบเติมเงินล่วงหน้าสไตล์ API Key"** พร้อมดึงเม็ดเงินดอลลาร์จากทั่วโลกให้ไหลเวียนเข้าสู่เครือข่ายตลอด 24 ชั่วโมง เมื่อเปิดให้บริการเต็มรูปแบบ — ตัดผ่านระบบราชการที่ล่าช้า
 
 ---
 
@@ -52,11 +52,11 @@ Our economic flywheel captures absolute market liquidity by converting target us
 
 - **Target Demographic:** Harnessing the massive global **350-million registered player base of heavy-duty tactical titles like World of Tanks (WOT)** and high-end home PC owners.
 - **The Mechanism:** Users pay a hyper-affordable **$1/Month SaaS subscription** to run our background compiler package. This activates the "Earn While You Sleep" mode, turning their idle gaming setups into micro-generation node factories that yield them automated cash flows while they are asleep, at school, or at work.
-- **The Projection:** Converting a conservative 10% of this hyper-targeted demographic unlocks **35,000,000 recurring subscribers**, commanding a monumental **$35,000,000 (1.2+ Billion THB) in Monthly Recurring Revenue (MRR)**.
+- **The Projection:** Converting a conservative 10% of this hyper-targeted demographic could unlock an estimated **35,000,000 recurring subscribers** — a projected **$35,000,000 (1.2+ Billion THB) in Monthly Recurring Revenue (MRR)** at full scale.
 
 - **กลุ่มเป้าหมาย:** ฐานผู้เล่นเกมหนักระดับโลก **350 ล้านคน** (เกม tactical อย่าง World of Tanks) และเจ้าของเครื่อง PC สเปกสูง
 - **กลไก:** ผู้ใช้จ่ายสมาชิกเพียง **$1/เดือน** เพื่อรันแพ็กเกจคอมไพล์พื้นหลัง เปิดโหมด **"หารายได้ตอนหลับ" (Earn While You Sleep)** — เปลี่ยนเครื่องเกมที่ว่างให้เป็นโรงงานโหนดขนาดจิ๋ว สร้างรายได้อัตโนมัติตอนหลับ อยู่โรงเรียน หรือที่ทำงาน
-- **ประมาณการ:** แปลงกลุ่มเป้าหมายเพียง 10% ได้สมาชิกประจำ **35,000,000 ราย** = รายได้ประจำ **$35,000,000 (1.2 หมื่นล้านบาท) ต่อเดือน (MRR)**
+- **ประมาณการ (Projection):** แปลงกลุ่มเป้าหมายเพียง 10% จะได้สมาชิกประจำราว **35,000,000 ราย** = รายได้ประจำราว **$35,000,000 (1.2 หมื่นล้านบาท) ต่อเดือน (MRR)** เมื่อถึงขนาดเต็มรูปแบบ
 
 ### 2. B2B: The Prepaid API Key Core (ระบบเติมเงินองค์กรสไตล์ API Key)
 
@@ -120,17 +120,17 @@ We completely reject speculative, bubble-based web3 metrics. Our native token �
 
 - **The Compass:** Our engineering baseline uses the open-source breakthroughs of **Nous Research (DisTrO & Psyche network frameworks)** as a primary directional compass. We build upon established distributed breakthroughs so you never have to waste months reinventing the wheel.
 - **Unrestricted Code Autonomy:** We oppose vendor lock-in. This project is a strict **Open Architecture**. If you can deploy a tighter docker isolation cluster, a faster localized electricity tariff calculation matrix, or a superior arbitrage microservice—**fork this repo, submit a PR, and claim your code ownership.**
-- **The Incentive:** An immutable **5% Developer Treasury Pool** coded directly into the framework smart contracts continuously pays out dividends, equity shares, or bounties to engineers maintaining the core grid.
+- **The Incentive:** A **5% Developer Treasury Pool** — reserved in the blueprint and implemented via the framework smart contracts — is designed to continuously pay out dividends, equity shares, or bounties to engineers maintaining the core grid once payouts go live.
 
 - **เข็มทิศ:** แนวทางวิศวกรรมของเรายึดนวัตกรรมโอเพนซอร์สของ **Nous Research (เฟรมเวิร์ก DisTrO และ Psyche network)** เป็นเข็มทิศหลัก — ต่อยอดจากงานกระจายศูนย์ที่มีอยู่แล้ว ไม่ต้องเสียเดือนๆ ไปล้อวงล้อใหม่
 - **อิสระเต็มที่:** เราไม่เอา vendor lock-in โปรเจกต์นี้เป็น **Open Architecture** อย่างเคร่งครัด — ถ้าคุณทำ docker isolation cluster แน่นกว่า คำนวณค่าไฟท้องถิ่นแม่นกว่า หรือ arbitrage microservice ดีกว่า — **fork repo นี้ ส่ง PR แล้วเป็นเจ้าของโค้ดของคุณเอง**
-- **สิ่งจูงใจ:** กองทุน **Developer Treasury 5%** ฝังอยู่ใน smart contract ถาวร จ่ายปันผล หุ้น หรือรางวัล ให้วิศวกรที่ดูแลแกนกริดอย่างต่อเนื่อง
+- **สิ่งจูงใจ:** กองทุน **Developer Treasury 5%** ถูกสำรองไว้ในพิมพ์เขียวและจะถูกฝังใน smart contract — ออกแบบให้จ่ายปันผล หุ้น หรือรางวัล ให้วิศวกรที่ดูแลแกนกริดอย่างต่อเนื่อง เมื่อระบบเปิดจ่าย
 
 ### 💰 For Investors: Hyper-Scalable Asset-Light Infrastructure (ถึงนักลงทุนกระเป๋าหนัก)
 
-- **The Valuation Trajectory:** By leveraging pre-existing, crowdsourced consumer nodes, we eliminate hardware depreciation risks and massive upfront overheads. We are positioning this regional network for a dominant corporate acquisition and a multi-billion baht valuation. We open entry for Angel Visionaries seeking cashflow-backed digital real estate to anchor Phase 1 deployment.
+- **The Valuation Trajectory:** By leveraging pre-existing, crowdsourced consumer nodes, we eliminate hardware depreciation risks and massive upfront overheads. We are positioning this regional network for a dominant corporate acquisition and a multi-billion baht valuation. We open entry for Angel Visionaries seeking future cashflow-backed digital real estate to anchor Phase 1 deployment.
 
-- **เส้นทางการประเมินมูลค่า:** ใช้โหนดผู้ใช้แบบ crowdsource ที่มีอยู่แล้ว เราตัดความเสี่ยงค่าเสื่อมฮาร์ดแวร์และภาระต้นทุนเริ่มต้นมหาศาล วางตำแหน่งเครือข่ายระดับภูมิภาคนี้เพื่อการเข้าซื้อกิจการโดยองค์กรใหญ่ มูลค่าหลายพันล้านบาท เปิดทางให้นักลงทุน Angel ที่มองหา "อสังหาดิจิทัลที่ให้กระแสเงินสด" เพื่อยึดจุดยึดการเปิดตัวเฟส 1
+- **เส้นทางการประเมินมูลค่า:** ใช้โหนดผู้ใช้แบบ crowdsource ที่มีอยู่แล้ว เราตัดความเสี่ยงค่าเสื่อมฮาร์ดแวร์และภาระต้นทุนเริ่มต้นมหาศาล ตั้งเป้าวางตำแหน่งเครือข่ายระดับภูมิภาคนี้สู่การเข้าซื้อกิจการโดยองค์กรใหญ่ มูลค่าหลายพันล้านบาท เปิดทางให้นักลงทุน Angel ที่มองหา "อสังหาดิจิทัลที่ให้กระแสเงินสดในอนาคต" เพื่อยึดจุดยึดการเปิดตัวเฟส 1
 
 ---
 
