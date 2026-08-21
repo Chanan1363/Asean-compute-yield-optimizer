@@ -21,7 +21,7 @@
 |---|---|---|---|
 | Config | `core/config.py` | ค่าตั้งศูนย์กลาง (75/20/5, fees, region) | ✅ พร้อม |
 | Models | `core/models.py` | Node/Workload/Tenant/ApiKey/Payout | ✅ พร้อม |
-| Channels | `core/channels.py` | 5 ช่องทาง (Vast/io.net/Render/Direct/Studios) | 🔌 stub — ต่อ API จริง |
+| Channels | `core/channels.py` | 6 ช่องทาง (Vast/io.net/Render/Direct/Studios/Akash) | Vast = API จริง / Akash = REST จริง+fallback / ที่เหลือรอ approved supplier |
 | Arbitrage | `core/arbitrage.py` | สแกน → เลือกช่องทาง (AI hook) → ส่งงาน | ✅ พร้อม + 🧠 hook |
 | Scheduler | `core/scheduler.py` | จัดคิวตามค่าไฟ/trust | ✅ พร้อม + 🧠 hook |
 | Billing | `core/billing.py` | Prepaid API + จ่ายวินาทีต่อวินาที | ✅ พร้อม (memory) |
@@ -46,7 +46,7 @@
    ArbitrageEngine.pick_best_channel()  ← 🧠 AIStrategy.predict_best_channel()
                               │
                               ▼
-   Channel.submit_workload()  (5 ช่องทาง)
+   Channel.submit_workload()  (6 ช่องทาง)
                               │
                               ▼
    Scheduler.schedule()  ← 🧠 AIStrategy.forecast_demand() / score_node_trust()
@@ -77,7 +77,7 @@
 | predict_price_curve | `ai/strategy_hooks.py` | คาดการณ์ราคา GPU | (ต่อยอด schema) |
 | route_workload | `ai/strategy_hooks.py` | เลือกเส้นทางงาน | (ต่อยอด schema) |
 
-**วิธีใส่โมเดล (3 ขั้น):** สร้าง data ตาม schema → เทรน (`trainer_stub.py` หรือ pipeline ของคุณ) → `StrategyRegistry.register()` — ระบบใช้ทันที (มี test `test_ai_strategy_hook_overrides_heuristic` พิสูจน์แล้ว)
+**วิธีใส่โมเดล (3 ขั้น):** สร้าง data ตาม schema → เทรน (`trainer.py` — โมเดลแรก data-driven พร้อม dataset จริง 72 rows — หรือ pipeline ของคุณ) → `StrategyRegistry.register()` — ระบบใช้ทันที (มี test `test_ai_strategy_hook_overrides_heuristic` พิสูจน์แล้ว)
 
 ### 🔌 Developer Hooks (สิ่งที่ Dev ต่อยอดได้)
 | ช่องว่าง | งานที่รอ | พร้อมแล้ว |

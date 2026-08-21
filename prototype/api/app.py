@@ -38,6 +38,10 @@ if _FASTAPI_AVAILABLE:
         role: str          # compute | developer | ambassador
         detail: str = ""
 
+    class EstimateRequest(BaseModel):
+        gpu_hours: float
+        rate_usd_per_hour: float = 0.0   # 0 = ใช้ราคาช่องทางที่ดีที่สุดตอนนี้
+
     @app.get("/", include_in_schema=False)
     def portal() -> FileResponse:
         """หน้า Customer Portal — มุมมองลูกค้า (UI สวยงาม)"""
@@ -61,6 +65,42 @@ if _FASTAPI_AVAILABLE:
     def best_channel() -> Dict:
         """ช่องทางที่จ่ายสูงสุดตอนนี้ (ผ่าน AI strategy)"""
         return {"best": _engine.pick_best_channel()}
+
+    @app.get("/market/channels")
+    def channels_status() -> Dict:
+        """สถานะทุกช่องทาง (พร้อมรับงาน / รออนุมัติ / ออฟไลน์) + ราคาล่าสุด"""
+        from prototype.core.channels import CHANNEL_REGISTRY
+        out = []
+        for name, ch in CHANNEL_REGISTRY.items():
+            q = ch.get_quote()
+            out.append({
+                "channel": name,
+                "status": q.status if q else "offline",
+                "price_usd_per_hour": q.price_usd_per_hour if q else None,
+                "available_gpus": q.available_gpus if q else 0,
+                "latency_ms": q.latency_ms if q else None,
+            })
+        return {"channels": out}
+
+    @app.post("/workload/estimate")
+    def workload_estimate(req: EstimateRequest) -> Dict:
+        """ประมาณราคางาน: gpu_hours x อัตรา (หรือราคา best channel) + แบ่ง 75/20/5"""
+        if req.gpu_hours <= 0:
+            raise HTTPException(400, "gpu_hours must be positive")
+        rate = req.rate_usd_per_hour
+        if rate <= 0:
+            best = _engine.pick_best_channel()
+            quote = next((q for q in _engine.scan_market() if q.channel == best), None)
+            rate = quote.price_usd_per_hour if quote else 0.30
+        total = req.gpu_hours * rate
+        split = _split.split(total)
+        return {
+            "gpu_hours": req.gpu_hours,
+            "rate_usd_per_hour": round(rate, 4),
+            "total_usd": round(total, 4),
+            "split": split.breakdown,
+            "note": "pay-per-compute: no computing, zero expenses",
+        }
 
     @app.post("/revenue/split")
     def revenue_split(req: SplitRequest) -> Dict:

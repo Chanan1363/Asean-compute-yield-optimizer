@@ -51,17 +51,15 @@ create_tenant, top_up, issue_api_key, charge_seconds. Store only key hashes
 on retry (pay-per-second billing must be exact — no compute, no charge).
 ```
 
-## 5. เตรียม fine-tuning pipeline จริง
+## 5. เตรียม fine-tuning pipeline จริง (สถานะ: ✅ มี baseline แล้ว)
 
 ```
-prototype/ai/fine_tune/trainer_stub.py is a stub. Build a real pipeline:
-1. Parse logs from the arbitrage engine into the JSONL schema in
-   ai/fine_tune/dataset_schema.md
-2. Train a channel-selection model (start with gradient boosting; document
-   the path to a neural net)
-3. Wrap it as an AIStrategy and register it in StrategyRegistry
-Deliver: working code, a small synthetic dataset for tests, and a README
-explaining how to retrain on real data.
+prototype/ai/fine_tune/trainer.py trains the first data-driven model from
+prototype/ai/fine_tune/dataset.jsonl (72 rows built from live Vast.ai API
+prices via build_dataset.py) and registers it in StrategyRegistry.
+Next step: replace the simple learned-bias model with gradient boosting
+(document the path to a neural net), and grow the dataset from real
+arbitrage-engine logs once the network runs live.
 ```
 
 ---

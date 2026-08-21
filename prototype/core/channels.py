@@ -1,7 +1,7 @@
 """
-ASEAN Grid — 5 Revenue Channels (ช่องทางรายได้)
+ASEAN Grid — 6 Revenue Channels (ช่องทางรายได้)
 ทุกช่องทาง implement interface `ComputeChannel` เดียวกัน → เพิ่มช่องทางใหม่ได้ไม่จำกัด
-(ช่องว่างที่เว้นไว้: Akash, Lambda, Together, จีน/เกาหลี domestic clouds...)
+(ช่องว่างที่เว้นไว้: Lambda, Together, จีน/เกาหลี domestic clouds...)
 
 Prototype นี้เป็น stub — ต่อ API จริงของแต่ละแพลตฟอร์มที่ TODO ระบุ
 (Vast.ai ต่อ API จริงแล้ว — console.vast.ai/api/v0/bundles — ราคาสดจากตลาดจริง)
@@ -70,7 +70,7 @@ class VastAIChannel(ComputeChannel):
     VAST_API = "https://console.vast.ai/api/v0/bundles/"
     _cache: Optional[ChannelQuote] = None
     _cache_ts: float = 0.0
-    CACHE_SEC: int = 5            # MAXIMIZING PROFIT SECONDS — สแกนตลาดทุก 5 วิ (ตาม blueprint)
+    CACHE_SEC: int = 60           # Smart Yield Balancer — สแกนตลาดทุก 60 วิ (กัน rate limit)
 
     def _fetch_live_quote(self) -> Optional[ChannelQuote]:
         """ยิง API จริง → หา offers GPU เกมมิ่ง (RTX 4090/3090/4070) → ราคาเฉลี่ย"""
@@ -191,6 +191,83 @@ class StudiosChannel(ComputeChannel):
         return 9.40
 
 
+class AkashChannel(ComputeChannel):
+    """6. Akash Network — ตลาดเช่า GPU กระจายศูนย์ (DePIN)
+    ดึงราคา lease จริงจาก REST node ของ Akash chain (market module)
+    — ลองหลาย endpoint (cosmos.directory / polkachu / official) เผื่อ node ล่ม
+    ถ้าเชื่อมไม่ได้ → fallback ค่าจำลอง status=PENDING (ต้องเป็น approved tenant)
+    """
+    name = "akash"
+    AKT_USD_EST: float = 0.15            # ราคา AKT โดยประมาณ (prototype — เปลี่ยนตามตลาด)
+    BLOCK_SEC: int = 6                   # Akash block ≈ 6 วินาที → แปลงราคา/block → /ชั่วโมง
+    REST_ENDPOINTS: tuple = (
+        "https://rest.cosmos.directory/akash",
+        "https://akash-api.polkachu.com",
+        "https://api.akashnet.net",
+    )
+    _cache: Optional[ChannelQuote] = None
+    _cache_ts: float = 0.0
+    CACHE_SEC: int = 60                  # ตลาด DePIN ผันผวนช้ากว่า Vast — สแกนทุก 60 วิ
+
+    def _fetch_live_quote(self) -> Optional[ChannelQuote]:
+        """ยิง REST ของ Akash chain → นับ active leases + ราคาเฉลี่ย (uakt/block → USD/ชม.)"""
+        for base in self.REST_ENDPOINTS:
+            try:
+                url = (f"{base}/akash/market/v1beta1/leases/list"
+                       f"?state=active&pagination.limit=200")
+                req = urllib.request.Request(url, headers={
+                    "User-Agent": "ASEAN-Grid-prototype/0.2",
+                    "Accept": "application/json",
+                })
+                with urllib.request.urlopen(req, timeout=12) as resp:
+                    data = json.loads(resp.read().decode("utf-8"))
+                leases = data.get("leases") or []
+                if not leases:
+                    continue   # node นี้ไม่มีข้อมูล → ลอง node ถัดไป
+                prices = []
+                for lease in leases:
+                    try:
+                        price = lease.get("price") or {}
+                        amt = float(price.get("amount") or 0)
+                        denom = price.get("denom", "uakt")
+                        usd_per_block = amt * 1e-6 * self.AKT_USD_EST if denom == "uakt" else amt
+                        prices.append(usd_per_block * (3600.0 / self.BLOCK_SEC))
+                    except (TypeError, ValueError):
+                        continue
+                if not prices:
+                    continue
+                avg_price = sum(prices) / len(prices)
+                return ChannelQuote(
+                    channel=self.name,
+                    price_usd_per_hour=round(avg_price, 4),
+                    available_gpus=len(leases),
+                    queue_depth=max(1, len(leases) // 5),  # ตลาดหนาแน่นปานกลาง
+                    latency_ms=60,                          # global mesh — สูงกว่า regional
+                    reliability=0.90,                       # DePIN — ผันผวนกว่า Vast
+                )
+            except Exception:
+                continue   # node ล่ม → ลอง node ถัดไป
+        return None
+
+    def get_quote(self) -> Optional[ChannelQuote]:
+        now = time.time()
+        if self._cache is None or (now - self._cache_ts) > self.CACHE_SEC:
+            live = self._fetch_live_quote()
+            if live is not None:
+                self._cache, self._cache_ts = live, now
+        if self._cache is not None:
+            return self._cache
+        # fallback: ยังไม่ได้เป็น approved tenant → สถานะรออนุมัติ (ห้ามส่งงาน)
+        return ChannelQuote("akash", 0.36, 500, 4, 60, 0.90, status=PENDING)
+
+    def submit_workload(self, workload) -> str:
+        # TODO: สร้าง deployment บน Akash (SDL) แล้วรอ lease — ต้องเป็น approved tenant
+        return f"akt-{workload.workload_id}"
+
+    def get_payout_estimate(self) -> float:
+        return 9.80
+
+
 # ── Registry — ลงทะเบียนช่องทาง (Dev เพิ่มช่องทางใหม่ได้ตรงนี้) ────────
 
 CHANNEL_REGISTRY: Dict[str, ComputeChannel] = {
@@ -199,6 +276,7 @@ CHANNEL_REGISTRY: Dict[str, ComputeChannel] = {
     "render": RenderChannel(),
     "direct_ai": DirectAIChannel(),
     "studios": StudiosChannel(),
+    "akash": AkashChannel(),
 }
 
 

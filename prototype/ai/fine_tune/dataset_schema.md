@@ -78,9 +78,9 @@ Dev/AI ทีมสร้าง dataset ตามนี้ → เทรน → 
 
 ## วิธีใช้
 
-1. เก็บ dataset เป็น JSONL (`{"features": ..., "label": ...}` ต่อบรรทัด)
-2. เทรนด้วย `trainer_stub.py` (หรือ pipeline ของคุณ — HuggingFace/axolotl/Unsloth ฯลฯ)
+1. เก็บ dataset เป็น JSONL (`{"features": ..., "label": ...}` ต่อบรรทัด) — มีตัวอย่างจริงแล้ว: `dataset.jsonl` (72 rows จากราคา Vast.ai API สด, สร้างซ้ำได้ด้วย `build_dataset.py`)
+2. เทรนด้วย `trainer.py` (โมเดลแรก data-driven — เรียนรู้ channel bias จากข้อมูล) หรือ pipeline ของคุณ — HuggingFace/axolotl/Unsloth ฯลฯ
 3. implement `AIStrategy` ใน `strategy_hooks.py` → `StrategyRegistry.register("my-model", ...)`
 4. สลับใช้: `ArbitrageEngine(strategy_name="my-model")`
 
-**หมายเหตุ:** dataset จริงจะเกิดจาก logs ของระบบเมื่อรันจริง — prototype นี้ให้ schema ไว้ก่อน
+**หมายเหตุ:** dataset ปัจจุบันสร้างจากราคาตลาดจริง (Vast.ai API) + ค่าฐานช่องทางอื่น — dataset ที่สมบูรณ์ยิ่งขึ้นจะเกิดจาก logs ของระบบเมื่อรันจริง

@@ -11,7 +11,7 @@
 |---|---|
 | Global Compute Crisis — data center ใหญ่ชนกำแพง (ค่าไฟ/สภาพอากาศ/embargo ชิป) | ต้องเป็น "light-asset" — ไม่สร้าง data center ใช้พลังว่างที่มีอยู่ |
 | AI demand ระเบิด (training + inference + agentic AI) | รองรับงานหลายประเภท: training / inference / rendering / mining / simulation |
-| DePIN โตแล้ว (Vast.ai, io.net, Render) แต่ยังไม่มี "ตัวกลางอัจฉริยะ" สำหรับอาเซียน | Arbitrage Engine ข้าม 5 ช่องทาง = จุดขายไม่ซ้ำใคร |
+| DePIN โตแล้ว (Vast.ai, io.net, Render, Akash) แต่ยังไม่มี "ตัวกลางอัจฉริยะ" สำหรับอาเซียน | Arbitrage Engine ข้าม 6 ช่องทาง = จุดขายไม่ซ้ำใคร |
 | ภูมิรัฐศาสตร์: อาเซียนติดดีมานด์ AI ใหญ่สุด (จีน/เกาหลี/ญี่ปุ่น) | latency 20-40ms pipeline เป็น moat |
 | AI fine-tuning กลายเป็นของธรรมดา | ทุกจุดตัดสินใจในระบบออกแบบเป็น **AI Hook** — ใส่โมเดลจูนเองได้ |
 
@@ -21,7 +21,7 @@
 
 ![ASEAN Grid Prototype Architecture](assets/prototype_architecture.png)
 
-*System overview: Global Tenants → API/Billing → Arbitrage Engine (AI hooks) → 5 channels → Scheduler → Docker Sandbox → Home GPU Nodes → Revenue Split 75/20/5 → Genesis Ledger. / ภาพรวมระบบ: ลูกค้าโลก → API/บิลลิ่ง → สมอง Arbitrage (AI) → 5 ช่องทาง → จัดคิว → Sandbox → เครื่องเจ้าของ → แบ่งรายได้ 75/20/5 → บันทึกถาวร*
+*System overview: Global Tenants → API/Billing → Arbitrage Engine (AI hooks) → 6 channels → Scheduler → Docker Sandbox → Home GPU Nodes → Revenue Split 75/20/5 → Genesis Ledger. / ภาพรวมระบบ: ลูกค้าโลก → API/บิลลิ่ง → สมอง Arbitrage (AI) → 6 ช่องทาง → จัดคิว → Sandbox → เครื่องเจ้าของ → แบ่งรายได้ 75/20/5 → บันทึกถาวร*
 
 ```
 [ GLOBAL TENANTS ]  (AI Labs / Studios / Game Cos. / Devs)
@@ -33,10 +33,13 @@
 [ ARBITRAGE ENGINE ]  ←── AI STRATEGY HOOK (จูนได้)
    │   │   │
    ▼   ▼   ▼
-[Vast.ai] [io.net] [Render] [Direct AI] [Studios]   ← 5 ช่องทาง (pluggable)
+[Vast.ai] [io.net] [Render] [Direct AI] [Studios] [Akash]   ← 6 ช่องทาง (pluggable)
         │
         ▼
 [ SCHEDULER ]  (ค่าไฟ/เวลา/ความน่าเชื่อถือ — tariff-aware)
+        │
+        ▼
+[ SMART YIELD BALANCER ]  (สลับงานเมื่อคุ้มจริง: >15% + คุ้ม overhead — One-Click & Forget)
         │
         ▼
 [ NODE ORCHESTRATOR ] ──→ [ DOCKER SANDBOX ] ──→ [ HOME GPU / INTERNET CAFE NODES ]
@@ -63,32 +66,37 @@ prototype/
 ├── core/                   ← แกนระบบ (Python 3.11, stdlib เป็นหลัก)
 │   ├── config.py           ← ค่าตั้งศูนย์กลาง (75/20/5, fees, timeouts)
 │   ├── models.py           ← Data models: Node, Workload, Tenant, ApiKey, Payout
-│   ├── channels.py         ← 5 ช่องทางรายได้ (interface + stub)
+│   ├── channels.py         ← 6 ช่องทางรายได้ (Vast = API จริง / Akash = REST จริง + fallback)
 │   ├── arbitrage.py        ← Arbitrage Engine + Strategy interface
 │   ├── scheduler.py        ← จัดคิวงาน (tariff-aware)
 │   ├── billing.py          ← Prepaid API + จ่ายวินาทีต่อวินาที
 │   ├── revenue_split.py    ← แบ่งรายได้ 75/20/5 (Smart Contract interface)
-│   ├── sandbox.py          ← Docker Sandbox orchestration (interface + stub)
+│   ├── sandbox.py          ← Docker Sandbox (จริงเมื่อมี runtime — fallback stub อัตโนมัติ)
 │   └── genesis.py          ← บันทึกผู้บุกเบิก (append-only registry)
 │
 ├── ai/                     ← 🧠 จุดที่ AI จูนนิ่งใส่ได้ (THE AI HOOKS)
 │   ├── strategy_hooks.py   ← AIStrategy interface + registry (pluggable)
 │   ├── fine_tune/          ← จุดเตรียม data + train สำหรับ AI จูน
-│   │   ├── dataset_schema.md
-│   │   └── trainer_stub.py
+│   │   ├── dataset_schema.md   ← schema ของ training data
+│   │   ├── build_dataset.py    ← สร้าง dataset จริง (ดึงราคา Vast.ai API)
+│   │   ├── dataset.jsonl       ← dataset 72 rows (สร้างแล้ว — ราคาสด)
+│   │   └── trainer.py          ← เทรนโมเดลแรก (data-driven) → register อัตโนมัติ
 │   └── prompts/            ← prompts สำหรับ AI dev agents
 │       └── agents.md
 │
 ├── api/                    ← REST API (FastAPI — optional dep)
 │   └── app.py
 │
-├── contracts/              ← Smart Contract (interface-level stub)
-│   └── RevenueSplit.sol
+├── contracts/              ← Smart Contract (implementation จริง — compile ด้วย solc ผ่าน)
+│   └── RevenueSplit.sol    ← 75/20/5 + batchPayout + claim (CEI — กัน reentrancy)
 │
 └── tests/                  ← unittest — รันได้ทันที ไม่ต้องติดตั้งอะไร
     ├── test_revenue_split.py
     ├── test_billing.py
-    └── test_arbitrage.py
+    ├── test_arbitrage.py
+    ├── test_channels.py      ← 6 ช่องทาง + Akash fallback
+    ├── test_scheduler.py     ← ค่าไฟรายประเทศ/ช่วงเวลา
+    └── test_sandbox.py       ← lifecycle sandbox (fallback เสมอ)
 ```
 
 ---
@@ -132,7 +140,7 @@ EOF
 
 **วิธีใส่โมเดลของคุณ:**
 1. ดู `ai/fine_tune/dataset_schema.md` — schema สำหรับสร้าง training data
-2. เทรนด้วย `ai/fine_tune/trainer_stub.py` (หรือ pipeline ของคุณเอง)
+2. เทรนด้วย `ai/fine_tune/trainer.py` (โมเดลแรก data-driven — มี dataset จริงแล้ว) หรือ pipeline ของคุณเอง
 3. implement `AIStrategy` (ดู `ai/strategy_hooks.py`) แล้วลงทะเบียน:
 ```python
 from prototype.ai.strategy_hooks import StrategyRegistry, AIStrategy
@@ -150,12 +158,12 @@ StrategyRegistry.register("my-tuned", MyTunedStrategy())
 
 | ช่องว่างที่ตั้งใจเว้นไว้ | วิธีต่อยอด |
 |---|---|
-| `core/channels.py` | เพิ่มช่องทางที่ 6 (Akash, Together, Lambda...) — implement `ComputeChannel` |
-| `core/sandbox.py` | ต่อ Docker/K8s จริง — ตอนนี้เป็น interface + stub |
-| `contracts/RevenueSplit.sol` | เขียน smart contract จริง (Solidity) ตาม interface |
-| `api/app.py` | เพิ่ม endpoint — โครงสร้าง FastAPI พร้อม |
-| `core/scheduler.py` | เพิ่ม optimization algorithm (ค่าไฟรายประเทศ/รายช่วงเวลา) |
-| `ai/fine_tune/` | สร้าง dataset จริงจาก logs เมื่อระบบรันจริง |
+| `core/channels.py` | ✅ ช่องทางที่ 6 (Akash) เรียบร้อย — เพิ่มช่องทางที่ 7 (Lambda, Together...) ได้ตาม interface เดิม |
+| `core/sandbox.py` | ✅ Docker จริงแล้ว (ต้องมี docker runtime) — ต่อ K8s/podman ต่อได้ |
+| `contracts/RevenueSplit.sol` | ✅ implementation จริงแล้ว (compile ผ่าน solc 0.8.24) — deploy ต่อยอดบน chain |
+| `api/app.py` | ✅ มี `/market/channels` + `/workload/estimate` แล้ว — เพิ่ม endpoint ต่อได้ |
+| `core/scheduler.py` | ✅ ค่าไฟรายประเทศ + รายช่วงเวลา + AI hooks แล้ว — ปรับน้ำหนัก/optimization ต่อได้ |
+| `ai/fine_tune/` | ✅ dataset จริง 72 rows (ราคา Vast สด) + trainer data-driven — ต่อยอดโมเดลที่หนักขึ้นได้ |
 
 **กติกา (AGPL-3.0):** fork ได้ แก้ได้ ส่ง PR ได้ — ตามสาส์นชี้ชวนใน Blueprint (5% Developer Treasury สำหรับผู้รักษาแกนกริด)
 
@@ -163,15 +171,17 @@ StrategyRegistry.register("my-tuned", MyTunedStrategy())
 
 ## 🧪 สถานะของ Prototype นี้
 
-- [x] แกนระบบ: config / models / 5 channels / arbitrage + hooks / billing / 75/20/5 / scheduler / sandbox interface / genesis registry
+- [x] แกนระบบ: config / models / 6 channels / arbitrage + hooks / billing / 75/20/5 / scheduler / sandbox / genesis registry
 - [x] tests รันผ่าน (unittest — stdlib ล้วน)
 - [x] demo.py — สาธิตทั้งระบบด้วยคำสั่งเดียว
 - [x] Customer Portal — หน้าเว็บลูกค้า (FastAPI + UI สองภาษา)
 - [x] เชื่อม Vast.ai API จริงแล้ว (console.vast.ai/api/v0/bundles — ราคาสดจากตลาดจริง, cache 60 วิ, fallback อัตโนมัติ)
-- [ ] Docker sandbox จริง (ต้องมี docker runtime)
-- [ ] Smart contract จริงบน chain (มี interface แล้ว)
-- [ ] AI โมเดลจูนจริง (มี hooks + schema แล้ว — รอ data จริง)
-- [ ] เชื่อม io.net / Render API จริง (ต้องสมัครเป็น approved supplier / node operator ก่อน)
+- [x] ช่องทางที่ 6: Akash (REST จริงหลาย endpoint + fallback อัตโนมัติ — ต้องเป็น approved tenant ถึงรับงาน)
+- [x] Docker sandbox จริง (ต้องมี docker runtime — fallback stub เมื่อไม่มี)
+- [x] Smart contract RevenueSplit.sol จริง (compile ผ่าน solc 0.8.24 — ยังไม่ได้ deploy)
+- [x] AI โมเดลแรก data-driven (เทรนจาก dataset จริง 72 rows — in-sample 100%)
+- [x] Smart Yield Balancer (threshold 15% + overhead cost — กันสลับถี่ กัน rate limit)
+- [ ] เชื่อม io.net / Render / Akash API จริง (ต้องสมัครเป็น approved supplier / node operator / tenant ก่อน)
 
 ---
 

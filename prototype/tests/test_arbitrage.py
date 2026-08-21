@@ -12,9 +12,9 @@ class TestArbitrage(unittest.TestCase):
     def setUp(self):
         self.engine = ArbitrageEngine(Config())
 
-    def test_scan_returns_5_channels(self):
+    def test_scan_returns_6_channels(self):
         quotes = self.engine.scan_market()
-        self.assertEqual(len(quotes), 5)   # 5 ช่องทาง (Core)
+        self.assertEqual(len(quotes), 6)   # 6 ช่องทาง (Core + akash)
 
     def test_best_channel_is_direct_ai_by_heuristic(self):
         """direct_ai ราคา 0.55/ชม. ควรชนะด้วยคะแนน (กำไรดีสุด ไม่มีคิว)"""
@@ -25,7 +25,7 @@ class TestArbitrage(unittest.TestCase):
         wl = Workload(workload_id="w-1", tenant_id="t-1", wtype=WorkloadType.AI_INFERENCE,
                       gpu_hours_required=2)
         job = self.engine.route(wl)
-        self.assertTrue(job.startswith(("vast-", "io-", "rnd-", "dai-", "std-")))
+        self.assertTrue(job.startswith(("vast-", "io-", "rnd-", "dai-", "std-", "akt-")))
 
     def test_ai_strategy_hook_overrides_heuristic(self):
         """AI จูนใส่โมเดล → ระบบใช้โมเดลนั้นทันที (โดยไม่แตะ engine)"""
