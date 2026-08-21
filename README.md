@@ -39,9 +39,9 @@ In the current era of the **Global Compute Crisis (August 2026)**, centralized B
 
 *The original idea: one powerful machine (RTX 4090, ~120,000 THB) serving many professions through fast internet — but heavy investment and slow payback led us to keep thinking. / แนวคิดแรกเริ่ม: เครื่องเดียว (RTX 4090, ~120,000 บาท) รับงานหลายอาชีพผ่านเน็ตเร็ว — แต่ลงทุนสูง คืนทุนนาน เลยคิดต่อ*
 
-![GPU Revenue Arbitrage](assets/gpu_revenue_arbitrage_v2.png)
+![ASEAN Grid — System Architecture](assets/prototype_arch_v1_1.png)
 
-*Guided by Nous Research's open, distributed philosophy (DisTrO), we evolved the idea: pool idle GPUs and let AI switch workloads to the highest-paying channel every second — the blueprint was born. / จากหลักคิดของ Nous Research (กระจายศูนย์ เปิดเผย — DisTrO) เราเลยคิดต่อ: รวมพลังการ์ดจอว่าง + AI สลับงานไปช่องทางที่จ่ายสูงสุดทุกวินาที — ได้พิมพ์เขียวมาแบบนี้*
+*The system architecture: global tenants → API gateway & billing → arbitrage engine → scheduler & Docker sandbox → home GPU nodes → Genesis Ledger with 75/20/5 revenue split. / สถาปัตยกรรมระบบ: ลูกค้าโลก → API/บิลลิ่ง → สมอง Arbitrage → จัดคิว & Docker Sandbox → โหนดเครื่องเจ้าของ → Genesis Ledger แบ่งรายได้ 75/20/5*
 
 ![Calculation Power Sharing](assets/compute_power_sharing.png)
 
