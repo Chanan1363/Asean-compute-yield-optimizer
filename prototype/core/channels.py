@@ -1,5 +1,5 @@
 """
-ASEAN Grid — 6 Revenue Channels (ช่องทางรายได้)
+ASEAN Grid — 7 Revenue Channels (ช่องทางรายได้)
 ทุกช่องทาง implement interface `ComputeChannel` เดียวกัน → เพิ่มช่องทางใหม่ได้ไม่จำกัด
 (ช่องว่างที่เว้นไว้: Lambda, Together, จีน/เกาหลี domestic clouds...)
 
@@ -268,6 +268,75 @@ class AkashChannel(ComputeChannel):
         return 9.80
 
 
+class RunPodChannel(ComputeChannel):
+    """7. RunPod — คลาวด์ GPU สำหรับ AI/ML (serverless + on-demand)
+    ดึงราคาจริงจาก GraphQL API — gpuTypes.lowestPrice เปิดได้โดยไม่ต้อง API key
+    (minimumBidPrice = ราคาต่ำสุดต่อชั่วโมงของ GPU แต่ละรุ่น)
+    """
+    name = "runpod"
+    GRAPHQL_URL = "https://api.runpod.io/graphql"
+    QUERY = ('{"query":"{ gpuTypes { id displayName lowestPrice '
+             '{ minimumBidPrice uninterruptablePrice } } }"}')
+    GPU_KEYS = ("4090", "3090", "4070", "4080", "4060", "5080", "5090", "3080")
+    _cache: Optional[ChannelQuote] = None
+    _cache_ts: float = 0.0
+    CACHE_SEC: int = 60
+
+    def _fetch_live_quote(self) -> Optional[ChannelQuote]:
+        """ยิง GraphQL → กรอง GPU เกมมิ่งที่ grid ใช้ → เฉลี่ยราคาต่ำสุด/ชม."""
+        try:
+            req = urllib.request.Request(
+                self.GRAPHQL_URL,
+                data=self.QUERY.encode("utf-8"),
+                headers={"Content-Type": "application/json",
+                         "User-Agent": "ASEAN-Grid-prototype/0.2"},
+            )
+            with urllib.request.urlopen(req, timeout=15) as resp:
+                data = json.loads(resp.read().decode("utf-8"))
+            gpus = (data.get("data") or {}).get("gpuTypes") or []
+            candidates = [
+                g for g in gpus
+                if any(k in str(g.get("id", "")) + str(g.get("displayName", ""))
+                       for k in self.GPU_KEYS)
+            ]
+            prices = []
+            for g in candidates:
+                lp = (g.get("lowestPrice") or {})
+                price = lp.get("minimumBidPrice") or lp.get("uninterruptablePrice")
+                if price:
+                    prices.append(float(price))
+            if not prices:
+                return None
+            return ChannelQuote(
+                channel=self.name,
+                price_usd_per_hour=round(sum(prices) / len(prices), 4),
+                available_gpus=len(candidates),
+                queue_depth=max(1, len(prices) // 8),
+                latency_ms=30,          # cloud จัดการ — latency ดีกว่า P2P
+                reliability=0.96,       # managed cloud — เสถียร
+            )
+        except Exception:
+            return None
+
+    def get_quote(self) -> Optional[ChannelQuote]:
+        now = time.time()
+        if self._cache is None or (now - self._cache_ts) > self.CACHE_SEC:
+            live = self._fetch_live_quote()
+            if live is not None:
+                self._cache, self._cache_ts = live, now
+        if self._cache is not None:
+            return self._cache
+        # fallback: API ล่ม → สถานะรอ (ห้ามส่งงาน)
+        return ChannelQuote("runpod", 0.40, 400, 4, 30, 0.96, status=PENDING)
+
+    def submit_workload(self, workload) -> str:
+        # TODO: สร้าง pod ผ่าน GraphQL mutation (ต้องมี API key)
+        return f"rpd-{workload.workload_id}"
+
+    def get_payout_estimate(self) -> float:
+        return 10.50
+
+
 # ── Registry — ลงทะเบียนช่องทาง (Dev เพิ่มช่องทางใหม่ได้ตรงนี้) ────────
 
 CHANNEL_REGISTRY: Dict[str, ComputeChannel] = {
@@ -277,6 +346,7 @@ CHANNEL_REGISTRY: Dict[str, ComputeChannel] = {
     "direct_ai": DirectAIChannel(),
     "studios": StudiosChannel(),
     "akash": AkashChannel(),
+    "runpod": RunPodChannel(),
 }
 
 

@@ -11,7 +11,7 @@
 |---|---|
 | Global Compute Crisis — data center ใหญ่ชนกำแพง (ค่าไฟ/สภาพอากาศ/embargo ชิป) | ต้องเป็น "light-asset" — ไม่สร้าง data center ใช้พลังว่างที่มีอยู่ |
 | AI demand ระเบิด (training + inference + agentic AI) | รองรับงานหลายประเภท: training / inference / rendering / mining / simulation |
-| DePIN โตแล้ว (Vast.ai, io.net, Render, Akash) แต่ยังไม่มี "ตัวกลางอัจฉริยะ" สำหรับอาเซียน | Arbitrage Engine ข้าม 6 ช่องทาง = จุดขายไม่ซ้ำใคร |
+| DePIN โตแล้ว (Vast.ai, io.net, Render, Akash, RunPod) แต่ยังไม่มี "ตัวกลางอัจฉริยะ" สำหรับอาเซียน | Arbitrage Engine ข้าม 7 ช่องทาง = จุดขายไม่ซ้ำใคร |
 | ภูมิรัฐศาสตร์: อาเซียนติดดีมานด์ AI ใหญ่สุด (จีน/เกาหลี/ญี่ปุ่น) | latency 20-40ms pipeline เป็น moat |
 | AI fine-tuning กลายเป็นของธรรมดา | ทุกจุดตัดสินใจในระบบออกแบบเป็น **AI Hook** — ใส่โมเดลจูนเองได้ |
 
@@ -21,7 +21,7 @@
 
 ![ASEAN Grid Prototype Architecture](assets/prototype_architecture.png)
 
-*System overview: Global Tenants → API/Billing → Arbitrage Engine (AI hooks) → 6 channels → Scheduler → Docker Sandbox → Home GPU Nodes → Revenue Split 75/20/5 → Genesis Ledger. / ภาพรวมระบบ: ลูกค้าโลก → API/บิลลิ่ง → สมอง Arbitrage (AI) → 6 ช่องทาง → จัดคิว → Sandbox → เครื่องเจ้าของ → แบ่งรายได้ 75/20/5 → บันทึกถาวร*
+*System overview: Global Tenants → API/Billing → Arbitrage Engine (AI hooks) → 7 channels → Scheduler → Docker Sandbox → Home GPU Nodes → Revenue Split 75/20/5 → Genesis Ledger. / ภาพรวมระบบ: ลูกค้าโลก → API/บิลลิ่ง → สมอง Arbitrage (AI) → 7 ช่องทาง → จัดคิว → Sandbox → เครื่องเจ้าของ → แบ่งรายได้ 75/20/5 → บันทึกถาวร*
 
 ```
 [ GLOBAL TENANTS ]  (AI Labs / Studios / Game Cos. / Devs)
@@ -33,7 +33,7 @@
 [ ARBITRAGE ENGINE ]  ←── AI STRATEGY HOOK (จูนได้)
    │   │   │
    ▼   ▼   ▼
-[Vast.ai] [io.net] [Render] [Direct AI] [Studios] [Akash]   ← 6 ช่องทาง (pluggable)
+[Vast.ai] [io.net] [Render] [Direct AI] [Studios] [Akash] [RunPod]   ← 7 ช่องทาง (pluggable)
         │
         ▼
 [ SCHEDULER ]  (ค่าไฟ/เวลา/ความน่าเชื่อถือ — tariff-aware)
@@ -66,7 +66,7 @@ prototype/
 ├── core/                   ← แกนระบบ (Python 3.11, stdlib เป็นหลัก)
 │   ├── config.py           ← ค่าตั้งศูนย์กลาง (75/20/5, fees, timeouts)
 │   ├── models.py           ← Data models: Node, Workload, Tenant, ApiKey, Payout
-│   ├── channels.py         ← 6 ช่องทางรายได้ (Vast = API จริง / Akash = REST จริง + fallback)
+│   ├── channels.py         ← 7 ช่องทางรายได้ (Vast/RunPod = API จริง / Akash = REST จริง + fallback)
 │   ├── arbitrage.py        ← Arbitrage Engine + Strategy interface
 │   ├── scheduler.py        ← จัดคิวงาน (tariff-aware)
 │   ├── billing.py          ← Prepaid API + จ่ายวินาทีต่อวินาที
@@ -94,7 +94,7 @@ prototype/
     ├── test_revenue_split.py
     ├── test_billing.py
     ├── test_arbitrage.py
-    ├── test_channels.py      ← 6 ช่องทาง + Akash fallback
+    ├── test_channels.py      ← 7 ช่องทาง + Akash/RunPod fallback
     ├── test_scheduler.py     ← ค่าไฟรายประเทศ/ช่วงเวลา
     └── test_sandbox.py       ← lifecycle sandbox (fallback เสมอ)
 ```
@@ -171,7 +171,7 @@ StrategyRegistry.register("my-tuned", MyTunedStrategy())
 
 ## 🧪 สถานะของ Prototype นี้
 
-- [x] แกนระบบ: config / models / 6 channels / arbitrage + hooks / billing / 75/20/5 / scheduler / sandbox / genesis registry
+- [x] แกนระบบ: config / models / 7 channels / arbitrage + hooks / billing / 75/20/5 / scheduler / sandbox / genesis registry
 - [x] tests รันผ่าน (unittest — stdlib ล้วน)
 - [x] demo.py — สาธิตทั้งระบบด้วยคำสั่งเดียว
 - [x] Customer Portal — หน้าเว็บลูกค้า (FastAPI + UI สองภาษา)

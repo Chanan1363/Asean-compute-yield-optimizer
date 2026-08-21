@@ -1,4 +1,4 @@
-"""Test: Channels — registry 6 ช่องทาง + Akash channel (#6) fallback ปลอดภัย"""
+"""Test: Channels — registry 7 ช่องทาง + Akash/RunPod fallback ปลอดภัย"""
 import unittest
 
 from prototype.core.channels import (
@@ -8,8 +8,8 @@ from prototype.core.channels import (
 
 class TestChannels(unittest.TestCase):
 
-    def test_registry_has_six_channels(self):
-        self.assertEqual(len(CHANNEL_REGISTRY), 6)
+    def test_registry_has_seven_channels(self):
+        self.assertEqual(len(CHANNEL_REGISTRY), 7)
 
     def test_akash_registered(self):
         self.assertIn("akash", CHANNEL_REGISTRY)
@@ -38,6 +38,25 @@ class TestChannels(unittest.TestCase):
         from prototype.core.channels import get_all_quotes
         names = [q.channel for q in get_all_quotes()]
         self.assertIn("akash", names)
+
+    def test_runpod_registered(self):
+        from prototype.core.channels import RunPodChannel
+        self.assertIn("runpod", CHANNEL_REGISTRY)
+        self.assertIsInstance(CHANNEL_REGISTRY["runpod"], RunPodChannel)
+
+    def test_runpod_quote_never_none(self):
+        """RunPod ต้องคืน quote เสมอ — connected (API จริง) หรือ pending fallback"""
+        from prototype.core.channels import RunPodChannel, CONNECTED, PENDING
+        q = RunPodChannel().get_quote()
+        self.assertIsNotNone(q)
+        self.assertEqual(q.channel, "runpod")
+        self.assertIn(q.status, (CONNECTED, PENDING))
+
+    def test_runpod_submit_returns_job_id(self):
+        class FakeWL:
+            workload_id = "W-RPD-1"
+        self.assertEqual(CHANNEL_REGISTRY["runpod"].submit_workload(FakeWL()),
+                         "rpd-W-RPD-1")
 
 
 if __name__ == "__main__":

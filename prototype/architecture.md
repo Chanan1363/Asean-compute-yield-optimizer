@@ -21,7 +21,7 @@
 |---|---|---|---|
 | Config | `core/config.py` | ค่าตั้งศูนย์กลาง (75/20/5, fees, region) | ✅ พร้อม |
 | Models | `core/models.py` | Node/Workload/Tenant/ApiKey/Payout | ✅ พร้อม |
-| Channels | `core/channels.py` | 6 ช่องทาง (Vast/io.net/Render/Direct/Studios/Akash) | Vast = API จริง / Akash = REST จริง+fallback / ที่เหลือรอ approved supplier |
+| Channels | `core/channels.py` | 7 ช่องทาง (Vast/io.net/Render/Direct/Studios/Akash/RunPod) | Vast/RunPod = API จริง / Akash = REST จริง+fallback / ที่เหลือรอ approved supplier |
 | Arbitrage | `core/arbitrage.py` | สแกน → เลือกช่องทาง (AI hook) → ส่งงาน | ✅ พร้อม + 🧠 hook |
 | Scheduler | `core/scheduler.py` | จัดคิวตามค่าไฟ/trust | ✅ พร้อม + 🧠 hook |
 | Billing | `core/billing.py` | Prepaid API + จ่ายวินาทีต่อวินาที | ✅ พร้อม (memory) |
@@ -46,7 +46,7 @@
    ArbitrageEngine.pick_best_channel()  ← 🧠 AIStrategy.predict_best_channel()
                               │
                               ▼
-   Channel.submit_workload()  (6 ช่องทาง)
+   Channel.submit_workload()  (7 ช่องทาง)
                               │
                               ▼
    Scheduler.schedule()  ← 🧠 AIStrategy.forecast_demand() / score_node_trust()

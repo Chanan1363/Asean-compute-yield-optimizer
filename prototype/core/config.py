@@ -35,8 +35,8 @@ class Config:
     REGION: str = "ASEAN"
     TARGET_LATENCY_MS: tuple = (20, 40)         # 20-40ms pipeline (Geopolitical Arbitrage)
 
-    # ── Channels (6 ช่องทางรายได้ — pluggable) ──────────────────────
-    CHANNELS: tuple = ("vast_ai", "io_net", "render", "direct_ai", "studios", "akash")
+    # ── Channels (7 ช่องทางรายได้ — pluggable) ──────────────────────
+    CHANNELS: tuple = ("vast_ai", "io_net", "render", "direct_ai", "studios", "akash", "runpod")
 
     # ── ค่าไฟรายประเทศ (USD/kWh) — ใช้โดย Scheduler (tariff-aware) ──
     # แหล่ง: ประมาณการอัตราค่าไฟบ้านอาเซียน (prototype — ปรับตามข้อมูลจริงได้)
