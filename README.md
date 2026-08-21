@@ -53,11 +53,11 @@ In the current era of the **Global Compute Crisis (August 2026)**, centralized B
 
 ---
 
-## 💸 THE DISRUPTIVE HYBRID REVENUE MATRIX (โมเดลธุรกิจฟาด 2 ขา)
+## 💸 THE DISRUPTIVE HYBRID REVENUE MATRIX (โมเดลธุรกิจ 2 แกนหลัก — Dual-Revenue Engine)
 
-Our economic flywheel captures absolute market liquidity by converting target users into **Dual-Role Actors** (acting as both Supply nodes and Demand clients simultaneously within one single software ecosystem):
+Our economic flywheel captures market liquidity by converting target users into **Dual-Role Actors** (acting as both Supply nodes and Demand clients simultaneously within one single software ecosystem):
 
-วงล้อเศรษฐกิจของเราดูดซับสภาพคล่องของตลาดทั้งหมด โดยเปลี่ยนผู้ใช้ให้เป็น **"นักแสดงสองบทบาท"** — เป็นทั้งผู้ให้พลัง (Supply) และผู้ใช้พลัง (Demand) ในระบบนิเวศเดียวพร้อมกัน:
+วงล้อเศรษฐกิจของเราดูดซับสภาพคล่องของตลาด โดยเปลี่ยนผู้ใช้ให้เป็น **"นักแสดงสองบทบาท"** — เป็นทั้งผู้ให้พลัง (Supply) และผู้ใช้พลัง (Demand) ในระบบนิเวศเดียวพร้อมกัน:
 
 ### 1. B2C: The Subscription Flywheel (รายเดือนมหาชน)
 

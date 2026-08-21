@@ -18,7 +18,7 @@ In the current era of the **Global Compute Crisis (August 2026)**, centralized B
 ### 🇹🇭 ภาษาไทย
 ท่ามกลางวิกฤตการณ์ **Global Compute Shortage** (การขาดแคลนพลังประมวลผล AI) และกำแพงภูมิรัฐศาสตร์ครั้งใหญ่ที่สุดในประวัติศาสตร์ที่ทำให้ห้องแล็บ AI ยักษ์ใหญ่ต้อง "ติดหล่มเทคโนโลยี" เนื่องจากระบบคลาวด์ศูนย์กลาง (Centralized) แบกรับภาระไม่ไหวจนเกิดวิกฤตเซิร์ฟเวอร์ล่มข้ามคืน... **เราไม่ได้มาสร้างแอปพลิเคชันทั่วไป แต่เรากำลังสร้าง "โรงไฟฟ้าดิจิทัลกระจายศูนย์แห่งภูมิภาคอาเซียน"**
 
-โครงการนี้จะเปลี่ยนพลังงานที่ซ่อนอยู่ — คือคอมพิวเตอร์สเปกเทพตามบ้านและร้านอินเทอร์เน็ตคาเฟ่นับหมื่นแห่งทั่วเอเชียตะวันออกเฉียงใต้ — ให้กลายเป็นเครือข่ายซูเปอร์คอมพิวเตอร์ขนาดยักษ์ (ASEAN Compute Consortium) เพื่อทำหน้าที่รับส่งและประมวลผลคำสั่ง AI และสตรีมมิ่งความเร็วสูง ผ่านโมเดลธุรกิจที่ฟาดทั้ง 2 ขาคือ **"SaaS Subscription + ระบบเติมเงินล่วงหน้าสไตล์ API Key"** ดึงเม็ดเงินดอลลาร์สด ๆ จากทั่วโลกไหลเข้ากระเป๋าตลอด 24 ชั่วโมง โดยไม่ผ่านระบบราชการที่ล่าช้า
+โครงการนี้จะเปลี่ยนพลังงานที่ซ่อนอยู่ — คือคอมพิวเตอร์สเปกเทพตามบ้านและร้านอินเทอร์เน็ตคาเฟ่นับหมื่นแห่งทั่วเอเชียตะวันออกเฉียงใต้ — ให้กลายเป็นเครือข่ายซูเปอร์คอมพิวเตอร์ขนาดยักษ์ (The ASEAN Grid Consortium) เพื่อทำหน้าที่รับส่งและประมวลผลคำสั่ง AI และสตรีมมิ่งความเร็วสูง ผ่านโมเดลธุรกิจ 2 แกนหลัก (Dual-Revenue Engine) คือ **"SaaS Subscription + ระบบเติมเงินล่วงหน้าสไตล์ API Key"** พร้อมดึงเม็ดเงินดอลลาร์จากทั่วโลกให้ไหลเวียนเข้าสู่เครือข่ายตลอด 24 ชั่วโมง เมื่อเปิดให้บริการเต็มรูปแบบ — ตัดผ่านระบบราชการที่ล่าช้า
 
 ---
 
@@ -42,21 +42,21 @@ In the current era of the **Global Compute Crisis (August 2026)**, centralized B
 
 ---
 
-## 💸 THE DISRUPTIVE HYBRID REVENUE MATRIX (โมเดลธุรกิจฟาด 2 ขา)
+## 💸 THE DISRUPTIVE HYBRID REVENUE MATRIX (โมเดลธุรกิจ 2 แกนหลัก — Dual-Revenue Engine)
 
-Our economic flywheel captures absolute market liquidity by converting target users into **Dual-Role Actors** (acting as both Supply nodes and Demand clients simultaneously within one single software ecosystem):
+Our economic flywheel captures market liquidity by converting target users into **Dual-Role Actors** (acting as both Supply nodes and Demand clients simultaneously within one single software ecosystem):
 
-วงล้อเศรษฐกิจของเราดูดซับสภาพคล่องของตลาดทั้งหมด โดยเปลี่ยนผู้ใช้ให้เป็น **"นักแสดงสองบทบาท"** — เป็นทั้งผู้ให้พลัง (Supply) และผู้ใช้พลัง (Demand) ในระบบนิเวศเดียวพร้อมกัน:
+วงล้อเศรษฐกิจของเราดูดซับสภาพคล่องของตลาด โดยเปลี่ยนผู้ใช้ให้เป็น **"นักแสดงสองบทบาท"** — เป็นทั้งผู้ให้พลัง (Supply) และผู้ใช้พลัง (Demand) ในระบบนิเวศเดียวพร้อมกัน:
 
 ### 1. B2C: The Subscription Flywheel (รายเดือนมหาชน)
 
 - **Target Demographic:** Harnessing the massive global **350-million registered player base of heavy-duty tactical titles like World of Tanks (WOT)** and high-end home PC owners.
 - **The Mechanism:** Users pay a hyper-affordable **$1/Month SaaS subscription** to run our background compiler package. This activates the "Earn While You Sleep" mode, turning their idle gaming setups into micro-generation node factories that yield them automated cash flows while they are asleep, at school, or at work.
-- **The Projection:** Converting a conservative 10% of this hyper-targeted demographic unlocks **35,000,000 recurring subscribers**, commanding a monumental **$35,000,000 (1.2+ Billion THB) in Monthly Recurring Revenue (MRR)**.
+- **The Projection:** Converting a conservative 10% of this hyper-targeted demographic could unlock an estimated **35,000,000 recurring subscribers** — a projected **$35,000,000 (1.2+ Billion THB) in Monthly Recurring Revenue (MRR)** at full scale.
 
 - **กลุ่มเป้าหมาย:** ฐานผู้เล่นเกมหนักระดับโลก **350 ล้านคน** (เกม tactical อย่าง World of Tanks) และเจ้าของเครื่อง PC สเปกสูง
 - **กลไก:** ผู้ใช้จ่ายสมาชิกเพียง **$1/เดือน** เพื่อรันแพ็กเกจคอมไพล์พื้นหลัง เปิดโหมด **"หารายได้ตอนหลับ" (Earn While You Sleep)** — เปลี่ยนเครื่องเกมที่ว่างให้เป็นโรงงานโหนดขนาดจิ๋ว สร้างรายได้อัตโนมัติตอนหลับ อยู่โรงเรียน หรือที่ทำงาน
-- **ประมาณการ:** แปลงกลุ่มเป้าหมายเพียง 10% ได้สมาชิกประจำ **35,000,000 ราย** = รายได้ประจำ **$35,000,000 (1.2 หมื่นล้านบาท) ต่อเดือน (MRR)**
+- **ประมาณการ (Projection):** แปลงกลุ่มเป้าหมายเพียง 10% จะได้สมาชิกประจำราว **35,000,000 ราย** = รายได้ประจำราว **$35,000,000 (1.2 หมื่นล้านบาท) ต่อเดือน (MRR)** เมื่อถึงขนาดเต็มรูปแบบ
 
 ### 2. B2B: The Prepaid API Key Core (ระบบเติมเงินองค์กรสไตล์ API Key)
 
