@@ -172,7 +172,7 @@
   <!-- ── Status ── -->
   <div class="statusbar">
     <span class="dot" id="statusDot"></span>
-    <span id="statusText">กำลังเชื่อมต่อระบบ...</span>
+    <span id="statusText">กำลังเชื่อมต่อระบบ... / Connecting...</span>
     <span style="margin-left:auto">Region: <span id="regionTag">—</span></span>
   </div>
 
@@ -182,15 +182,15 @@
     <div class="card wide">
       <h3><span class="ic">📊</span> ราคาตลาด 5 ช่องทาง — Market Prices</h3>
       <div class="sub">สแกนราคาสดจาก Arbitrage Engine / Live scan from the Arbitrage Engine</div>
-      <button class="btn sm" id="btnScan" onclick="scanMarket()">🔄 สแกนราคาใหม่</button>
-      <span class="loading" id="loadMarket">สแกนตลาด...</span>
+      <button class="btn sm" id="btnScan" onclick="scanMarket()">🔄 สแกนราคาใหม่ / Scan Now</button>
+      <span class="loading" id="loadMarket">สแกนตลาด... / Scanning...</span>
       <table style="margin-top:10px">
         <thead>
-          <tr><th>ช่องทาง / Channel</th><th>สถานะ</th><th class="num">ราคา ($/ชม.)</th><th class="num">คิว</th><th class="num">Latency</th><th class="num">คะแนน AI</th><th></th></tr>
+          <tr><th>ช่องทาง / Channel</th><th>สถานะ / Status</th><th class="num">ราคา ($/ชม.) / Price ($/hr)</th><th class="num">คิว / Queue</th><th class="num">Latency</th><th class="num">คะแนน AI / AI Score</th><th></th></tr>
         </thead>
-        <tbody id="marketBody"><tr><td colspan="7" style="color:var(--dim)">กดปุ่มสแกนเพื่อดูราคา</td></tr></tbody>
+        <tbody id="marketBody"><tr><td colspan="7" style="color:var(--dim)">กดปุ่มสแกนเพื่อดูราคา / Press Scan to load prices</td></tr></tbody>
       </table>
-      <div class="hint" id="bestHint" style="display:none">🧠 <b>AI Strategy แนะนำ:</b> <span id="bestName" style="color:var(--gold)"></span> — ช่องทางที่จ่ายสูงสุดสุทธิตอนนี้</div>
+      <div class="hint" id="bestHint" style="display:none">🧠 <b>AI Strategy แนะนำ / AI Strategy:</b> <span id="bestName" style="color:var(--gold)"></span> — ช่องทางที่จ่ายสูงสุดสุทธิตอนนี้ / highest net yield right now</div>
     </div>
 
     <!-- ── Revenue split ── -->
@@ -199,7 +199,7 @@
       <div class="sub">ลูกค้าจ่ายเท่าไร → แบ่งอัตโนมัติ 75/20/5 / Enter customer payment → auto split</div>
       <label for="amount">ยอดที่ลูกค้าจ่าย (USD) / Customer payment (USD)</label>
       <input type="number" id="amount" value="1000" min="1" step="10">
-      <button class="btn" onclick="calcSplit()">คำนวณการแบ่งรายได้</button>
+      <button class="btn" onclick="calcSplit()">คำนวณการแบ่งรายได้ / Calculate Split</button>
       <div class="splitbars" id="splitBars" style="display:none"></div>
       <div class="result" id="splitResult"></div>
     </div>
@@ -212,13 +212,13 @@
       <input type="text" id="bname" placeholder="เช่น Tay (Chanan)">
       <label for="brole">บทบาท / Role</label>
       <select id="brole">
-        <option value="compute">🖥️ Compute Builder — เจ้าของเครื่อง/ร้านเน็ต</option>
-        <option value="developer">👨‍💻 Developer Builder — นักพัฒนา</option>
-        <option value="ambassador">📣 Ambassador Builder — ผู้ประกาศ</option>
+        <option value="compute">🖥️ Compute Builder — เจ้าของเครื่อง/ร้านเน็ต / Machine & cafe owner</option>
+        <option value="developer">👨‍💻 Developer Builder — นักพัฒนา / Developer</option>
+        <option value="ambassador">📣 Ambassador Builder — ผู้ประกาศ / Promoter</option>
       </select>
       <label for="bdetail">รายละเอียด / Detail (เช่น รุ่นการ์ดจอ)</label>
       <input type="text" id="bdetail" placeholder="เช่น RTX 4090 - Bangkok">
-      <button class="btn gold" onclick="addBuilder()">จารึกลง Genesis Ledger</button>
+      <button class="btn gold" onclick="addBuilder()">จารึกลง Genesis Ledger / Engrave Now</button>
       <div class="result" id="builderResult"></div>
     </div>
 
@@ -226,14 +226,14 @@
     <div class="card wide">
       <h3><span class="ic">🔗</span> Genesis Ledger — รายชื่อผู้บุกเบิก</h3>
       <div class="sub">บันทึกถาวร แก้ไข/ลบไม่ได้ — แต่ละชื่อผูก hash กันเป็น chain / Append-only, hash-chained</div>
-      <button class="btn sm ghost" onclick="loadLedger()">🔄 โหลดรายชื่อ</button>
-      <div id="ledgerBox" style="margin-top:10px"><div class="hint">ยังไม่มีข้อมูล — กดโหลดรายชื่อ</div></div>
+      <button class="btn sm ghost" onclick="loadLedger()">🔄 โหลดรายชื่อ / Reload</button>
+      <div id="ledgerBox" style="margin-top:10px"><div class="hint">ยังไม่มีข้อมูล — กดโหลดรายชื่อ / No data yet — press Reload</div></div>
     </div>
 
   </div>
 
   <div class="footer">
-    ASEAN Grid — Democratizing Compute · AGPL-3.0 · Prototype v0.1 (20 ส.ค. 2026)
+    ASEAN Grid — Democratizing Compute · AGPL-3.0 · Prototype v0.1 (Aug 20, 2026)
   </div>
 </div>
 
@@ -268,7 +268,7 @@ async function init() {
     // 🧠 คิดเรื่อยๆ — สแกนตลาดอัตโนมัติทุก 10 วินาที (Maximizing Profit Seconds)
     setInterval(scanMarket, 10000);
   } catch (e) {
-    document.getElementById("statusText").textContent = "เชื่อมต่อระบบไม่ได้ — " + e.message;
+    document.getElementById("statusText").textContent = "เชื่อมต่อระบบไม่ได้ / Cannot reach system — " + e.message;
   }
 }
 
@@ -285,9 +285,9 @@ async function scanMarket() {
       const isBest = q.channel === best.best;
       const st = q.status || "connected";
       const stMap = {
-        connected: '<span style="color:var(--green)">✅ พร้อมรับงาน</span>',
-        pending: '<span style="color:var(--gold)">⏳ รออนุมัติ</span>',
-        not_connected: '<span style="color:var(--dim)">🔒 ยังไม่เปิด</span>'
+        connected: '<span style="color:var(--green)">✅ พร้อมรับงาน / Ready</span>',
+        pending: '<span style="color:var(--gold)">⏳ รออนุมัติ / Pending</span>',
+        not_connected: '<span style="color:var(--dim)">🔒 ยังไม่เปิด / Not open</span>'
       };
       const canWork = st === "connected";
       return `<tr class="${isBest && canWork ? 'best-row' : ''}" ${!canWork ? 'style="opacity:0.55"' : ''}>
@@ -297,7 +297,7 @@ async function scanMarket() {
         <td class="num">${q.queue_depth}</td>
         <td class="num">${q.latency_ms}ms</td>
         <td class="num ${canWork ? 'up' : ''}">${q.score.toFixed(2)}</td>
-        <td>${isBest && canWork ? '<span style="color:var(--gold);font-size:11px">AI เลือก</span>' : (canWork ? '' : '<span style="color:var(--dim);font-size:11px">รอปลดล็อก</span>')}</td>
+        <td>${isBest && canWork ? '<span style="color:var(--gold);font-size:11px">AI เลือก / AI pick</span>' : (canWork ? '' : '<span style="color:var(--dim);font-size:11px">รอปลดล็อก / Locked</span>')}</td>
       </tr>`;
     }).join("");
     document.getElementById("marketBody").innerHTML = rows;
@@ -317,7 +317,7 @@ async function calcSplit() {
   const amt = parseFloat(document.getElementById("amount").value);
   const el = document.getElementById("splitResult");
   el.classList.remove("show");
-  if (!amt || amt <= 0) { showErr(el, new Error("กรอกยอดเงินที่ถูกต้อง (มากกว่า 0)")); return; }
+  if (!amt || amt <= 0) { showErr(el, new Error("กรอกยอดเงินที่ถูกต้อง (มากกว่า 0) / Enter a valid amount (> 0)")); return; }
   try {
     const d = await api("/revenue/split", {
       method: "POST", headers: {"Content-Type": "application/json"},
@@ -326,9 +326,9 @@ async function calcSplit() {
     const node = (d.node_75 ?? 0), plat = (d.platform_20 ?? 0), dev = (d.developer_5 ?? 0);
     document.getElementById("splitBars").style.display = "flex";
     document.getElementById("splitBars").innerHTML = `
-      <div class="seg node" style="flex:75">75%<br><small>ผู้ให้เครื่อง<br>$${node.toFixed(2)}</small></div>
-      <div class="seg plat" style="flex:20">20%<br><small>ระบบ<br>$${plat.toFixed(2)}</small></div>
-      <div class="seg dev" style="flex:5">5%<br><small>นักพัฒนา<br>$${dev.toFixed(2)}</small></div>`;
+      <div class="seg node" style="flex:75">75%<br><small>ผู้ให้เครื่อง / Node owner<br>$${node.toFixed(2)}</small></div>
+      <div class="seg plat" style="flex:20">20%<br><small>ระบบ / Platform<br>$${plat.toFixed(2)}</small></div>
+      <div class="seg dev" style="flex:5">5%<br><small>นักพัฒนา / Dev pool<br>$${dev.toFixed(2)}</small></div>`;
     showResult(el, d);
   } catch (e) { showErr(el, e); }
 }
@@ -340,16 +340,16 @@ async function addBuilder() {
   const name = document.getElementById("bname").value.trim();
   const role = document.getElementById("brole").value;
   const detail = document.getElementById("bdetail").value.trim();
-  if (!name) { showErr(el, new Error("กรอกชื่อก่อนครับ")); return; }
+  if (!name) { showErr(el, new Error("กรอกชื่อก่อนครับ / Please enter a name")); return; }
   try {
     const d = await api("/genesis/builders", {
       method: "POST", headers: {"Content-Type": "application/json"},
       body: JSON.stringify({name, role, detail})
     });
     showResult(el, {
-      "จารึกแล้ว": true,
+      "engraved": true,
       "entry_hash": d.entry_hash,
-      "chain_ถูกต้อง": d.verify
+      "chain_valid": d.verify
     });
     document.getElementById("bname").value = "";
     document.getElementById("bdetail").value = "";
@@ -363,7 +363,7 @@ async function loadLedger() {
   try {
     const d = await api("/genesis/ledger");
     const roleMap = {compute: "Compute", developer: "Developer", ambassador: "Ambassador"};
-    if (!d.entries.length) { box.innerHTML = `<div class="hint">ยังไม่มีผู้บุกเบิก — เป็นคนแรกเลยครับ 🚀</div>`; return; }
+    if (!d.entries.length) { box.innerHTML = `<div class="hint">ยังไม่มีผู้บุกเบิก — เป็นคนแรกเลยครับ 🚀 / No pioneers yet — be the first!</div>`; return; }
     const rows = d.entries.map(e => `
       <div class="ledger-row">
         <div>
@@ -374,7 +374,7 @@ async function loadLedger() {
         <span class="hash">${e.entry_hash}</span>
       </div>`).join("");
     box.innerHTML = rows +
-      `<div class="hint" style="margin-top:10px">🔒 ความถูกต้องของ chain: ${d.chain_valid ? "ผ่าน ✅ (กันแก้ย้อนหลัง)" : "FAIL"}</div>`;
+      `<div class="hint" style="margin-top:10px">🔒 Chain integrity: ${d.chain_valid ? "ผ่าน ✅ (กันแก้ย้อนหลัง) / valid ✅ (tamper-proof)" : "FAIL"}</div>`;
   } catch (e) {
     box.innerHTML = `<div class="hint" style="color:var(--red)">⚠️ ${e.message}</div>`;
   }
