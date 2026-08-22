@@ -191,6 +191,21 @@ We completely reject speculative, bubble-based web3 metrics. Our native token �
 
 **The ASEAN Grid is open architecture (AGPL-3.0): fork, build, send a PR.** / สถาปัตยกรรมเปิด: fork ได้ แก้ได้ ส่ง PR ได้
 
+### 🚀 Quick Start for Contributors / เริ่มพัฒนาทันที (ภายใน 3 นาที)
+
+1. **Fork** the repo → clone → create your branch (full steps in [CONTRIBUTING.md](CONTRIBUTING.md)) / **Fork** repo → clone → สร้าง branch (ขั้นตอนเต็มใน CONTRIBUTING.md)
+2. Create a virtual environment / สร้าง environment:
+   ```bash
+   python -m venv venv && source venv/bin/activate   # Windows: venv\Scripts\activate
+   ```
+3. Run the tests to verify your setup / รัน tests เพื่อตรวจว่าเครื่องพร้อม:
+   ```bash
+   python -m unittest discover -s prototype/tests -v   # 41 tests — stdlib only, nothing to install
+   ```
+4. API work only / เฉพาะงาน API: `pip install fastapi uvicorn`
+
+**Tests pass in 3 minutes = your first PR is already 50% done.** / **รันเทสต์ผ่านภายใน 3 นาที = PR แรกของคุณสำเร็จไปแล้วครึ่งหนึ่ง**
+
 - 👨‍💻 **Developers:** read [CONTRIBUTING.md](CONTRIBUTING.md) — fork → branch → test → pull request. Merged PRs qualify for the **5% Developer Pool** per the blueprint.
 - 📚 **Lessons from Psyche Network:** [docs/lessons-from-psyche.md](docs/lessons-from-psyche.md) — the 4 real obstacles of internet-scale decentralized training and their proven solutions / บทเรียนจากเครือข่าย Psyche — อุปสรรค 4 ข้อจริงของการเทรนกระจายและวิธีแก้ที่พิสูจน์แล้ว
 - 🧠 **Hybrid + Brain Strategy:** [docs/hybrid-brain-strategy.md](docs/hybrid-brain-strategy.md) — why we combine consumer GPUs + small data centers, what SLA means, and why we compete with intelligence not capital / กลยุทธ์ไฮบริด + สมอง — เหตุผลที่ผสม consumer GPU + Data Center เล็ก, SLA คืออะไร, และทำไมเราแข่งด้วยสมองไม่ใช่ทุน

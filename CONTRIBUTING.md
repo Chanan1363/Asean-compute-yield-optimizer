@@ -127,6 +127,21 @@ PR จะได้รับการตรวจภายใน **48 ชั่�
 Once merged, you're in the Genesis Ledger (permanent). Notable work (plugins, security fixes, AI models) qualifies for the 5% Developer Pool once payouts go live, and top-3 contributors earn a Founder Advisory Seat with voting rights on the project's direction.
 เมื่อ PR ถูกรวม ชื่อของคุณจะถูกจารึกใน Genesis Ledger (ถาวร) ผลงานสำคัญ (ปลั๊กอิน, แก้ช่องโหว่, โมเดล AI) มีสิทธิ์รับเงินจากกองทุน 5% เมื่อระบบเปิดจ่าย และ Contributor อันดับ 1-3 ได้ที่นั่ง Founder Advisory Seat (สิทธิ์ออกเสียงทิศทางโปรเจกต์)
 
+### 💰 How the 5% Developer Pool is distributed / วิธีแบ่งกองทุนนักพัฒนา 5%
+
+Transparent, recorded on-chain in the Genesis Ledger (immutable). / โปร่งใส บันทึกถาวรใน Genesis Ledger (แก้ไขไม่ได้)
+
+| Work type / ประเภทงาน | Pool share / ส่วนแบ่ง |
+|---|---|
+| **Merged PR** (any label) / PR ที่ถูกรวม (ทุกรายการ) | 1 point per merged PR / 1 แต้มต่อ PR |
+| **Bounty work** (`genesis-bounty` label) / งานประกาศรางวัล | 3 points / 3 แต้ม (งานใหญ่ชัดเจน) |
+| **Security fix** / แก้ช่องโหว่ความปลอดภัย | 4 points / 4 แต้ม (สำคัญสุด) |
+| **Plugin / AI model / major module** / ปลั๊กอิน/โมเดล AI/โมดูลใหญ่ | 5 points / 5 แต้ม (พิจารณาโดยทีม) |
+
+- Points are recorded in the Genesis Ledger per contributor — permanent, public, verifiable. / แต้มถูกบันทึกใน Genesis Ledger รายคน — ถาวร เปิดดูได้ ตรวจสอบได้
+- When network revenue goes live, each payout cycle (quarterly) distributes the 5% pool in proportion to points held. / เมื่อเครือข่ายมีรายได้จริง ทุกๆ รอบจ่าย (รายไตรมาส) กองทุน 5% จะถูกแบ่งตามสัดส่วนแต้มที่ถืออยู่
+- The split itself (75/20/5) is protected — see rule 3. / สัดส่วน 75/20/5 ถูกปกป้อง — ดูกติกาข้อ 3
+
 > The principle: work done for the network is recorded and rewarded fairly — "better every day, no such thing as best."
 > หลักการ: งานที่ทำเพื่อเครือข่าย ถูกบันทึกและตอบแทนอย่างเป็นธรรม — "ดีขึ้นเรื่อยๆ ไม่มีดีที่สุด"
 
