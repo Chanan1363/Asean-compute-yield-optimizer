@@ -9,7 +9,7 @@
 > **ยึดมั่นในปรัชญา Open Source แบบ Nous Research (DisTrO) — เปิดโอกาสการประมวลผล AI ให้ทั่วอาเซียน**
 
 > 🌐 **Live Demo:** [GPU Yield Calculator](https://chanan1363.github.io/Asean-compute-yield-optimizer/) — ลองคำนวณรายได้การ์ดจอฟรี / Try the free calculator
-> 🧪 **Program Prototype:** [Run the code now](prototype/) — สาธิตระบบจริงด้วยคำสั่งเดียว / one-command live demo (`python prototype/demo.py`) · **หรือลองเว็บสด: [Live Customer Portal](https://asean-compute-yield-optimizer.onrender.com/) / or try the live portal — no install needed** · 📊 **[Live Dashboard](https://asean-grid-dashboard.onrender.com/)** — ราคาช่องทางสด + กราฟ / live channel prices + charts
+> 🧪 **Program Prototype:** [Run the code now](prototype/) — สาธิตระบบจริงด้วยคำสั่งเดียว / one-command live demo (`python prototype/demo.py`) · **หรือลองเว็บสด: [Live Customer Portal](https://asean-compute-yield-optimizer.onrender.com/) / or try the live portal — no install needed** · 📊 **[Live Dashboard](https://asean-grid-dashboard.onrender.com/)** — ราคาช่องทางสด + กราฟ / live channel prices + charts · 🔌 **[API Docs](https://asean-compute-yield-optimizer.onrender.com/docs)** — ลองยิง API สด / try the live API
 
 ---
 
@@ -176,6 +176,7 @@ We completely reject speculative, bubble-based web3 metrics. Our native token �
 |---|---|
 | **Live portal (online 24/7, no install) / เว็บสดออนไลน์ 24 ชม. (ไม่ต้องติดตั้ง)** | 👉 https://asean-compute-yield-optimizer.onrender.com/ — real market prices + 75/20/5 calculator / ราคาตลาดสด + เครื่องคิดเงิน |
 | Live dashboard (Streamlit) / แดชบอร์ดสด | 👉 https://asean-grid-dashboard.onrender.com/ — live channel prices + charts / ราคาช่องทางสด + กราฟ |
+| API Docs (Swagger UI) / เอกสาร API | 👉 https://asean-compute-yield-optimizer.onrender.com/docs — try every endpoint live / ลองยิง API ทุกตัวได้สดๆ |
 | Full live demo (no install) / สาธิตเต็มระบบ (ไม่ต้องติดตั้ง) | `python prototype/demo.py` |
 | Run 16 tests / รันทดสอบ 16 ตัว | `python -m unittest discover -s prototype/tests -v` |
 | Customer Portal web UI (needs fastapi/uvicorn) / รันหน้าเว็บลูกค้าในเครื่อง | `pip install fastapi uvicorn && uvicorn prototype.api.app:app` → http://127.0.0.1:8000/ (local) · live: https://asean-compute-yield-optimizer.onrender.com/ |
