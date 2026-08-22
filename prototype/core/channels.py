@@ -7,11 +7,14 @@ Prototype นี้เป็น stub — ต่อ API จริงของแ�
 (Vast.ai ต่อ API จริงแล้ว — console.vast.ai/api/v0/bundles — ราคาสดจากตลาดจริง)
 """
 import json
+import logging
 import time
 import urllib.request
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
 from typing import Dict, List, Optional
+
+logger = logging.getLogger("channels")
 
 
 # ── สถานะการเชื่อมต่อช่องทาง ─────────────────────────────────────────
@@ -109,7 +112,8 @@ class VastAIChannel(ComputeChannel):
                 latency_ms=35,                            # ASEAN → US (prototype)
                 reliability=0.97,
             )
-        except Exception:
+        except (urllib.error.URLError, json.JSONDecodeError, KeyError, ZeroDivisionError) as e:
+            logger.warning("[%s] fetch failed: %s (%s)", self.name, e, type(e).__name__)
             return None   # fallback ข้างล่าง
 
     def get_quote(self) -> Optional[ChannelQuote]:
@@ -245,7 +249,8 @@ class AkashChannel(ComputeChannel):
                     latency_ms=60,                          # global mesh — สูงกว่า regional
                     reliability=0.90,                       # DePIN — ผันผวนกว่า Vast
                 )
-            except Exception:
+            except (urllib.error.URLError, json.JSONDecodeError, KeyError, ZeroDivisionError) as e:
+                logger.debug("[%s] node skipped: %s (%s)", self.name, e, type(e).__name__)
                 continue   # node ล่ม → ลอง node ถัดไป
         return None
 
@@ -315,7 +320,8 @@ class RunPodChannel(ComputeChannel):
                 latency_ms=30,          # cloud จัดการ — latency ดีกว่า P2P
                 reliability=0.96,       # managed cloud — เสถียร
             )
-        except Exception:
+        except (urllib.error.URLError, json.JSONDecodeError, KeyError, ZeroDivisionError) as e:
+            logger.warning("[%s] fetch failed: %s (%s)", self.name, e, type(e).__name__)
             return None
 
     def get_quote(self) -> Optional[ChannelQuote]:
@@ -351,5 +357,11 @@ CHANNEL_REGISTRY: Dict[str, ComputeChannel] = {
 
 
 def get_all_quotes() -> List[ChannelQuote]:
-    """สแกนราคาทุกช่องทาง — เรียกโดย Arbitrage Engine"""
-    return [ch.get_quote() for ch in CHANNEL_REGISTRY.values() if ch.get_quote() is not None]
+    """สแกนราคาทุกช่องทาง — เรียกโดย Arbitrage Engine
+    เรียก get_quote ครั้งละ 1 รอบต่อช่องทาง (กันเปลืองทรัพยากร + ผลไม่ consistent)"""
+    out: List[ChannelQuote] = []
+    for ch in CHANNEL_REGISTRY.values():
+        q = ch.get_quote()
+        if q is not None:
+            out.append(q)
+    return out
