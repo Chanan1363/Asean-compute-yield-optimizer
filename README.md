@@ -9,7 +9,7 @@
 > **ยึดมั่นในปรัชญา Open Source แบบ Nous Research (DisTrO) — เปิดโอกาสการประมวลผล AI ให้ทั่วอาเซียน**
 
 > 🌐 **Live Demo:** [GPU Yield Calculator](https://chanan1363.github.io/Asean-compute-yield-optimizer/) — ลองคำนวณรายได้การ์ดจอฟรี / Try the free calculator
-> 🧪 **Program Prototype:** [Run the code now](prototype/) — สาธิตระบบจริงด้วยคำสั่งเดียว / one-command live demo (`python prototype/demo.py`)
+> 🧪 **Program Prototype:** [Run the code now](prototype/) — สาธิตระบบจริงด้วยคำสั่งเดียว / one-command live demo (`python prototype/demo.py`) · **หรือลองเว็บสด: [Live Customer Portal](https://asean-compute-yield-optimizer.onrender.com/) / or try the live portal — no install needed**
 
 ---
 
@@ -174,9 +174,10 @@ We completely reject speculative, bubble-based web3 metrics. Our native token �
 
 | วิธี / How | คำสั่ง / Command |
 |---|---|
+| **Live portal (online 24/7, no install) / เว็บสดออนไลน์ 24 ชม. (ไม่ต้องติดตั้ง)** | 👉 https://asean-compute-yield-optimizer.onrender.com/ — real market prices + 75/20/5 calculator / ราคาตลาดสด + เครื่องคิดเงิน |
 | Full live demo (no install) / สาธิตเต็มระบบ (ไม่ต้องติดตั้ง) | `python prototype/demo.py` |
 | Run 16 tests / รันทดสอบ 16 ตัว | `python -m unittest discover -s prototype/tests -v` |
-| Customer Portal web UI (needs fastapi/uvicorn) / หน้าเว็บลูกค้า | `pip install fastapi uvicorn && uvicorn prototype.api.app:app` → http://127.0.0.1:8000/ |
+| Customer Portal web UI (needs fastapi/uvicorn) / รันหน้าเว็บลูกค้าในเครื่อง | `pip install fastapi uvicorn && uvicorn prototype.api.app:app` → http://127.0.0.1:8000/ (local) · live: https://asean-compute-yield-optimizer.onrender.com/ |
 
 **Live data:** Vast.ai channel already pulls real market prices from `console.vast.ai/api/v0/bundles` (60s cache, automatic fallback). / **ข้อมูลสด:** ช่องทาง Vast.ai ดึงราคาตลาดจริงจาก API แล้ว (cache 60 วิ, fallback อัตโนมัติ)
 
