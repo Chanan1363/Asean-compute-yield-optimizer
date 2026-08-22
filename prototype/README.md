@@ -7,13 +7,13 @@
 
 ## 🌍 Why This Prototype, Right Now — ทำไมต้องเป็นตอนนี้ (สิงหาคม 2026)
 
-| สถานการณ์โลกปัจจุบัน | ผลกระทบต่อการออกแบบ |
+| Global situation / สถานการณ์โลกปัจจุบัน | Impact on design / ผลกระทบต่อการออกแบบ |
 |---|---|
-| Global Compute Crisis — data center ใหญ่ชนกำแพง (ค่าไฟ/สภาพอากาศ/embargo ชิป) | ต้องเป็น "light-asset" — ไม่สร้าง data center ใช้พลังว่างที่มีอยู่ |
-| AI demand ระเบิด (training + inference + agentic AI) | รองรับงานหลายประเภท: training / inference / rendering / mining / simulation |
-| DePIN โตแล้ว (Vast.ai, io.net, Render, Akash, RunPod) แต่ยังไม่มี "ตัวกลางอัจฉริยะ" สำหรับอาเซียน | Arbitrage Engine ข้าม 7 ช่องทาง = จุดขายไม่ซ้ำใคร |
-| ภูมิรัฐศาสตร์: อาเซียนติดดีมานด์ AI ใหญ่สุด (จีน/เกาหลี/ญี่ปุ่น) | latency 20-40ms pipeline เป็น moat |
-| AI fine-tuning กลายเป็นของธรรมดา | ทุกจุดตัดสินใจในระบบออกแบบเป็น **AI Hook** — ใส่โมเดลจูนเองได้ |
+| **Global Compute Crisis** — big data centers hit walls (power/weather/chip embargo) / data center ใหญ่ชนกำแพง (ค่าไฟ/สภาพอากาศ/embargo ชิป) | Must be "light-asset" — no new data centers, use idle power that exists / ต้องเป็น light-asset ไม่สร้าง data center ใช้พลังว่างที่มีอยู่ |
+| **AI demand exploding** (training + inference + agentic AI) / AI demand ระเบิด | Support all workload types: training / inference / rendering / mining / simulation / รองรับงานหลายประเภท |
+| **DePIN matured** (Vast.ai, io.net, Render, Akash, RunPod) but no smart broker for ASEAN yet / DePIN โตแล้ว แต่ยังไม่มีตัวกลางอัจฉริยะสำหรับอาเซียน | **Arbitrage Engine** across 7 channels = unique selling point / จุดขายไม่ซ้ำใคร |
+| **Geopolitics:** ASEAN sits next to the biggest AI demand (China/Korea/Japan) / ภูมิรัฐศาสตร์: อาเซียนติดดีมานด์ AI ใหญ่สุด | 20-40ms latency pipeline = the moat / latency 20-40ms pipeline เป็น moat |
+| **AI fine-tuning** is now mainstream / AI fine-tuning กลายเป็นของธรรมดา | Every decision point is an **AI Hook** — plug your own tuned model in / ทุกจุดตัดสินใจในระบบออกแบบเป็น AI Hook — ใส่โมเดลจูนเองได้ |
 
 ---
 
