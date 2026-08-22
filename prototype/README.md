@@ -61,6 +61,8 @@ prototype/
 ├── architecture.md         ← สถาปัตยกรรมละเอียด + จุดต่อขยายทุกจุด
 ├── requirements.txt        ← deps (fastapi/uvicorn/pydantic — ทั้งหมด optional)
 ├── demo.py                 ← รันคำสั่งเดียว: python prototype/demo.py — เห็นทั้งระบบทำงาน
+├── dashboard.py            ← Live Dashboard (Streamlit) — ราคาช่องทางสด + 75/20/5 (โชว์เดโม)
+├── requirements-dashboard.txt ← deps สำหรับ dashboard (streamlit/pandas — venv แยก)
 ├── customer_portal.html    ← หน้าเว็บลูกค้า (UI สวยงาม — เสิร์ฟโดย FastAPI ที่ /)
 │
 ├── core/                   ← แกนระบบ (Python 3.11, stdlib เป็นหลัก)
@@ -118,7 +120,13 @@ result = rs.split(1000.00)          # ลูกค้าจ่าย 1,000 USD
 print(result)                        # {'node': 750.0, 'platform': 200.0, 'developer': 50.0}
 EOF
 
-# 3. (Optional) รันเว็บ Customer Portal — ต้องติดตั้ง fastapi/uvicorn
+# 3. (Optional) รัน Live Dashboard (Streamlit) — ราคาสด + แบ่งรายได้ 75/20/5
+# uv venv .venv-dashboard --python 3.11
+# uv pip install --python .venv-dashboard/Scripts/python.exe -r prototype/requirements-dashboard.txt
+# .venv-dashboard\Scripts\streamlit run prototype/dashboard.py
+# แล้วเปิด http://localhost:8501 — ดูราคาทุกช่องทางสด / ช่องทางที่ดีที่สุด / สไลด์แบ่งรายได้
+
+# 4. (Optional) รันเว็บ Customer Portal — ต้องติดตั้ง fastapi/uvicorn
 # pip install fastapi uvicorn
 # uvicorn prototype.api.app:app --reload
 # แล้วเปิด http://127.0.0.1:8000/ — หน้าเว็บลูกค้า (ดูราคาสด/คำนวณรายได้/จารึกชื่อ)
@@ -175,6 +183,7 @@ StrategyRegistry.register("my-tuned", MyTunedStrategy())
 - [x] tests รันผ่าน (unittest — stdlib ล้วน)
 - [x] demo.py — สาธิตทั้งระบบด้วยคำสั่งเดียว
 - [x] Customer Portal — หน้าเว็บลูกค้า (FastAPI + UI สองภาษา)
+- [x] Live Dashboard (Streamlit) — ราคาช่องทางสด + ช่องทางที่ดีที่สุด + สไลด์แบ่งรายได้ 75/20/5 (โชว์เดโม)
 - [x] เชื่อม Vast.ai API จริงแล้ว (console.vast.ai/api/v0/bundles — ราคาสดจากตลาดจริง, cache 60 วิ, fallback อัตโนมัติ)
 - [x] ช่องทางที่ 6: Akash (REST จริงหลาย endpoint + fallback อัตโนมัติ — ต้องเป็น approved tenant ถึงรับงาน)
 - [x] Docker sandbox จริง (ต้องมี docker runtime — fallback stub เมื่อไม่มี)

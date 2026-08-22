@@ -1,0 +1,6 @@
+# ASEAN Grid — Live Dashboard (Streamlit)
+# ติดตั้ง:  uv venv .venv-dashboard --python 3.11
+#          uv pip install --python .venv-dashboard/Scripts/python.exe -r prototype/requirements-dashboard.txt
+# รัน:     .venv-dashboard\Scripts\streamlit run prototype/dashboard.py
+streamlit>=1.40
+pandas>=2.2
