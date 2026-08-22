@@ -19,6 +19,7 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import time
+from datetime import datetime, timezone, timedelta
 
 import streamlit as st
 
@@ -49,7 +50,7 @@ def best_channel():
 st.title("⚡ ASEAN Grid — Live Dashboard")
 st.caption(
     f"7 ช่องทางรายได้ / 7 income channels · Smart Yield Balancer · Revenue Split 75/20/5 · "
-    f"สแกนตลาดทุก 60 วิ / market scan every 60s (อัตล่าสุด / last update {time.strftime('%H:%M:%S')})"
+    f"สแกนตลาดทุก 60 วิ / market scan every 60s (อัตล่าสุด / last update {datetime.now(timezone(timedelta(hours=7))).strftime('%H:%M:%S')} ไทย/ICT)"
 )
 
 # ── Row 1: live channel prices / ราคาช่องทางสด ─────────────────────────
