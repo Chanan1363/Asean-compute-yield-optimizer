@@ -49,6 +49,19 @@ class TestBilling(unittest.TestCase):
         stored = self.billing._keys[key.key_id]
         self.assertNotIn(key.key_prefix, stored["raw_hash"])   # เก็บ hash เท่านั้น
 
+    def test_api_key_returns_raw_once(self):
+        """ผู้ใช้ต้องได้รับ raw key (ครั้งเดียว) — ระบบไม่เก็บ raw ไว้"""
+        tenant = self.billing.create_tenant("org2")
+        self.billing.top_up(tenant, 100.0)
+        key = self.billing.issue_api_key(tenant)
+        # 1) raw key คืนให้ผู้ใช้ ขึ้นต้นด้วย ag- และยาวถูกต้อง
+        self.assertTrue(key.raw_key.startswith("ag-"))
+        self.assertEqual(len(key.raw_key), 3 + 32)  # ag- + token_hex(16)
+        # 2) ระบบเก็บเฉพาะ hash — ไม่มี raw key หลุดในที่เก็บ
+        stored = self.billing._keys[key.key_id]
+        self.assertNotIn(key.raw_key, stored["raw_hash"])
+        self.assertNotEqual(stored["raw_hash"], key.raw_key)
+
 
 if __name__ == "__main__":
     unittest.main()

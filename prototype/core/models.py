@@ -86,6 +86,7 @@ class ApiKey:
     key_id: str
     tenant_id: str
     key_prefix: str = ""                 # เก็บเฉพาะ prefix + hash (security)
+    raw_key: str = ""                    # คืนให้ผู้ใช้ครั้งเดียว (ไม่เก็บในระบบ)
     balance_usd: float = 0.0
     active: bool = True
 

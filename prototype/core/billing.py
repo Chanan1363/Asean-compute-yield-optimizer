@@ -30,12 +30,14 @@ class Billing:
         return tenant.balance_usd
 
     def issue_api_key(self, tenant: Tenant) -> ApiKey:
-        """สร้าง API Key (เก็บ hash — กันรั่ว)"""
+        """สร้าง API Key — คืน raw key ให้ผู้ใช้ครั้งเดียว (ผู้ใช้ต้องเก็บไว้เอง)
+        ระบบเก็บเฉพาะ hash (กันรั่ว) — raw key ไม่ถูกเก็บในระบบ"""
         raw = f"ag-{secrets.token_hex(16)}"
         key = ApiKey(
             key_id=f"k-{secrets.token_hex(4)}",
             tenant_id=tenant.tenant_id,
             key_prefix=raw[:12],
+            raw_key=raw,               # คืนให้ผู้ใช้ (แสดงครั้งเดียว)
             balance_usd=tenant.balance_usd,
         )
         self._keys[key.key_id] = {"raw_hash": self._hash(raw), "tenant": tenant.tenant_id}
