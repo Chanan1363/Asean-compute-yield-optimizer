@@ -8,8 +8,14 @@
 
 ## Why Contribute? / ทำไมควรร่วมพัฒนา?
 
-- **5% Developer Pool** — Every merged PR, plugin, or security fix qualifies for the 5% Developer Pool (the 75/20/5 split coded into the project blueprint). The network pays its builders, fairly and transparently.
-- **กองทุนนักพัฒนา 5%** — ทุก PR, ปลั๊กอิน หรือการแก้ช่องโหว่ที่ถูกรวม มีสิทธิ์ในกองทุน 5% ตามสัดส่วน 75/20/5 ที่ระบุในพิมพ์เขียวของโปรเจกต์ เครือข่ายจ่ายค่าแรงคนสร้างอย่างเป็นธรรมและโปร่งใส
+- **Earn when the grid earns — transparent, no empty promises** — Every merged PR, plugin, or security fix qualifies for the 5% Developer Pool (the 75/20/5 split coded into the blueprint). Payouts happen when the network generates real revenue. We state this plainly: you are an early builder investing your skill for a share of the future — just like the founding team.
+- **กองทุนนักพัฒนา 5% — จ่ายเมื่อเครือข่ายมีรายได้จริง (โปร่งใส ไม่สัญญาลมๆ)** — ทุก PR, ปลั๊กอิน หรือการแก้ช่องโหว่ที่ถูกรวม มีสิทธิ์ในกองทุน 5% (ตามสัดส่วน 75/20/5 ในพิมพ์เขียว) การจ่ายเกิดขึ้นเมื่อเครือข่ายมีรายได้จริง — เราบอกตรงๆ: คุณคือผู้ร่วมก่อตั้งที่ลงแรงแลกส่วนแบ่งอนาคต เหมือนทีมผู้ก่อตั้ง
+
+- **Genesis early-bird recognition** — The first contributors are recorded in the Genesis Ledger with special recognition. Early builders become the core team as the grid grows — like buying equity in a startup before it goes public.
+- **สิทธิ์ผู้ร่วมก่อตั้ง (Genesis)** — ผู้ร่วมพัฒนารุ่นแรกจะถูกบันทึกในบัญชี Genesis พร้อมการยกย่องพิเศษ — รุ่นแรก = แกนนำทีมเมื่อกริดเติบโต เหมือนถือหุ้น startup ก่อน IPO
+
+- **Learn the hottest stack in AI** — DePIN, GPU arbitrage, tokenized compute: hands-on skills every AI company is hiring for right now.
+- **เรียนรู้สกิลที่ตลาดต้องการ** — DePIN, GPU arbitrage, คอมพิวต์โทเคน: สกิลจริงที่บริษัท AI ทุกแห่งกำลังจ้างหา
 
 - **Open architecture, no vendor lock-in** — We strictly oppose locking anyone in. You own your code, and you're free to propose better tools, frameworks, or microservices.
 - **สถาปัตยกรรมเปิด ไม่ผูกขาดเทคโนโลยี** — เราไม่ผูกขาดใครไว้กับเครื่องมือใด คุณเป็นเจ้าของโค้ด และมีอิสระเต็มที่ในการเสนอสิ่งที่ดีกว่า ไม่ว่าจะเป็นเครื่องมือ เฟรมเวิร์ก หรือไมโครเซอร์วิส
@@ -32,8 +38,8 @@
    git checkout -b feature/<your-work>
    ```
 
-3. **Run the tests** — all must pass before you change anything (16 tests).
-   **รัน tests ก่อน** — ต้องผ่านทั้งหมดก่อนเริ่มแก้ (16 ตัว)
+3. **Run the tests** — all must pass before you change anything (41 tests).
+   **รัน tests ก่อน** — ต้องผ่านทั้งหมดก่อนเริ่มแก้ (41 ตัว)
    ```bash
    python -m unittest discover -s prototype/tests -v
    ```
