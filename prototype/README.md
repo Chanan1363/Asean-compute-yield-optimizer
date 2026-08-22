@@ -19,7 +19,7 @@
 
 ## 🏗️ Architecture at a Glance — สถาปัตยกรรมโดยย่อ
 
-![ASEAN Grid Prototype Architecture](assets/prototype_architecture.png)
+![ASEAN Grid Prototype Architecture](../assets/prototype_architecture.png)
 
 *System overview: Global Tenants → API/Billing → Arbitrage Engine (AI hooks) → 7 channels → Scheduler → Docker Sandbox → Home GPU Nodes → Revenue Split 75/20/5 → Genesis Ledger. / ภาพรวมระบบ: ลูกค้าโลก → API/บิลลิ่ง → สมอง Arbitrage (AI) → 7 ช่องทาง → จัดคิว → Sandbox → เครื่องเจ้าของ → แบ่งรายได้ 75/20/5 → บันทึกถาวร*
 
@@ -105,28 +105,35 @@ prototype/
 
 ## 🚀 เริ่มต้นใช้งาน (Quick Start)
 
+> **English:** Everything below runs with pure Python stdlib — nothing to install for the core.
+> **ไทย:** ทุกคำสั่งด้านล่างใช้ stdlib ล้วน — ไม่ต้องติดตั้งอะไรสำหรับแกนระบบ
+
 ```bash
-# 1. ทดสอบระบบแกน (ไม่ต้องติดตั้งอะไร — stdlib ล้วน)
+# 1. Test the core system (stdlib only — nothing to install)
+#    ทดสอบระบบแกน (ไม่ต้องติดตั้งอะไร — stdlib ล้วน)
 python -m unittest discover -s prototype/tests -v
 
-# 2. ทดลอง Arbitrage Engine + ดูสัดส่วนรายได้
+# 2. Try the Arbitrage Engine + see the revenue split
+#    ทดลอง Arbitrage Engine + ดูสัดส่วนรายได้
 python - <<'EOF'
 from prototype.core.config import Config
 from prototype.core.revenue_split import RevenueSplit
 
 cfg = Config()
 rs = RevenueSplit(cfg)
-result = rs.split(1000.00)          # ลูกค้าจ่าย 1,000 USD
+result = rs.split(1000.00)          # customer pays 1,000 USD / ลูกค้าจ่าย 1,000 USD
 print(result)                        # {'node': 750.0, 'platform': 200.0, 'developer': 50.0}
 EOF
 
-# 3. (Optional) รัน Live Dashboard (Streamlit) — ราคาสด + แบ่งรายได้ 75/20/5
+# 3. (Optional) Live Dashboard (Streamlit) — live channel prices + 75/20/5 split
+#    (Optional) รัน Live Dashboard (Streamlit) — ราคาสด + แบ่งรายได้ 75/20/5
 # uv venv .venv-dashboard --python 3.11
 # uv pip install --python .venv-dashboard/Scripts/python.exe -r prototype/requirements-dashboard.txt
 # .venv-dashboard\Scripts\streamlit run prototype/dashboard.py
 # แล้วเปิด http://localhost:8501 — ดูราคาทุกช่องทางสด / ช่องทางที่ดีที่สุด / สไลด์แบ่งรายได้
 
-# 4. (Optional) รันเว็บ Customer Portal — ต้องติดตั้ง fastapi/uvicorn
+# 4. (Optional) Customer Portal web UI — requires fastapi/uvicorn
+#    (Optional) รันเว็บ Customer Portal — ต้องติดตั้ง fastapi/uvicorn
 # pip install fastapi uvicorn
 # uvicorn prototype.api.app:app --reload
 # แล้วเปิด http://127.0.0.1:8000/ — หน้าเว็บลูกค้า (ดูราคาสด/คำนวณรายได้/จารึกชื่อ)
@@ -135,62 +142,68 @@ EOF
 ---
 
 ## 🧠 AI Hooks — จุดที่ "AI จูนนิ่ง" ใส่เข้าไปได้ (หัวใจของ prototype)
+## 🧠 AI Hooks — where your fine-tuned AI plugs in (the heart of the prototype)
 
-ระบบออกแบบให้จุดตัดสินใจสำคัญ **เป็นปลั๊กอิน AI** — ทีม/Dev คนใดมีโมเดลจูนของตัวเอง ใส่ได้ทันทีโดยไม่แตะแกนระบบ:
+> **English:** Every key decision point is an AI plugin. Bring your own tuned model — plug it in without touching the core.
+> **ไทย:** ระบบออกแบบให้จุดตัดสินใจสำคัญ **เป็นปลั๊กอิน AI** — ทีม/Dev คนใดมีโมเดลจูนของตัวเอง ใส่ได้ทันทีโดยไม่แตะแกนระบบ
 
-| Hook | จุดแทรก | ใส่โมเดลอะไรได้ |
+| Hook | จุดแทรก (Insertion point) | ใส่โมเดลอะไรได้ (Model options) |
 |---|---|---|
-| **Channel Selection** | `AIStrategy.predict_best_channel(features)` | โมเดลพยากรณ์ช่องทางจ่ายสูงสุด (เทรนจากราคาประวัติ) |
-| **Pricing** | `AIStrategy.predict_price_curve(hour, region)` | โมเดลคาดการณ์ราคา GPU ล่วงหน้า |
-| **Fraud / Node Trust** | `AIStrategy.score_node_trust(node)` | โมเดลให้คะแนนความน่าเชื่อถือโหนด (กันโกง) |
-| **Demand Forecast** | `AIStrategy.forecast_demand(region, window)` | โมเดลพยากรณ์ดีมานด์ → จัดคิวล่วงหน้า |
-| **Workload Routing** | `AIStrategy.route_workload(workload, nodes)` | โมเดลเลือกเส้นทางงานตาม latency/ราคา/ความเสี่ยง |
+| **Channel Selection** | `AIStrategy.predict_best_channel(features)` | Model that predicts the highest-paying channel (train on historical prices) / โมเดลพยากรณ์ช่องทางจ่ายสูงสุด (เทรนจากราคาประวัติ) |
+| **Pricing** | `AIStrategy.predict_price_curve(hour, region)` | GPU price forecasting model / โมเดลคาดการณ์ราคา GPU ล่วงหน้า |
+| **Fraud / Node Trust** | `AIStrategy.score_node_trust(node)` | Node reliability scorer (anti-fraud) / โมเดลให้คะแนนความน่าเชื่อถือโหนด (กันโกง) |
+| **Demand Forecast** | `AIStrategy.forecast_demand(region, window)` | Demand forecasting → schedule ahead / โมเดลพยากรณ์ดีมานด์ → จัดคิวล่วงหน้า |
+| **Workload Routing** | `AIStrategy.route_workload(workload, nodes)` | Route by latency/price/risk / โมเดลเลือกเส้นทางงานตาม latency/ราคา/ความเสี่ยง |
 
-**วิธีใส่โมเดลของคุณ:**
-1. ดู `ai/fine_tune/dataset_schema.md` — schema สำหรับสร้าง training data
-2. เทรนด้วย `ai/fine_tune/trainer.py` (โมเดลแรก data-driven — มี dataset จริงแล้ว) หรือ pipeline ของคุณเอง
-3. implement `AIStrategy` (ดู `ai/strategy_hooks.py`) แล้วลงทะเบียน:
+**How to plug in your model / วิธีใส่โมเดลของคุณ:**
+1. See `ai/fine_tune/dataset_schema.md` — schema for building training data / ดู schema สำหรับสร้าง training data
+2. Train with `ai/fine_tune/trainer.py` (first data-driven model — real dataset included) or your own pipeline / เทรนด้วย trainer.py (โมเดลแรก data-driven — มี dataset จริงแล้ว) หรือ pipeline ของคุณเอง
+3. Implement `AIStrategy` (see `ai/strategy_hooks.py`) then register / implement `AIStrategy` แล้วลงทะเบียน:
 ```python
 from prototype.ai.strategy_hooks import StrategyRegistry, AIStrategy
 
 class MyTunedStrategy(AIStrategy):
     def predict_best_channel(self, features):
-        return "io.net"  # ← ใส่โมเดลคุณตรงนี้
+        return "io.net"  # ← ใส่โมเดลคุณตรงนี้ / plug your model here
 
 StrategyRegistry.register("my-tuned", MyTunedStrategy())
 ```
 
 ---
 
-## 🔌 Dev Hooks — จุดที่ Dev ทั่วโลกต่อยอดได้
+## 🔌 Dev Hooks — จุดที่ Dev ทั่วโลกต่อยอดได้ (where developers extend)
 
-| ช่องว่างที่ตั้งใจเว้นไว้ | วิธีต่อยอด |
+> **English:** Intentional extension points — grab one and open a PR. AGPL-3.0: fork, modify, contribute. The 5% Developer Treasury rewards core maintainers.
+> **ไทย:** จุดต่อยอดที่ตั้งใจเว้นไว้ — เลือกได้เลยแล้วส่ง PR ภายใต้ AGPL-3.0 (5% Developer Treasury สำหรับผู้รักษาแกนกริด)
+
+| Extension point / ช่องว่างที่ตั้งใจเว้นไว้ | How to extend / วิธีต่อยอด |
 |---|---|
-| `core/channels.py` | ✅ ช่องทางที่ 6 (Akash) เรียบร้อย — เพิ่มช่องทางที่ 7 (Lambda, Together...) ได้ตาม interface เดิม |
-| `core/sandbox.py` | ✅ Docker จริงแล้ว (ต้องมี docker runtime) — ต่อ K8s/podman ต่อได้ |
-| `contracts/RevenueSplit.sol` | ✅ implementation จริงแล้ว (compile ผ่าน solc 0.8.24) — deploy ต่อยอดบน chain |
-| `api/app.py` | ✅ มี `/market/channels` + `/workload/estimate` แล้ว — เพิ่ม endpoint ต่อได้ |
-| `core/scheduler.py` | ✅ ค่าไฟรายประเทศ + รายช่วงเวลา + AI hooks แล้ว — ปรับน้ำหนัก/optimization ต่อได้ |
-| `ai/fine_tune/` | ✅ dataset จริง 72 rows (ราคา Vast สด) + trainer data-driven — ต่อยอดโมเดลที่หนักขึ้นได้ |
+| `core/channels.py` | ✅ 7 channels live (Vast/RunPod real API, Akash REST) — add #8 (Lambda, Together...) via the same interface / เพิ่มช่องทางใหม่ตาม interface เดิม |
+| `core/sandbox.py` | ✅ Real Docker (needs docker runtime) — extend to K8s/podman / ต่อ K8s/podman ต่อได้ |
+| `contracts/RevenueSplit.sol` | ✅ Real implementation (compiles solc 0.8.24) — deploy on-chain / deploy ต่อยอดบน chain |
+| `api/app.py` | ✅ `/market/channels` + `/workload/estimate` exist — add more endpoints / เพิ่ม endpoint ต่อได้ |
+| `core/scheduler.py` | ✅ Tariff-aware + AI hooks — tune weights/optimization / ปรับน้ำหนัก/optimization ต่อได้ |
+| `ai/fine_tune/` | ✅ Real 72-row dataset (live Vast prices) + data-driven trainer — scale it up / ต่อยอดโมเดลที่หนักขึ้นได้ |
 
+**License:** AGPL-3.0 — fork freely, send PRs. The 5% Developer Treasury rewards those who maintain the core (see Blueprint).
 **กติกา (AGPL-3.0):** fork ได้ แก้ได้ ส่ง PR ได้ — ตามสาส์นชี้ชวนใน Blueprint (5% Developer Treasury สำหรับผู้รักษาแกนกริด)
 
 ---
 
-## 🧪 สถานะของ Prototype นี้
+## 🧪 สถานะของ Prototype นี้ (Prototype Status)
 
-- [x] แกนระบบ: config / models / 7 channels / arbitrage + hooks / billing / 75/20/5 / scheduler / sandbox / genesis registry
-- [x] tests รันผ่าน (unittest — stdlib ล้วน)
-- [x] demo.py — สาธิตทั้งระบบด้วยคำสั่งเดียว
-- [x] Customer Portal — หน้าเว็บลูกค้า (FastAPI + UI สองภาษา)
-- [x] Live Dashboard (Streamlit) — ราคาช่องทางสด + ช่องทางที่ดีที่สุด + สไลด์แบ่งรายได้ 75/20/5 (โชว์เดโม)
-- [x] เชื่อม Vast.ai API จริงแล้ว (console.vast.ai/api/v0/bundles — ราคาสดจากตลาดจริง, cache 60 วิ, fallback อัตโนมัติ)
-- [x] ช่องทางที่ 6: Akash (REST จริงหลาย endpoint + fallback อัตโนมัติ — ต้องเป็น approved tenant ถึงรับงาน)
-- [x] Docker sandbox จริง (ต้องมี docker runtime — fallback stub เมื่อไม่มี)
-- [x] Smart contract RevenueSplit.sol จริง (compile ผ่าน solc 0.8.24 — ยังไม่ได้ deploy)
-- [x] AI โมเดลแรก data-driven (เทรนจาก dataset จริง 72 rows — in-sample 100%)
-- [x] Smart Yield Balancer (threshold 15% + overhead cost — กันสลับถี่ กัน rate limit)
-- [ ] เชื่อม io.net / Render / Akash API จริง (ต้องสมัครเป็น approved supplier / node operator / tenant ก่อน)
+- [x] Core system: config / models / 7 channels / arbitrage + hooks / billing / 75/20/5 / scheduler / sandbox / genesis registry / แกนระบบครบ
+- [x] Tests pass (unittest — stdlib only) / tests รันผ่าน
+- [x] demo.py — one-command live demo / สาธิตทั้งระบบด้วยคำสั่งเดียว
+- [x] Customer Portal — web UI (FastAPI + bilingual) / หน้าเว็บลูกค้า
+- [x] Live Dashboard (Streamlit) — live channel prices + best channel + 75/20/5 slider / ราคาช่องทางสด + สไลด์แบ่งรายได้
+- [x] Vast.ai real API connected (console.vast.ai/api/v0/bundles — live prices, 60s cache, auto fallback) / เชื่อม Vast.ai API จริงแล้ว
+- [x] Akash channel (real REST multi-endpoint + auto fallback — needs approved tenant) / ช่องทาง Akash
+- [x] Real Docker sandbox (needs docker runtime — stub fallback) / Docker sandbox จริง
+- [x] RevenueSplit.sol real implementation (compiles solc 0.8.24 — not yet deployed) / สมาร์ทคอนแทร็กต์จริง
+- [x] First data-driven AI model (trained on real 72-row dataset — in-sample 100%) / AI โมเดลแรก
+- [x] Smart Yield Balancer (15% threshold + overhead cost — prevents flapping & rate limits) / Yield Balancer
+- [ ] io.net / Render real API (need approved supplier / node operator / tenant first) / รอการอนุมัติจากแพลตฟอร์ม
 
 ---
 
