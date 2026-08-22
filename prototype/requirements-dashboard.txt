@@ -1,6 +1,11 @@
 # ASEAN Grid — Live Dashboard (Streamlit)
-# ติดตั้ง:  uv venv .venv-dashboard --python 3.11
+# ติดตั้ง / Install:  uv venv .venv-dashboard --python 3.11
 #          uv pip install --python .venv-dashboard/Scripts/python.exe -r prototype/requirements-dashboard.txt
-# รัน:     .venv-dashboard\Scripts\streamlit run prototype/dashboard.py
+# รัน / Run:     .venv-dashboard\Scripts\streamlit run prototype/dashboard.py
+#
+# Render.com (deploy ขึ้นเน็ต / for deployment):
+#   Build:   pip install -r prototype/requirements-dashboard.txt
+#   Start:   streamlit run prototype/dashboard.py --server.port $PORT --server.address 0.0.0.0
+#   (core/ เป็น Python stdlib ล้วน — ไม่ต้องติดตั้ง fastapi / core is stdlib-only)
 streamlit>=1.40
 pandas>=2.2

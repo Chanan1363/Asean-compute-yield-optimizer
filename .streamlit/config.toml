@@ -1,0 +1,13 @@
+# ASEAN Grid — Live Dashboard theme (match Customer Portal dark theme)
+# ธีมเดียวกับ Customer Portal — dark cyan/gold
+[theme]
+base = "dark"
+primaryColor = "#22d3ee"
+backgroundColor = "#0a0e1a"
+secondaryBackgroundColor = "#111827"
+textColor = "#e5e7eb"
+font = "sans serif"
+
+# Headless: never auto-open a browser (server-friendly / เหมาะกับเซิร์ฟเวอร์)
+[server]
+headless = true
