@@ -10,6 +10,14 @@ or / หรือ: uv run --python .venv-dashboard/Scripts/python.exe -m streaml
 Built for live demos (customer/partner view) — every number comes from real code, not mockups.
 ออกแบบให้โชว์เดโมได้เลย (มุมมองลูกค้า/พาร์ทเนอร์) — ตัวเลขทุกตัวมาจาก code จริง ไม่ใช่ภาพ
 """
+import os
+import sys
+
+# Make `import prototype.*` work no matter where Streamlit launches from
+# (Render runs the script by full path, so repo root must be added to sys.path)
+# ทำให้ import prototype.* ใช้ได้ไม่ว่ารันจากโฟลเดอร์ไหน (Render รันด้วย path เต็ม ต้องเพิ่ม repo root เข้า sys.path)
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 import time
 
 import streamlit as st
