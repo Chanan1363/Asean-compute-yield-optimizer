@@ -156,6 +156,11 @@ if _FASTAPI_AVAILABLE:
         n["last_seen"] = req.uptime_sec
         return {"ok": True, "node_id": req.node_id}
 
+    @app.get("/supply")
+    def supply_page() -> FileResponse:
+        """หน้า Node Monitor (ฝั่ง Supply — UI การ์ดโหนด)"""
+        return FileResponse("prototype/nodes.html")
+
     @app.get("/nodes")
     def node_list() -> Dict:
         """ดูโหนดทั้งหมด (สำหรับ Dashboard กลาง)"""
