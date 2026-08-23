@@ -190,6 +190,39 @@ We completely reject speculative, bubble-based web3 metrics. Our native token �
 
 ---
 
+## 🧭 Dev Onboarding — เข็มทิศนักพัฒนาใหม่ (Start Here)
+
+> เริ่มจากตรงนี้ **30 นาทีรู้เรื่อง** — ไม่ต้องอ่านทุกอย่าง / Don't read everything — follow the compass.
+
+### 🗺️ เส้นทาง 4 ขั้น (4 Steps)
+
+| ขั้น | ทำอะไร | เวลา |
+|---|---|---|
+| 1️⃣ | อ่าน [README](README.md) — ภาพรวมโปรเจกต์ (5 นาที) | 5 นาที |
+| 2️⃣ | อ่าน [prototype/architecture.md](prototype/architecture.md) — โครงสร้างโมดูล + สถานะ (✅ พร้อม / 🔌 รอต่อยอด / 🧠 จุด AI) | 10 นาที |
+| 3️⃣ | รัน [DeMo Proof](docs/DEMO_PROOF.md) ซ้ำบน Colab ฟรี — เห็นของจริงทำงาน (โค้ดมีให้คัดลอก) | 10 นาที |
+| 4️⃣ | เลือก [Good First Issue](https://github.com/Chanan1363/Asean-compute-yield-optimizer/labels/good%20first%20issue) → fork → PR → **ได้ส่วนแบ่งจากกอง 5%** | เริ่มเลย! |
+
+### 📚 เอกสารทั้งหมด — รู้ไว้ว่าอันไหนคืออะไร (Document Map)
+
+| ไฟล์ | คืออะไร |
+|---|---|
+| [README.md](README.md) | หน้าต่างร้าน — ภาพรวม + ลิงก์ทุกอย่าง |
+| [prototype/README.md](prototype/README.md) | ภาพรวม prototype + What's New (v1.3.1-demo) |
+| [prototype/architecture.md](prototype/architecture.md) | **แผนที่โครงสร้างระบบ** — อ่านคู่กับ prototype |
+| [The_ASEAN_Grid_Blueprint_v8.md](The_ASEAN_Grid_Blueprint_v8.md) | พิมพ์เขียวธุรกิจ+เทคนิค — อ่านเมื่ออยากรู้ "ทำไม" |
+| [docs/NOUS_ALIGNMENT.md](docs/NOUS_ALIGNMENT.md) | วางแนวสถาปัตยกรรมตาม Nous (DisTrO/Psyche) — 2 ชั้น |
+| [docs/DEMO_PROOF.md](docs/DEMO_PROOF.md) | หลักฐานพิสูจน์ของจริง — DeMo Level 1 (GPU) + Level 2 (2 & 4 workers) |
+| [VERSION.md](VERSION.md) | ประวัติเวอร์ชัน + checklist เวลา bump |
+
+### 📌 กติกา (Rules)
+
+- ทุกอย่าง **open** — fork ได้ PR ได้ — PR ที่ merge ได้ส่วนแบ่งจาก **5% Dev Pool**
+- ระบบมี **AI Hooks** (StrategyRegistry) — ใส่โมเดลจูนเองได้โดยไม่แตะแกน
+- มีคำถาม? เปิด **Discussion** หรือถามใน issue — ทีมตอบเร็ว
+
+---
+
 ## 🤝 Contributing — ร่วมพัฒนา
 
 **The ASEAN Grid is open architecture (AGPL-3.0): fork, build, send a PR.** / สถาปัตยกรรมเปิด: fork ได้ แก้ได้ ส่ง PR ได้
