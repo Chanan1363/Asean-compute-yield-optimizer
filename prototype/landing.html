@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ASEAN Grid — Democratizing Compute</title>
+<style>
+  :root { --bg:#0a0e1a; --panel:#111827; --border:#1e3a5f; --cyan:#22d3ee; --green:#34d399; --gold:#fbbf24; --text:#e5e7eb; --dim:#9ca3af; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Segoe UI','Noto Sans Thai',Tahoma,sans-serif; background:radial-gradient(1200px 600px at 80% -10%,#0e2a4a 0%,var(--bg) 55%); color:var(--text); min-height:100vh; padding:24px; }
+  .wrap { max-width:1000px; margin:0 auto; }
+  .hero { text-align:center; padding:40px 24px; border:1px solid var(--border); border-radius:18px; background:linear-gradient(180deg,rgba(34,211,238,0.08),rgba(17,24,39,0.6)); margin-bottom:24px; }
+  .hero h1 { font-size:32px; letter-spacing:1px; background:linear-gradient(90deg,var(--cyan),#7dd3fc,var(--gold)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .hero p { color:var(--dim); margin-top:10px; font-size:15px; max-width:620px; margin-left:auto; margin-right:auto; line-height:1.6; }
+  .badges { margin-top:14px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
+  .badge { font-size:12px; padding:5px 14px; border-radius:999px; border:1px solid var(--border); color:var(--dim); background:rgba(255,255,255,0.03); }
+  .badge.green { color:var(--green); border-color:rgba(52,211,153,0.4); }
+  .badge.gold { color:var(--gold); border-color:rgba(251,191,36,0.4); }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:16px; }
+  .card { background:var(--panel); border:1px solid var(--border); border-radius:14px; padding:18px 20px; text-decoration:none; color:var(--text); display:block; transition:border-color .2s, transform .2s; }
+  .card:hover { border-color:var(--cyan); transform:translateY(-3px); }
+  .card .icon { font-size:26px; }
+  .card h3 { font-size:15px; margin:10px 0 6px; color:var(--cyan); }
+  .card p { font-size:12.5px; color:var(--dim); line-height:1.5; }
+  .card .tag { display:inline-block; font-size:10px; padding:3px 10px; border-radius:99px; margin-top:10px; }
+  .tag.demand { background:rgba(34,211,238,0.12); color:var(--cyan); border:1px solid rgba(34,211,238,0.3); }
+  .tag.supply { background:rgba(251,191,36,0.12); color:var(--gold); border:1px solid rgba(251,191,36,0.3); }
+  .tag.core { background:rgba(52,211,153,0.12); color:var(--green); border:1px solid rgba(52,211,153,0.3); }
+  .tag.dev { background:rgba(167,139,250,0.12); color:#a78bfa; border:1px solid rgba(167,139,250,0.3); }
+  .footer { text-align:center; color:var(--dim); font-size:12px; margin-top:26px; line-height:1.7; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hero">
+    <h1>⚡ ASEAN GRID</h1>
+    <p>Democratizing AI compute across Southeast Asia — ระบบเดียว หลายบทบาท / One system, many roles</p>
+    <div class="badges">
+      <span class="badge green">● 75/20/5 Revenue Split</span>
+      <span class="badge gold">🧬 DisTrO-inspired (Nous)</span>
+      <span class="badge">● Pay-per-Second</span>
+    </div>
+  </div>
+
+  <div class="grid">
+    <a class="card" href="/portal">
+      <div class="icon">🔵</div>
+      <h3>Customer Portal</h3>
+      <p>ฝั่งลูกค้า (Demand) — จูน AI / เช่า compute / คำนวณรายได้</p>
+      <span class="tag demand">DEMAND — ใช้งาน</span>
+    </a>
+    <a class="card" href="/supply">
+      <div class="icon">🖥️</div>
+      <h3>Node Monitor</h3>
+      <p>ฝั่งเกมเมอร์ (Supply) — ดูเครื่องที่เข้าร่วมระบบ สดทุก 10 วิ</p>
+      <span class="tag supply">SUPPLY — ดูสถานะ</span>
+    </a>
+    <a class="card" href="/docs">
+      <div class="icon">🔌</div>
+      <h3>API Docs</h3>
+      <p>สำหรับนักพัฒนา — ทดลองยิง API สด (market, nodes, billing)</p>
+      <span class="tag dev">DEV — ทดลอง</span>
+    </a>
+    <a class="card" href="https://asean-grid-dashboard.onrender.com/">
+      <div class="icon">📊</div>
+      <h3>Live Dashboard</h3>
+      <p>ราคาช่องทางสด + กราฟ — ภาพรวมตลาด GPU อาเซียน</p>
+      <span class="tag core">กลาง — ดูตลาด</span>
+    </a>
+    <a class="card" href="https://chanan1363.github.io/Asean-compute-yield-optimizer/">
+      <div class="icon">🧮</div>
+      <h3>GPU Yield Calculator</h3>
+      <p>เครื่องคิดเลขรายได้ — การ์ดจอของฉันทำเงินได้เท่าไหร่</p>
+      <span class="tag demand">ลูกค้า — ลองเล่น</span>
+    </a>
+    <a class="card" href="https://github.com/Chanan1363/Asean-compute-yield-optimizer">
+      <div class="icon">📦</div>
+      <h3>GitHub — โค้ด &amp; เอกสาร</h3>
+      <p>Blueprint v8 · Nous Alignment · DeMo Proof · VERSION.md</p>
+      <span class="tag dev">DEV — ร่วมพัฒนา</span>
+    </a>
+  </div>
+
+  <div class="footer">
+    ASEAN Grid — Democratizing Compute · AGPL-3.0 · v1.3.1-demo<br>
+    ระบบเดียว หลายบทบาท — จูน AI / เช่า compute / ปล่อยเครื่องหารายได้
+  </div>
+</div>
+</body>
+</html>
