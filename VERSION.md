@@ -21,6 +21,7 @@
 | เวอร์ชัน | วันที่ | สิ่งที่เปลี่ยน | ไฟล์หลักที่เกี่ยวข้อง |
 |---|---|---|---|
 | **v1.3.0-nous** | 23 ส.ค. 2026 | **Nous Alignment ครบชุด**: RevenueSplitV2 (points + permissionless claim + collateral — ดีไซน์จาก Psyche), Blueprint v8, Nous Alignment Plan (Part A เทคนิค + B เงิน), portal badge/footer "DisTrO-inspired" | `prototype/contracts/RevenueSplitV2.sol`, `docs/NOUS_ALIGNMENT.md`, `The_ASEAN_Grid_Blueprint_v8.md`, `prototype/architecture.md` (section 7), `prototype/customer_portal.html`, `README.md` |
+| **v1.3.1-demo** | 23 ส.ค. 2026 | **DeMo Proof-of-Concept PASS** — loss ลด 84.2% บน T4 GPU (หลักฐาน: `docs/DEMO_PROOF.md`) — Nous Alignment Part A Phase 1 เสร็จ | `docs/DEMO_PROOF.md` |
 | v0.1 | 20 ส.ค. 2026 | Prototype เริ่มแรก — Customer Portal, core modules (arbitrage/scheduler/channels), Genesis Ledger | `prototype/customer_portal.html`, `prototype/core/*`, `prototype/contracts/RevenueSplit.sol` (v1) |
 
 ---
