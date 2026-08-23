@@ -30,7 +30,7 @@
 | Genesis | `core/genesis.py` | บันทึกผู้บุกเบิกถาวร (append-only) | ✅ พร้อม |
 | AI Hooks | `ai/strategy_hooks.py` | StrategyRegistry + AIStrategy | ✅ พร้อม + 🧠 ใส่โมเดล |
 | API | `api/app.py` | REST endpoints (FastAPI) | 🔌 optional dep |
-| Contract | `contracts/RevenueSplit.sol` | Smart contract 75/20/5 | 🔌 interface stub |
+| Contract | `contracts/RevenueSplit.sol` + `RevenueSplitV2.sol` | Smart contract 75/20/5 — v1: owner batch / v2: points+permissionless claim+collateral (ยืมดีไซน์ Psyche) | ✅ v1 พร้อม + ✅ v2 พร้อม |
 
 **สัญลักษณ์:** ✅ พร้อมใช้ / 🔌 ต้องต่อยอด / 🧠 จุด AI จูน
 
@@ -107,6 +107,18 @@
 3. **Phase 2:** ร้านเน็ตไทย/เวียดนาม (Blueprint Phase 2) + billing จริง (DB)
 4. **Phase 3:** Smart contract จริง + $GRID + ติดต่อ Nous Research (Blueprint Phase 3)
 5. **ต่อเนื่อง:** เก็บ logs → สร้าง dataset จริง → AI จูนโมเดล arbitrage → ดีขึ้นทุกไตรมาส (PROGRAM_GOALS กติกา)
+
+---
+
+## 7. Nous Alignment (วางแนวตาม DisTrO / Psyche — ดู docs/NOUS_ALIGNMENT.md)
+
+| ชั้น | จุดที่วางตาม | ไฟล์ |
+|---|---|---|
+| ⚙️ เทคนิค | DeMo optimizer → เติมช่อง `AI_TRAINING` / Witness-Verify → trust / run-manager+Docker → sandbox | `core/` + `ai/strategy_hooks.py` |
+| 💰 เงิน | points + permissionless claim + collateral → `RevenueSplitV2.sol` (คง EVM + 75/20/5) | `contracts/RevenueSplitV2.sol` |
+
+> หลักการ: อ้างอิง **ดีไซน์** ของ Nous (credit ตาม license) — ไม่ได้อ้างว่าใช้โค้ดโดยตรง
+> Nous = training-first / ASEAN Grid = inference-first → complementary
 
 ---
 
