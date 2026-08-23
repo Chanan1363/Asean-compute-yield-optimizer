@@ -1,6 +1,6 @@
 # ⚡ Project: Democratizing Compute — The ASEAN Grid ⚡
 
-[![CI](https://github.com/Chanan1363/Asean-compute-yield-optimizer/actions/workflows/ci.yml/badge.svg)](https://github.com/Chanan1363/Asean-compute-yield-optimizer/actions) [![Tests](https://img.shields.io/badge/tests-41%20passing-brightgreen)](prototype/tests)
+[![CI](https://github.com/Chanan1363/Asean-compute-yield-optimizer/actions/workflows/ci.yml/badge.svg)](https://github.com/Chanan1363/Asean-compute-yield-optimizer/actions) [![Tests](https://img.shields.io/badge/tests-41%20passing-brightgreen)](prototype/tests) [![Version](https://img.shields.io/badge/version-1.3.0--nous-cyan)](VERSION.md)
 
 > **The Anti-Fragile, Decentralized GPU Yield Optimizer Infrastructure for Southeast Asia.**
 > *An Open-Architecture Compute Network Guided by Frontier Computing, Bridging Global AI Demand with Regional Consumer Power via a Prepaid API Matrix.*
