@@ -1,7 +1,19 @@
-# ⚡ ASEAN Grid — Program Prototype (v0.1)
+# ⚡ ASEAN Grid — Program Prototype (v1.3.1-demo) [![Version](https://img.shields.io/badge/version-1.3.1--demo-cyan)](../VERSION.md)
 
 > **The Anti-Fragile, Decentralized GPU Yield Optimizer for Southeast Asia — Program Prototype.**
-> ต้นแบบโปรแกรม (Program Prototype) ของ The ASEAN Grid — สร้างจากความรู้ทั้งหมดของโปรเจกต์ (Blueprint v6, PROGRAM_GOALS, Core 75/20/5) ออกแบบให้ **AI จูนนิ่ง (fine-tuning) ใส่เข้าไปได้** และ **Dev ทั่วโลก fork ต่อยอดได้**
+> ต้นแบบโปรแกรม (Program Prototype) ของ The ASEAN Grid — สร้างจากความรู้ทั้งหมดของโปรเจกต์ (Blueprint v8, PROGRAM_GOALS, Core 75/20/5 + Nous Alignment (DisTrO/Psyche)) ออกแบบให้ **AI จูนนิ่ง (fine-tuning) ใส่เข้าไปได้** และ **Dev ทั่วโลก fork ต่อยอดได้**
+
+---
+
+## 🆕 What's New — v1.3 (23 Aug 2026)
+
+| ของใหม่ | ที่ไหน |
+|---|---|
+| 🧬 **Nous Alignment Plan** (Part A เทคนิค + B เงิน — align DisTrO/Psyche) | [docs/NOUS_ALIGNMENT.md](../docs/NOUS_ALIGNMENT.md) |
+| 💰 **RevenueSplitV2** (points + permissionless claim + collateral) | [contracts/RevenueSplitV2.sol](contracts/RevenueSplitV2.sol) |
+| 🧪 **DeMo Proof PASS** — Level 1 (GPU) + Level 2 (multi-process 2 & 4 workers) | [docs/DEMO_PROOF.md](../docs/DEMO_PROOF.md) |
+| 📘 **Blueprint v8** | [The_ASEAN_Grid_Blueprint_v8.md](../The_ASEAN_Grid_Blueprint_v8.md) |
+| 📝 **VERSION.md** (version log + bump checklist) | [VERSION.md](../VERSION.md) |
 
 ---
 
