@@ -20,6 +20,7 @@ from prototype.core.config import Config
 from prototype.core.revenue_split import RevenueSplit
 from prototype.core.arbitrage import ArbitrageEngine
 from prototype.core.genesis import GenesisLedger
+from prototype.core import db as node_db
 
 app = FastAPI(title="ASEAN Grid API", version="0.1.0") if _FASTAPI_AVAILABLE else None
 
