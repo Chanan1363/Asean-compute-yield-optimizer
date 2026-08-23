@@ -44,8 +44,13 @@ if _FASTAPI_AVAILABLE:
         rate_usd_per_hour: float = 0.0   # 0 = ใช้ราคาช่องทางที่ดีที่สุดตอนนี้
 
     @app.get("/", include_in_schema=False)
+    def landing() -> FileResponse:
+        """หน้าแรกกลาง — หนึ่ง URL หลายบทบาท (portal/supply/docs/dashboard)"""
+        return FileResponse("prototype/landing.html")
+
+    @app.get("/portal", include_in_schema=False)
     def portal() -> FileResponse:
-        """หน้า Customer Portal — มุมมองลูกค้า (UI สวยงาม)"""
+        """หน้า Customer Portal — มุมมองลูกค้า (Demand)"""
         return FileResponse("prototype/customer_portal.html")
 
     @app.get("/health")
