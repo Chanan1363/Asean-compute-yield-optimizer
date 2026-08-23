@@ -7,6 +7,9 @@
 >
 > **Built on the open-source ethos of Nous Research (DisTrO). Democratizing AI compute across ASEAN.**
 > **ยึดมั่นในปรัชญา Open Source แบบ Nous Research (DisTrO) — เปิดโอกาสการประมวลผล AI ให้ทั่วอาเซียน**
+> 📐 **Nous Alignment Plan:** [docs/NOUS_ALIGNMENT.md](docs/NOUS_ALIGNMENT.md) — design-aligned with DisTrO/Psyche (2 layers: technical + payment) / วางแนวสถาปัตยกรรมตามของจริง 2 ชั้น
+> 📘 **Blueprint v8:** [The_ASEAN_Grid_Blueprint_v8.md](The_ASEAN_Grid_Blueprint_v8.md) — เวอร์ชันล่าสุด / latest version
+> 💰 **RevenueSplitV2:** [prototype/contracts/RevenueSplitV2.sol](prototype/contracts/RevenueSplitV2.sol) — points + permissionless claim + collateral (design from Psyche, stays EVM 75/20/5)
 
 > 🌐 **Live Demo:** [GPU Yield Calculator](https://chanan1363.github.io/Asean-compute-yield-optimizer/) — ลองคำนวณรายได้การ์ดจอฟรี / Try the free calculator
 > 🧪 **Program Prototype:** [Run the code now](prototype/) — สาธิตระบบจริงด้วยคำสั่งเดียว / one-command live demo (`python prototype/demo.py`) · **หรือลองเว็บสด: [Live Customer Portal](https://asean-compute-yield-optimizer.onrender.com/) / or try the live portal — no install needed** · 📊 **[Live Dashboard](https://asean-grid-dashboard.onrender.com/)** — ราคาช่องทางสด + กราฟ / live channel prices + charts · 🔌 **[API Docs](https://asean-compute-yield-optimizer.onrender.com/docs)** — ลองยิง API สด / try the live API
@@ -133,7 +136,7 @@ We completely reject speculative, bubble-based web3 metrics. Our native token �
 
 - **The Compass:** Our engineering baseline uses the open-source breakthroughs of **Nous Research (DisTrO & Psyche network frameworks)** as a primary directional compass. We build upon established distributed breakthroughs so you never have to waste months reinventing the wheel.
 - **Unrestricted Code Autonomy:** We oppose vendor lock-in. This project is a strict **Open Architecture**. If you can deploy a tighter docker isolation cluster, a faster localized electricity tariff calculation matrix, or a superior arbitrage microservice—**fork this repo, submit a PR, and claim your code ownership.**
-- **The Incentive:** A **5% Developer Treasury Pool** — reserved in the blueprint and implemented via the framework smart contracts — is designed to continuously pay out dividends, equity shares, or bounties to engineers maintaining the core grid once payouts go live.
+- **The Incentive:** A **5% Developer Treasury Pool** — reserved in the blueprint and implemented via the framework smart contracts ([RevenueSplitV2](prototype/contracts/RevenueSplitV2.sol)) — is designed to continuously pay out dividends, equity shares, or bounties to engineers maintaining the core grid once payouts go live.
 
 - **เข็มทิศ:** แนวทางวิศวกรรมของเรายึดนวัตกรรมโอเพนซอร์สของ **Nous Research (เฟรมเวิร์ก DisTrO และ Psyche network)** เป็นเข็มทิศหลัก — ต่อยอดจากงานกระจายศูนย์ที่มีอยู่แล้ว ไม่ต้องเสียเดือนๆ ไปล้อวงล้อใหม่
 - **อิสระเต็มที่:** เราไม่เอา vendor lock-in โปรเจกต์นี้เป็น **Open Architecture** อย่างเคร่งครัด — ถ้าคุณทำ docker isolation cluster แน่นกว่า คำนวณค่าไฟท้องถิ่นแม่นกว่า หรือ arbitrage microservice ดีกว่า — **fork repo นี้ ส่ง PR แล้วเป็นเจ้าของโค้ดของคุณเอง**
