@@ -10,6 +10,7 @@ from typing import List, Optional
 from prototype.core.config import Config
 from prototype.core.models import Node, Workload
 from prototype.ai.strategy_hooks import StrategyRegistry
+from prototype.core.telemetry import HOST_REGISTRY
 
 
 class Scheduler:
@@ -44,6 +45,7 @@ class Scheduler:
         demand = self.strategy.forecast_demand(workload.region if hasattr(workload, "region") else "ASEAN", 6)
 
         candidates = [n for n in nodes if n.status.value == "active"]
+        candidates = HOST_REGISTRY.filter_available(candidates)      
 
         def cost_key(n: Node) -> float:
             country = self.country_tariff(n.region)
