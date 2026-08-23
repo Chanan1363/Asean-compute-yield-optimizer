@@ -28,6 +28,8 @@
   .util-bar { height:8px; background:#1e293b; border-radius:99px; margin-top:8px; overflow:hidden; }
   .util-fill { height:100%; background:linear-gradient(90deg,var(--cyan),var(--green)); border-radius:99px; transition:width .5s; }
   .footer { text-align:center; color:var(--dim); font-size:12px; margin-top:24px; }
+  .node.new { animation: pop .8s ease; }
+  @keyframes pop { 0% { transform:scale(.9); box-shadow:0 0 0 0 rgba(34,211,238,.6);} 100% { transform:scale(1); box-shadow:0 0 0 14px rgba(34,211,238,0);} }
   .empty { text-align:center; color:var(--dim); padding:40px; border:1px dashed var(--border); border-radius:14px; }
 </style>
 </head>
@@ -56,19 +58,30 @@ async function load() {
     document.getElementById('online').textContent = nodes.filter(n => n.status === 'online').length;
     const grid = document.getElementById('grid');
     if (!nodes.length) { grid.innerHTML = '<div class="empty">ยังไม่มีโหนด — รอเกมเมอร์เครื่องแรกเข้าร่วม 🎮</div>'; return; }
+    const seen = window._seen || new Set();
+    window._seen = seen;
     grid.innerHTML = nodes.map(n => {
       const online = n.status === 'online';
       const util = Math.min(100, n.gpu_util_pct || 0);
-      return `<div class="node">
+      const isNew = !seen.has(n.node_id);
+      seen.add(n.node_id);
+      const up = n.uptime_sec || 0;
+      const upTxt = up >= 3600 ? (up/3600).toFixed(1)+' ชม.' : up >= 60 ? Math.floor(up/60)+' นาที' : up+' วิ';
+      const hist = n.history || [];
+      const pts = hist.map((v,i) => (i/(Math.max(1,hist.length-1)))*90 + ',' + (24 - Math.min(24, v/100*24))).join(' ');
+      const spark = hist.length > 1 ? `<svg width="90" height="26" style="margin-top:6px"><polyline points="${pts}" fill="none" stroke="#34d399" stroke-width="1.5"/></svg>` : '';
+      return `<div class="node ${isNew ? 'new' : ''}">
         <div class="node-head">
-          <span class="node-id">🖥️ ${n.node_id}</span>
+          <span class="node-id">🖥️ ${n.node_id} ${isNew ? '✨' : ''}</span>
           <span class="badge ${online ? 'online' : 'offline'}">${online ? '● ออนไลน์' : '○ ออฟไลน์'}</span>
         </div>
         <div class="row"><span>ชื่อเครื่อง</span><b>${n.name}</b></div>
         <div class="row"><span>GPU</span><b>${n.gpu_model}</b></div>
         <div class="row"><span>ภูมิภาค</span><b>${n.region}</b></div>
         <div class="row"><span>GPU ใช้งาน</span><b>${util.toFixed(1)}%</b></div>
+        <div class="row"><span>ออนไลน์มา</span><b>${upTxt}</b></div>
         <div class="util-bar"><div class="util-fill" style="width:${util}%"></div></div>
+        ${spark}
       </div>`;
     }).join('');
   } catch (e) {
