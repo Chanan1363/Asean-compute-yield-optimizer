@@ -8,7 +8,7 @@
 
 ---
 
-## 🌎 โปรแกรมนี้เกิดมาทำไม — มีไว้เพื่อประโยชน์อะไร และเราจะได้อะไรจากโปรแกรมนี้ / Why This Program Exists & What We Gain
+## 🌎 The Global Compute Crisis Is Here. Southeast Asia Already Has the Answer. / วิกฤตพลังประมวลผลทั้งโลก... คำตอบซ่อนอยู่ในเครื่องเกมของคุณ
 
 ### 🇺🇸 ENGLISH
 In the current era of the **Global Compute Crisis (August 2026)**, centralized Big Tech data centers are hitting severe structural walls—facing massive energy caps, localized climate constraints, and harsh geopolitical chip embargoes. Concurrently, AI giants are experiencing catastrophic server overloads, leaving an immense market gap for immediate, scalable raw processing power.
@@ -52,11 +52,11 @@ Our economic flywheel captures market liquidity by converting target users into 
 
 - **Target Demographic:** Harnessing the massive global **350-million registered player base of heavy-duty tactical titles like World of Tanks (WOT)** and high-end home PC owners.
 - **The Mechanism:** Users pay a hyper-affordable **$1/Month SaaS subscription** to run our background compiler package. This activates the "Earn While You Sleep" mode, turning their idle gaming setups into micro-generation node factories that yield them automated cash flows while they are asleep, at school, or at work.
-- **The Projection:** Converting a conservative 10% of this hyper-targeted demographic could unlock an estimated **35,000,000 recurring subscribers** — a projected **$35,000,000 (1.2+ Billion THB) in Monthly Recurring Revenue (MRR)** at full scale.
+- **Illustrative Estimate:** Converting a conservative 10% of this hyper-targeted demographic could unlock an estimated **35,000,000 recurring subscribers** — a projected **$35,000,000 (1.2+ Billion THB) in Monthly Recurring Revenue (MRR)** at full scale.
 
 - **กลุ่มเป้าหมาย:** ฐานผู้เล่นเกมหนักระดับโลก **350 ล้านคน** (เกม tactical อย่าง World of Tanks) และเจ้าของเครื่อง PC สเปกสูง
 - **กลไก:** ผู้ใช้จ่ายสมาชิกเพียง **$1/เดือน** เพื่อรันแพ็กเกจคอมไพล์พื้นหลัง เปิดโหมด **"หารายได้ตอนหลับ" (Earn While You Sleep)** — เปลี่ยนเครื่องเกมที่ว่างให้เป็นโรงงานโหนดขนาดจิ๋ว สร้างรายได้อัตโนมัติตอนหลับ อยู่โรงเรียน หรือที่ทำงาน
-- **ประมาณการ (Projection):** แปลงกลุ่มเป้าหมายเพียง 10% จะได้สมาชิกประจำราว **35,000,000 ราย** = รายได้ประจำราว **$35,000,000 (1.2 หมื่นล้านบาท) ต่อเดือน (MRR)** เมื่อถึงขนาดเต็มรูปแบบ
+- **ตัวอย่างตัวเลข (Illustrative):** แปลงกลุ่มเป้าหมายเพียง 10% จะได้สมาชิกประจำราว **35,000,000 ราย** = รายได้ประจำราว **$35,000,000 (1.2 หมื่นล้านบาท) ต่อเดือน (MRR)** เมื่อถึงขนาดเต็มรูปแบบ
 
 ### 2. B2B: The Prepaid API Key Core (ระบบเติมเงินองค์กรสไตล์ API Key)
 
