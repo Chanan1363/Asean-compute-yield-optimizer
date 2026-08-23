@@ -39,12 +39,13 @@ def main():
         return
     node_id = r["node_id"]
     print(f"✅ ลงทะเบียนสำเร็จ: node_id={node_id} | GPU={gpu} | เครื่อง={name}")
+    t0 = time.time()
     print("ส่งชีพจรทุก 60 วิ... (Ctrl+C เพื่อหยุด)")
     while True:
         try:
             gpu, util = detect_gpu()
             post("/nodes/status", {"node_id": node_id, "gpu_util_pct": util,
-                                   "cpu_load_pct": 0.0, "uptime_sec": 0})
+                                   "cpu_load_pct": 0.0, "uptime_sec": int(time.time() - t0)})
             print(f"  [{time.strftime('%H:%M:%S')}] ส่งชีพจร OK — GPU {gpu} util {util}%")
         except Exception as e:
             print(f"  [{time.strftime('%H:%M:%S')}] ส่งชีพจรพลาด: {e}")
