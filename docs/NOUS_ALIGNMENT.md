@@ -24,6 +24,8 @@
 
 ---
 
+> 🇹🇭 **ภาษาไทย:** เราอ้างอิงของจริง 3 ชิ้นของ Nous — **DisTrO** (optimizer ลด bandwidth ระหว่าง GPU ลง 3-4 เท่าตัวเลข), **DeMo** (optimizer Python ใช้แทน SGD ได้เลย แค่ปิด all-reduce), **Psyche** (โครงข่ายเทรน AI ข้ามอินเทอร์เน็ต มีระบบกันโกง 3 บทบาท Training/Witnessing/Verifying)
+
 ## 2. Current ASEAN Grid architecture (architecture จริงของเรา)
 
 | Module | File | Responsibility |
@@ -37,6 +39,8 @@
 
 ---
 
+> 🇹🇭 **ภาษาไทย:** สถาปัตยกรรมจริงของเรา 6 โมดูล — สมองเลือกช่องทาง (arbitrage + กติกาไม่สลับถี่เกิน), จัดคิวตามค่าไฟ/trust (scheduler), 7 ช่องทางรายได้หลัง interface เดียว, กล่อง Docker กันภัย (verify ก่อนรันเสมอ), จุดใส่ AI 5 จุด (StrategyRegistry), งาน 6 ประเภท (รวม AI_TRAINING ที่ยังเป็นช่องว่างให้ DeMo)
+
 ## 3. Alignment map (จุดวางตาม — จริงต่อจริง)
 
 | Nous concept | ASEAN Grid counterpart | Status |
@@ -49,6 +53,8 @@
 
 ---
 
+> 🇹🇭 **ภาษาไทย:** จุดวางตาม: **DeMo** → เติมช่องงานเทรน AI (ตอนนี้ยังว่าง) · **Witness/Verify** → คะแนน trust + สถานะ STAKED ของโหนด · **run-manager+Docker** → กล่อง sandbox ของเรา (ตรงกันแล้ว) · **coordinator บน chain** → Genesis Ledger (เป้าหมาย Phase 3)
+
 ## 4. The gap we fill (จุดที่เราไปก่อน)
 
 **Psyche is training-first; ASEAN Grid is inference-first.**
@@ -60,6 +66,8 @@
 This is the honest, defensible framing for the open-source community: **"ASEAN Grid adopts DisTrO for its training path and extends the Nous ethos to the inference/demand side."**
 
 ---
+
+> 🇹🇭 **ภาษาไทย:** จุดที่เราไปก่อน — Nous ทำ **training-first** (เทรนโมเดลข้ามเน็ต) แต่เราทำ **inference-first** (ขาย compute ผ่าน API) → เป็นของคู่กัน ไม่ได้แข่งกัน — นี่คือจุดขายจริงเวลาพูดกับชุมชน Nous
 
 ## 5. Phase plan (แผนดำเนินการตามลำดับ)
 
@@ -74,6 +82,8 @@ This is the honest, defensible framing for the open-source community: **"ASEAN G
 
 
 ---
+
+> 🇹🇭 **ภาษาไทย:** แผนเทคนิค: ตอนนี้ = เอกสารนี้ + รับ DeMo เป็น optimizer มาตรฐานของงานเทรน → เฟส 1 พิสูจน์บน GPU เช่า (Vast.ai) → เฟส 2 ต่อเข้าระบบหลัง SandboxOrchestrator → เฟส 3 ย้าย trust/เงินขึ้น chain
 
 ## Part B — Payment & Trust Layer
 
@@ -99,6 +109,8 @@ correctly — the exact trust assumption Psyche eliminates.
 
 ---
 
+> 🇹🇭 **ภาษาไทย:** ของเดิม: แบ่ง **75/20/5 คงที่**, owner สั่งจ่ายเป็นชุด (push model) — จุดอ่อน: โหนดต้องไว้ใจ owner ว่าจ่ายถูกต้อง
+
 ## 2. What Psyche does (on Solana)
 
 | Component | Behavior |
@@ -111,6 +123,8 @@ correctly — the exact trust assumption Psyche eliminates.
 | **Collateral** | Clients stake before joining (anti-fraud at the economic layer) |
 
 ---
+
+> 🇹🇭 **ภาษาไทย:** ของ Psyche: **coordinator** นับ points บน chain → ผู้ให้เครื่อง **ถอนเองได้** (permissionless) → **Treasurer** จ่าย token ตาม points — มี mining pool รวมเงินซื้อ compute + วางหลักประกัน (collateral) ก่อนเข้าร่วม
 
 ## 3. RevenueSplit v2 — the migration (ยืมดีไซน์ 3 ข้อ)
 
@@ -125,6 +139,8 @@ correctly — the exact trust assumption Psyche eliminates.
    on-chain economic layer.
 
 ---
+
+> 🇹🇭 **ภาษาไทย:** ยืม 3 อย่าง: (1) แบ่งเงินตาม **points งานจริง** (2) โหนด **ถอนเอง** ไม่มี owner คั่นกลาง (3) วาง **$GRID เป็นหลักประกัน** ก่อนรับงาน — คง EVM + 75/20/5 ไว้เป็นอัตราแปลง points → เงิน
 
 ## 4. Interface sketch (Solidity v2, conceptual)
 
@@ -172,6 +188,8 @@ contract RevenueSplitV2 {
 
 ---
 
+> 🇹🇭 **ภาษาไทย:** โค้ดตัวอย่าง v2: `recordWork` (coordinator บันทึก points) + `claim` (โหนดถอนเอง) + `settleEpoch` (แบ่ง 75/20/5 เข้ากอง) — ยังเป็นแนวคิด ต้องเขียนเต็ม + test ตาม flow ของ repo (โค้ดจริงอยู่ที่ prototype/contracts/RevenueSplitV2.sol)
+
 ## 5. What stays / what changes (สรุป)
 
 | Aspect | v1 (now) | v2 (aligned) |
@@ -185,6 +203,8 @@ contract RevenueSplitV2 {
 
 ---
 
+> 🇹🇭 **ภาษาไทย:** สรุป: คง **EVM + 75/20/5** แต่เปลี่ยนจาก owner จ่าย → โหนดถอนเอง · กันโกงด้วยหลักประกันแทน replay guard อย่างเดียว · นับงานด้วย points แทนยอดที่ owner กรอก
+
 ## 6. Phase plan (payment layer)
 
 - **Phase 0 (now)** — this doc + keep v1 contract as-is (it already enforces 75/20/5 safely).
@@ -195,3 +215,5 @@ contract RevenueSplitV2 {
 ---
 
 *AGPL-3.0. Credit: Psyche `solana-treasurer` / `coordinator` design © Nous Research & contributors — referenced for design, re-implemented on EVM.*
+
+> 🇹🇭 **ภาษาไทย:** แผนฝั่งเงิน: ตอนนี้ = เอกสารนี้ + เก็บ v1 ไว้ (ปลอดภัยอยู่แล้ว) → เฟส 1 เขียน v2 + test → เฟส 2 ต่อ coordinator (Python off-chain) → เฟส 3 ประเมินย้ายขึ้น chain เมื่อขนาดระบบพอสมควร
