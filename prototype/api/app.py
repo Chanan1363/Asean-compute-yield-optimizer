@@ -135,36 +135,26 @@ if _FASTAPI_AVAILABLE:
         cpu_load_pct: float = 0.0
         uptime_sec: int = 0
 
-    _nodes: Dict[str, Dict] = {}
     _node_counter = 0
 
     @app.post("/nodes/register")
     def node_register(req: NodeRegisterRequest) -> Dict:
         """เกมเมอร์ลงทะเบียนเครื่อง -> ได้ node_id"""
         global _node_counter
+        existing = node_db.all_nodes()
+        _node_counter = max((int(n["node_id"][1:]) for n in existing), default=0)
         _node_counter += 1
         node_id = f"n{_node_counter:03d}"
-        _nodes[node_id] = {
-            "node_id": node_id, "name": req.name, "gpu_model": req.gpu_model,
-            "region": req.region, "status": "online", "gpu_util_pct": 0.0,
-            "uptime_sec": 0, "last_seen_ts": None, "history": [],
-        }
+        node_db.register(node_id, req.name, req.gpu_model, req.region)
         return {"node_id": node_id, "registered": True}
 
     @app.post("/nodes/status")
     def node_status(req: NodeStatusRequest) -> Dict:
         """เกมเมอร์ส่งชีพจร (ทุก 60 วิ)"""
-        if req.node_id not in _nodes:
+        if not node_db.exists(req.node_id):
             raise HTTPException(404, "node not found - register first")
-        n = _nodes[req.node_id]
-        n["status"] = "online"
-        n["gpu_util_pct"] = req.gpu_util_pct
-        n["uptime_sec"] = req.uptime_sec
-        n["last_seen_ts"] = time.time()
-        h = n.setdefault("history", [])
-        h.append(req.gpu_util_pct)
-        del h[:-20]                      # เก็บ 20 ค่าล่าสุด (sparkline)
-        return {"ok": True, "node_id": req.node_id, "last_seen_ts": n["last_seen_ts"]}
+        node_db.update_status(req.node_id, req.gpu_util_pct, req.uptime_sec)
+        return {"ok": True, "node_id": req.node_id}
 
     @app.get("/supply")
     def supply_page() -> FileResponse:
@@ -173,8 +163,8 @@ if _FASTAPI_AVAILABLE:
 
     @app.get("/nodes")
     def node_list() -> Dict:
-        """ดูโหนดทั้งหมด (สำหรับ Dashboard กลาง)"""
-        return {"nodes": list(_nodes.values())}
+        """ดูโหนดทั้งหมด (จาก SQLite — อยู่ถาวร)"""
+        return {"nodes": node_db.all_nodes()}
     @app.get("/genesis/ledger")
     def genesis() -> Dict:
         return {"entries": _ledger.entries, "chain_valid": _ledger.verify()}
