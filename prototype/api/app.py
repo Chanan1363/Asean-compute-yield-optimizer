@@ -4,6 +4,7 @@ ASEAN Grid — REST API (FastAPI)
 
 รัน: uvicorn prototype.api.app:app --reload  (ต้อง pip install fastapi uvicorn)
 """
+import time
 from typing import Dict, Optional
 
 try:
@@ -140,7 +141,7 @@ if _FASTAPI_AVAILABLE:
         _nodes[node_id] = {
             "node_id": node_id, "name": req.name, "gpu_model": req.gpu_model,
             "region": req.region, "status": "online", "gpu_util_pct": 0.0,
-            "uptime_sec": 0, "last_seen": None,
+            "uptime_sec": 0, "last_seen_ts": None, "history": [],
         }
         return {"node_id": node_id, "registered": True}
 
@@ -153,8 +154,11 @@ if _FASTAPI_AVAILABLE:
         n["status"] = "online"
         n["gpu_util_pct"] = req.gpu_util_pct
         n["uptime_sec"] = req.uptime_sec
-        n["last_seen"] = req.uptime_sec
-        return {"ok": True, "node_id": req.node_id}
+        n["last_seen_ts"] = time.time()
+        h = n.setdefault("history", [])
+        h.append(req.gpu_util_pct)
+        del h[:-20]                      # เก็บ 20 ค่าล่าสุด (sparkline)
+        return {"ok": True, "node_id": req.node_id, "last_seen_ts": n["last_seen_ts"]}
 
     @app.get("/supply")
     def supply_page() -> FileResponse:
