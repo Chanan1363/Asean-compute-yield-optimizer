@@ -115,6 +115,51 @@ if _FASTAPI_AVAILABLE:
         entry = _ledger.add(req.name, req.role, req.detail)
         return {"added": True, "entry_hash": entry.entry_hash, "verify": _ledger.verify()}
 
+
+    # ── Node Agent v0 (Supply Side) — เกมเมอร์ลงทะเบียน + ส่งชีพจร ──
+    class NodeRegisterRequest(BaseModel):
+        name: str = "gamer-pc"
+        gpu_model: str = "unknown"
+        region: str = "th"
+
+    class NodeStatusRequest(BaseModel):
+        node_id: str
+        gpu_util_pct: float = 0.0
+        cpu_load_pct: float = 0.0
+        uptime_sec: int = 0
+
+    _nodes: Dict[str, Dict] = {}
+    _node_counter = 0
+
+    @app.post("/nodes/register")
+    def node_register(req: NodeRegisterRequest) -> Dict:
+        """เกมเมอร์ลงทะเบียนเครื่อง -> ได้ node_id"""
+        global _node_counter
+        _node_counter += 1
+        node_id = f"n{_node_counter:03d}"
+        _nodes[node_id] = {
+            "node_id": node_id, "name": req.name, "gpu_model": req.gpu_model,
+            "region": req.region, "status": "online", "gpu_util_pct": 0.0,
+            "uptime_sec": 0, "last_seen": None,
+        }
+        return {"node_id": node_id, "registered": True}
+
+    @app.post("/nodes/status")
+    def node_status(req: NodeStatusRequest) -> Dict:
+        """เกมเมอร์ส่งชีพจร (ทุก 60 วิ)"""
+        if req.node_id not in _nodes:
+            raise HTTPException(404, "node not found - register first")
+        n = _nodes[req.node_id]
+        n["status"] = "online"
+        n["gpu_util_pct"] = req.gpu_util_pct
+        n["uptime_sec"] = req.uptime_sec
+        n["last_seen"] = req.uptime_sec
+        return {"ok": True, "node_id": req.node_id}
+
+    @app.get("/nodes")
+    def node_list() -> Dict:
+        """ดูโหนดทั้งหมด (สำหรับ Dashboard กลาง)"""
+        return {"nodes": list(_nodes.values())}
     @app.get("/genesis/ledger")
     def genesis() -> Dict:
         return {"entries": _ledger.entries, "chain_valid": _ledger.verify()}
