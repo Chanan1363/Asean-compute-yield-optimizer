@@ -15,4 +15,5 @@ pydantic>=2.6
 
 #
 # สำหรับ Postgres (Supabase/Neon — ข้อมูลถาวร):
-psycopg2-binary>=2.9
+pg8000>=1.31
+certifi>=2024.6
