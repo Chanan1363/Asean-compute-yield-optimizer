@@ -12,3 +12,7 @@ pydantic>=2.6
 # สำหรับ AI fine-tuning (แทน trainer stub):
 # scikit-learn>=1.4     # จุดเริ่มต้น: gradient boosting
 # torch / unsloth / axolotl  # เมื่อต้องการโมเดลใหญ่
+
+#
+# สำหรับ Postgres (Supabase/Neon — ข้อมูลถาวร):
+psycopg2-binary>=2.9
