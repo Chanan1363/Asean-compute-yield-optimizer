@@ -1,9 +1,9 @@
-"""ASEAN Grid — Node Agent v0 (Supply Side)
-เกมเมอร์รันสคริปต์นี้ -> เครื่องโผล่ในระบบ (register + ส่งชีพจรทุก 60 วิ)
-แบบ "ต่อเว็บ" ก่อน (ยังไม่ต้องโหลดติดตั้ง) — ใช้ urllib มาตรฐาน ไม่ต้องติดตั้งอะไร
+"""ASEAN Grid — Node Agent v0.5 (Supply Side)
+v0: ลงทะเบียน + ส่งชีพจร → v0.5: + รับงานจริง (poll /jobs/next → รัน demo task → ส่งผล)
+แบบ "ต่อเว็บ" (ยังไม่ต้องโหลดติดตั้ง) — urllib มาตรฐาน ไม่ต้องติดตั้งอะไร
 รัน: python node_agent.py
 """
-import json, time, platform, subprocess, urllib.request
+import json, time, platform, subprocess, urllib.request, hashlib
 
 API = "https://asean-compute-yield-optimizer.onrender.com"
 
@@ -11,7 +11,7 @@ def post(path, payload):
     req = urllib.request.Request(API + path,
                                  data=json.dumps(payload).encode(),
                                  headers={"Content-Type": "application/json"})
-    with urllib.request.urlopen(req, timeout=15) as r:
+    with urllib.request.urlopen(req, timeout=20) as r:
         return json.loads(r.read().decode())
 
 def detect_gpu():
@@ -27,8 +27,21 @@ def detect_gpu():
         pass
     return "no_gpu", 0.0
 
+def run_demo_task(job):
+    """งานจำลอง (v0.5): คำนวณ hash วนตามวินาทีที่สั่ง — พิสูจน์วงจรรับ-รัน-ส่งผล
+    (v1: เปลี่ยน executor นี้เป็น Docker/DeMo งานจริง — interface เดิม ไม่รื้อ)"""
+    payload = job.get("payload") or {}
+    seconds = max(1.0, float(payload.get("seconds", 5)))
+    h = hashlib.sha256(job["job_id"].encode()).hexdigest()
+    t0 = time.time()
+    for _ in range(max(2000, int(seconds * 4000))):
+        h = hashlib.sha256(h.encode()).hexdigest()
+    elapsed = round(time.time() - t0, 2)
+    return {"message": "DEMO task complete", "job_id": job["job_id"],
+            "hash": h[:16], "seconds": seconds, "elapsed_sec": elapsed}, elapsed
+
 def main():
-    print("=== ASEAN Grid — Node Agent v0 ===")
+    print("=== ASEAN Grid — Node Agent v0.5 ===")
     gpu, util = detect_gpu()
     name = platform.node() or "gamer-pc"
     try:
@@ -40,16 +53,34 @@ def main():
     node_id = r["node_id"]
     print(f"✅ ลงทะเบียนสำเร็จ: node_id={node_id} | GPU={gpu} | เครื่อง={name}")
     t0 = time.time()
-    print("ส่งชีพจรทุก 60 วิ... (Ctrl+C เพื่อหยุด)")
+    last_hb = 0.0
+    print("ส่งชีพจรทุก 60 วิ + ฟังงานทุก 15 วิ... (Ctrl+C เพื่อหยุด)")
     while True:
+        now = time.time()
+        # ── v0: ส่งชีพจร (ทุก 60 วิ) ──
+        if now - last_hb >= 60:
+            try:
+                gpu, util = detect_gpu()
+                post("/nodes/status", {"node_id": node_id, "gpu_util_pct": util,
+                                       "cpu_load_pct": 0.0, "uptime_sec": int(now - t0)})
+                print(f"  [{time.strftime('%H:%M:%S')}] ส่งชีพจร OK — GPU {gpu} util {util}%")
+            except Exception as e:
+                print(f"  [{time.strftime('%H:%M:%S')}] ส่งชีพจรพลาด: {e}")
+            last_hb = now
+        # ── v0.5: ขอรับงาน → รัน → ส่งผล ──
         try:
-            gpu, util = detect_gpu()
-            post("/nodes/status", {"node_id": node_id, "gpu_util_pct": util,
-                                   "cpu_load_pct": 0.0, "uptime_sec": int(time.time() - t0)})
-            print(f"  [{time.strftime('%H:%M:%S')}] ส่งชีพจร OK — GPU {gpu} util {util}%")
+            r = post("/jobs/next", {"node_id": node_id})
+            job = r.get("job")
+            if job:
+                print(f"📥 ได้งาน {job['job_id']} ({job['job_type']}) — เริ่มรัน...")
+                post(f"/jobs/{job['job_id']}/start", {"node_id": node_id})
+                result, elapsed = run_demo_task(job)
+                post(f"/jobs/{job['job_id']}/result",
+                     {"node_id": node_id, "result": result, "elapsed_sec": elapsed})
+                print(f"✅ {job['job_id']} เสร็จ ({elapsed}s) — hash: {result['hash']}")
         except Exception as e:
-            print(f"  [{time.strftime('%H:%M:%S')}] ส่งชีพจรพลาด: {e}")
-        time.sleep(60)
+            print(f"⚠️ ฟังงานพลาด: {e}")
+        time.sleep(15)
 
 if __name__ == "__main__":
     main()
