@@ -13,8 +13,26 @@ class _DB:
     (execute/fetchone/fetchall/commit/close — เหมือน sqlite3 เดิม)"""
     def __init__(self):
         if DATABASE_URL:
-            import psycopg2
-            self.conn = psycopg2.connect(DATABASE_URL)
+            # pg8000 = pure Python (ติดตั้งได้ทุก Python แม้ 3.14 — ไม่ต้อง compile)
+            import ssl
+            from urllib.parse import urlparse
+            import pg8000
+            u = urlparse(DATABASE_URL)
+            kwargs = dict(user=u.username, password=u.password, host=u.hostname,
+                          port=u.port or 5432, database=u.path.lstrip('/'))
+            try:  # ลอง SSL verify (certifi) ก่อน
+                try:
+                    import certifi
+                    ctx = ssl.create_default_context(cafile=certifi.where())
+                except ImportError:
+                    ctx = ssl.create_default_context()
+                self.conn = pg8000.connect(**kwargs, ssl_context=ctx)
+            except Exception:
+                # fallback: ไม่ verify cert (กัน proxy/CA store แปลก) — เหมาะ prototype
+                ctx = ssl.create_default_context()
+                ctx.check_hostname = False
+                ctx.verify_mode = ssl.CERT_NONE
+                self.conn = pg8000.connect(**kwargs, ssl_context=ctx)
             self._pg = True
         else:
             os.makedirs(os.path.dirname(DB_PATH), exist_ok=True)
