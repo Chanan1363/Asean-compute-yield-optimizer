@@ -56,7 +56,15 @@ if _FASTAPI_AVAILABLE:
 
     @app.get("/health")
     def health() -> Dict[str, str]:
-        return {"status": "ok", "region": _config.REGION}
+        """สถานะระบบ + รายงาน DB backend (postgres/sqlite) + driver จริง"""
+        try:
+            import pg8000
+            driver = f"pg8000 {pg8000.__version__}"
+        except Exception:
+            driver = "MISSING"
+        return {"status": "ok", "region": _config.REGION,
+                "db": "postgres" if node_db.DATABASE_URL else "sqlite",
+                "driver": driver}
 
     @app.get("/market")
     def market() -> Dict:
