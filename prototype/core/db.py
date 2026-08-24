@@ -1,14 +1,55 @@
-"""ASEAN Grid — Node + Job DB (SQLite)
-เก็บโหนด + งาน (jobs) ถาวร (ไม่หายเมื่อ process restart / Render wake)
-อนาคต: เปลี่ยน backend เป็น Postgres ได้ — แค่เปลี่ยน connection (interface เดิม)
+"""ASEAN Grid — Node + Job DB (Postgres / SQLite)
+- ตั้ง DATABASE_URL (env) → ใช้ Postgres (ข้อมูลถาวร — Supabase/Neon)
+- ไม่ตั้ง → ใช้ SQLite (fallback — ทดลองในเครื่อง)
+หลัก no dead-end: interface เดียว เปลี่ยน backend ได้โดยไม่แตะโค้ดอื่น
 """
-import sqlite3, json, time, os
+import json, time, os
 
 DB_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'data', 'nodes.db')
+DATABASE_URL = os.environ.get("DATABASE_URL", "")
+
+class _DB:
+    """wrapper เล็ก: ทำให้ sqlite3 กับ psycopg2 ใช้ interface เดียวกัน
+    (execute/fetchone/fetchall/commit/close — เหมือน sqlite3 เดิม)"""
+    def __init__(self):
+        if DATABASE_URL:
+            import psycopg2
+            self.conn = psycopg2.connect(DATABASE_URL)
+            self._pg = True
+        else:
+            os.makedirs(os.path.dirname(DB_PATH), exist_ok=True)
+            import sqlite3
+            self.conn = sqlite3.connect(DB_PATH)
+            self._pg = False
+        self.cur = self.conn.cursor()
+
+    def execute(self, sql, params=None):
+        # SQLite ใช้ ? / Postgres ใช้ %s — แปลงอัตโนมัติ
+        if self._pg:
+            sql = sql.replace("?", "%s")
+        self.cur.execute(sql, params or ())
+        return self
+
+    def fetchone(self):
+        return self.cur.fetchone()
+
+    def fetchall(self):
+        return self.cur.fetchall()
+
+    def commit(self):
+        self.conn.commit()
+        return self
+
+    def close(self):
+        try:
+            self.cur.close()
+        except Exception:
+            pass
+        self.conn.close()
 
 def _conn():
-    os.makedirs(os.path.dirname(DB_PATH), exist_ok=True)
-    c = sqlite3.connect(DB_PATH)
+    """เชื่อมต่อ + สร้างตาราง (schema เดียวกันทั้ง 2 backend)"""
+    c = _DB()
     c.execute("""CREATE TABLE IF NOT EXISTS nodes (
         node_id TEXT PRIMARY KEY,
         name TEXT, gpu_model TEXT, region TEXT,
@@ -20,15 +61,22 @@ def _conn():
         status TEXT, node_id TEXT,
         payload TEXT, result TEXT, elapsed_sec REAL,
         created_ts REAL, assigned_ts REAL, done_ts REAL)""")
+    c.commit()
     return c
 
-# ────────────────────────── NODES (v0 เดิม) ──────────────────────────
+# ────────────────────────── NODES ──────────────────────────
 
 def register(node_id, name, gpu_model, region):
-    """ลงทะเบียนโหนด (INSERT OR REPLACE)"""
+    """ลงทะเบียนโหนด (upsert — กันซ้ำ)"""
     c = _conn()
-    c.execute("INSERT OR REPLACE INTO nodes VALUES (?,?,?,?,?,?,?,?,?)",
-              (node_id, name, gpu_model, region, 'online', 0.0, 0, None, '[]'))
+    if c._pg:
+        c.execute("INSERT INTO nodes (node_id, name, gpu_model, region, status, gpu_util_pct, uptime_sec, last_seen_ts, history) "
+                  "VALUES (?,?,?,?,?,?,?,?,?) ON CONFLICT (node_id) DO UPDATE SET "
+                  "name=EXCLUDED.name, gpu_model=EXCLUDED.gpu_model, region=EXCLUDED.region, status='online'",
+                  (node_id, name, gpu_model, region, 'online', 0.0, 0, None, '[]'))
+    else:
+        c.execute("INSERT OR REPLACE INTO nodes VALUES (?,?,?,?,?,?,?,?,?)",
+                  (node_id, name, gpu_model, region, 'online', 0.0, 0, None, '[]'))
     c.commit(); c.close()
 
 def update_status(node_id, gpu_util_pct, uptime_sec):
@@ -69,7 +117,7 @@ def exists(node_id):
     c.close()
     return row is not None
 
-# ────────────────────────── JOBS (v0.5 ใหม่) ──────────────────────────
+# ────────────────────────── JOBS ──────────────────────────
 
 JOB_COLS = ['job_id', 'job_type', 'gpu_model', 'gpu_count', 'hours', 'status',
             'node_id', 'payload', 'result', 'elapsed_sec',
