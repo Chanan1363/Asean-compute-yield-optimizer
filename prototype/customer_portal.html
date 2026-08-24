@@ -193,32 +193,9 @@
   <!-- ════════ 3. งานของฉัน ════════ -->
   <section class="page" id="tab-jobs">
     <div class="panel">
-      <h2>งานของฉัน <small>My Jobs</small></h2>
-      <div class="job">
-        <div class="icon">🤖</div>
-        <div class="info">
-          <div class="name">Fine-tune LLM (ตัวอย่าง)</div>
-          <div class="meta">RTX 4090 × 2 · 6 ชม. · #JOB-0003</div>
-        </div>
-        <span class="status run">● รันอยู่ 45%</span>
-      </div>
-      <div class="job">
-        <div class="icon">🎨</div>
-        <div class="info">
-          <div class="name">เรนเดอร์โฆษณา 4K (ตัวอย่าง)</div>
-          <div class="meta">RTX 3080 × 4 · 3 ชม. · #JOB-0002</div>
-        </div>
-        <span class="status done">✓ เสร็จแล้ว</span>
-      </div>
-      <div class="job">
-        <div class="icon">⚡</div>
-        <div class="info">
-          <div class="name">Inference API (ตัวอย่าง)</div>
-          <div class="meta">RTX 3060 × 1 · 24 ชม. · #JOB-0001</div>
-        </div>
-        <span class="status wait">◔ รอเริ่ม</span>
-      </div>
-      <div class="note">📌 รายการด้านบนเป็น<b>ตัวอย่าง UI</b> — ประวัติงานจริงจะแสดงที่นี่เมื่อระบบรับงาน (Node Agent v0.5) เปิดใช้งาน</div>
+      <h2>งานของฉัน <small>My Jobs — ข้อมูลจริงจากระบบ</small></h2>
+      <div id="jobs-list"><div class="note">กำลังโหลดงาน <span class="spin">◌</span></div></div>
+      <div class="note">📌 งานที่ส่งไปจะแสดงที่นี่แบบเรียลไทม์ — สถานะ: รอเริ่ม → รันอยู่ → เสร็จ (พร้อมผลลัพธ์)</div>
     </div>
   </section>
 
@@ -280,6 +257,34 @@ async function estimate() {
   }
   btn.disabled = false; btn.innerHTML = '🧮 คำนวณราคาทันที';
 }
+
+// ── งานของฉัน (API จริง /jobs) ──
+const JOB_ICON = {DEMO:'🧪', AI_TRAINING:'🤖', AI_INFERENCE:'⚡', RENDERING:'🎨', SIMULATION:'🧪', MINING:'⛏️', CLOUD_GAMING:'🎮'};
+const JOB_STATUS = {queued:['◔ รอเริ่ม','wait'], assigned:['◔ รับงานแล้ว','wait'], running:['● รันอยู่','run'], done:['✓ เสร็จแล้ว','done'], failed:['✗ ล้มเหลว','wait']};
+async function loadJobs() {
+  const el = document.getElementById('jobs-list');
+  try {
+    const r = await fetch('/jobs');
+    const d = await r.json();
+    const jobs = d.jobs || [];
+    if (!jobs.length) {
+      el.innerHTML = '<div class="note">ยังไม่มีงาน — กดแท็บ 🚀 ส่งงาน เพื่อส่งงานแรกของคุณ</div>';
+      return;
+    }
+    el.innerHTML = jobs.map(j => {
+      const [label, cls] = JOB_STATUS[j.status] || [j.status, 'wait'];
+      const meta = `${j.gpu_model} × ${j.gpu_count} · ${j.hours} ชม. · ${j.job_id}${j.node_id ? ' · โหนด ' + j.node_id : ''}`;
+      const res = j.result ? `<div class="meta" style="color:var(--green)">ผล: ${JSON.stringify(j.result).slice(0, 90)}</div>` : '';
+      return `<div class="job"><div class="icon">${JOB_ICON[j.job_type] || '📦'}</div>
+        <div class="info"><div class="name">${j.job_type} ${j.job_id}</div>
+        <div class="meta">${meta}</div>${res}</div>
+        <span class="status ${cls}">${label}</span></div>`;
+    }).join('');
+  } catch (e) {
+    el.innerHTML = `<div class="note" style="color:var(--red)">⚠️ โหลดงานไม่สำเร็จ: ${e.message}</div>`;
+  }
+}
+loadJobs();
 
 // ── ราคาตลาดสด (API จริง /market) ──
 async function loadMarket() {
