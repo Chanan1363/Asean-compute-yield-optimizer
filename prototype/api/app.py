@@ -165,6 +165,69 @@ if _FASTAPI_AVAILABLE:
     def node_list() -> Dict:
         """ดูโหนดทั้งหมด (จาก SQLite — อยู่ถาวร)"""
         return {"nodes": node_db.all_nodes()}
+    # ── Job Pipeline v0.5 — ลูกค้าส่งงาน → โหนดรับ → รัน → ผล (design: docs/NODE_AGENT_V05_DESIGN.md) ──
+    class JobCreateRequest(BaseModel):
+        job_type: str = "DEMO"
+        gpu_model: str = "any"
+        gpu_count: int = 1
+        hours: float = 1.0
+        payload: dict = {}
+
+    class JobNodeRequest(BaseModel):
+        node_id: str
+
+    class JobResultRequest(BaseModel):
+        node_id: str
+        result: dict = {}
+        elapsed_sec: float = 0.0
+
+    @app.post("/jobs")
+    def job_create(req: JobCreateRequest) -> Dict:
+        """ลูกค้าส่งงานใหม่ -> queued (โหนดจะมารับอัตโนมัติ)"""
+        job_id = node_db.create_job(req.job_type, req.gpu_model, req.gpu_count, req.hours, req.payload)
+        return {"job_id": job_id, "status": "queued", "note": "job queued — node will pick it up"}
+
+    @app.get("/jobs")
+    def job_list() -> Dict:
+        """งานทั้งหมด (ล่าสุดก่อน) — ลูกค้า/admin ดู"""
+        return {"jobs": node_db.all_jobs()}
+
+    @app.get("/jobs/{job_id}")
+    def job_get(job_id: str) -> Dict:
+        """ดูสถานะงานเดียว (รอ/รัน/เสร็จ + ผล)"""
+        job = node_db.get_job(job_id)
+        if not job:
+            raise HTTPException(404, "job not found")
+        return job
+
+    @app.post("/jobs/next")
+    def job_next(req: JobNodeRequest) -> Dict:
+        """โหนดขอรับงาน (poll): ได้งาน queued -> assigned -> คืนให้โหนด"""
+        if not node_db.exists(req.node_id):
+            raise HTTPException(404, "node not found - register first")
+        node_db.requeue_stale()
+        job = node_db.claim_next_job(req.node_id)
+        return {"job": job} if job else {"job": None}
+
+    @app.post("/jobs/{job_id}/start")
+    def job_start(job_id: str, req: JobNodeRequest) -> Dict:
+        """โหนดยืนยันเริ่มรัน (assigned -> running)"""
+        node_db.mark_running(job_id, req.node_id)
+        return {"ok": True, "job_id": job_id, "status": "running"}
+
+    @app.post("/jobs/{job_id}/result")
+    def job_result(job_id: str, req: JobResultRequest) -> Dict:
+        """โหนดส่งผลงาน -> done (เฉพาะโหนดเจ้าของงาน)"""
+        if not node_db.submit_result(job_id, req.node_id, req.result, req.elapsed_sec):
+            raise HTTPException(403, "not this job's node")
+        return {"ok": True, "job_id": job_id, "status": "done"}
+
+    @app.post("/jobs/{job_id}/fail")
+    def job_fail(job_id: str, req: JobNodeRequest) -> Dict:
+        """โหนดแจ้งงานล้มเหลว -> failed (requeue_stale คุ้มครองค้างอยู่แล้ว)"""
+        node_db.fail_job(job_id, req.node_id)
+        return {"ok": True, "job_id": job_id, "status": "failed"}
+
     @app.get("/genesis/ledger")
     def genesis() -> Dict:
         return {"entries": _ledger.entries, "chain_valid": _ledger.verify()}
