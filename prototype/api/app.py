@@ -66,6 +66,28 @@ if _FASTAPI_AVAILABLE:
                 "db": "postgres" if node_db.DATABASE_URL else "sqlite",
                 "driver": driver}
 
+    @app.get("/dbcheck")
+    def dbcheck() -> Dict:
+        """ทดสอบเชื่อมต่อ DB — คืนผล/error ตรงๆ (ช่วย debug)"""
+        try:
+            import ssl
+            from urllib.parse import urlparse
+            import pg8000
+            u = urlparse(node_db.DATABASE_URL)
+            ctx = ssl.create_default_context()
+            ctx.check_hostname = False
+            ctx.verify_mode = ssl.CERT_NONE
+            conn = pg8000.connect(user=u.username, password=u.password, host=u.hostname,
+                                  port=u.port or 5432, database=u.path.lstrip('/'), ssl_context=ctx)
+            cur = conn.cursor()
+            cur.execute("SELECT 1")
+            row = cur.fetchone()
+            cur.close(); conn.close()
+            return {"db_ok": True, "host": u.hostname, "result": str(row)}
+        except Exception as e:
+            host = urlparse(node_db.DATABASE_URL).hostname if node_db.DATABASE_URL else "?"
+            return {"db_ok": False, "host": host, "error": str(e)[:300]}
+
     @app.get("/market")
     def market() -> Dict:
         """สแกนราคาทุกช่องทาง (Arbitrage Engine) — รวมคะแนน AI strategy"""
