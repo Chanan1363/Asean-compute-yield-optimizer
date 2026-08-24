@@ -6,382 +6,301 @@
 <title>ASEAN Grid — Customer Portal</title>
 <style>
   :root {
-    --bg: #0a0e1a;
-    --panel: #111827;
-    --panel2: #0d1526;
-    --border: #1e3a5f;
-    --cyan: #22d3ee;
-    --green: #34d399;
-    --gold: #fbbf24;
-    --red: #f87171;
-    --text: #e5e7eb;
-    --dim: #9ca3af;
+    --bg: #0a0e1a; --panel: #111827; --panel2: #0d1526;
+    --border: #1e3a5f; --cyan: #22d3ee; --green: #34d399;
+    --gold: #fbbf24; --red: #f87171; --text: #e5e7eb; --dim: #9ca3af;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     font-family: 'Segoe UI', 'Noto Sans Thai', Tahoma, sans-serif;
     background: radial-gradient(1200px 600px at 80% -10%, #0e2a4a 0%, var(--bg) 55%);
-    color: var(--text);
-    min-height: 100vh;
-    padding: 24px;
+    color: var(--text); min-height: 100vh; padding: 24px;
   }
   .wrap { max-width: 1080px; margin: 0 auto; }
 
-  /* ── Header ── */
   .hero {
-    text-align: center;
-    padding: 26px 20px 30px;
-    border: 1px solid var(--border);
-    border-radius: 18px;
+    text-align: center; padding: 26px 20px 22px;
+    border: 1px solid var(--border); border-radius: 18px;
     background: linear-gradient(180deg, rgba(34,211,238,0.08), rgba(17,24,39,0.6));
-    box-shadow: 0 0 40px rgba(34,211,238,0.08);
-    margin-bottom: 22px;
+    box-shadow: 0 0 40px rgba(34,211,238,0.08); margin-bottom: 18px;
   }
   .hero h1 {
-    font-size: 30px; letter-spacing: 1px;
+    font-size: 28px; letter-spacing: 1px;
     background: linear-gradient(90deg, var(--cyan), #7dd3fc, var(--gold));
     -webkit-background-clip: text; background-clip: text; color: transparent;
   }
   .hero p { color: var(--dim); margin-top: 6px; font-size: 14px; }
   .badges { margin-top: 12px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
-  .badge {
-    font-size: 12px; padding: 5px 12px; border-radius: 999px;
-    border: 1px solid var(--border); color: var(--dim); background: rgba(255,255,255,0.03);
-  }
+  .badge { font-size: 12px; padding: 5px 12px; border-radius: 999px; border: 1px solid var(--border); color: var(--dim); background: rgba(255,255,255,0.03); }
   .badge.green { color: var(--green); border-color: rgba(52,211,153,0.4); }
   .badge.gold  { color: var(--gold);  border-color: rgba(251,191,36,0.4); }
 
-  /* ── Status bar ── */
-  .statusbar {
-    display: flex; align-items: center; gap: 10px;
+  /* ── Nav ── */
+  .nav {
+    display: flex; gap: 8px; background: var(--panel);
+    border: 1px solid var(--border); border-radius: 12px; padding: 8px; margin-bottom: 20px;
+    overflow-x: auto; flex-wrap: wrap;
+  }
+  .nav button {
+    flex: 1; min-width: 110px; padding: 10px 12px; cursor: pointer;
+    background: transparent; border: 1px solid transparent; border-radius: 8px;
+    color: var(--dim); font-size: 14px; font-family: inherit; transition: all .2s;
+  }
+  .nav button:hover { color: var(--text); background: rgba(34,211,238,0.06); }
+  .nav button.active {
+    color: var(--cyan); border-color: rgba(34,211,238,0.4);
+    background: rgba(34,211,238,0.08); font-weight: 600;
+  }
+
+  section.page { display: none; }
+  section.page.active { display: block; animation: fade .3s ease; }
+  @keyframes fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+  .panel {
     background: var(--panel); border: 1px solid var(--border);
-    border-radius: 12px; padding: 12px 16px; margin-bottom: 22px;
-    font-size: 13px; color: var(--dim);
+    border-radius: 14px; padding: 20px; margin-bottom: 16px;
   }
-  .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--red); }
-  .dot.on { background: var(--green); box-shadow: 0 0 8px var(--green); }
-  #regionTag { color: var(--cyan); font-weight: 600; }
+  .panel h2 { font-size: 18px; margin-bottom: 14px; color: var(--cyan); }
+  .panel h2 small { color: var(--dim); font-weight: 400; font-size: 12px; margin-left: 8px; }
 
-  /* ── Cards grid ── */
-  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-  @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } }
-  .card {
-    background: linear-gradient(180deg, var(--panel2), var(--panel));
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 18px;
-    position: relative;
-  }
-  .card h3 {
-    font-size: 15px; margin-bottom: 4px;
-    display: flex; align-items: center; gap: 8px;
-  }
-  .card h3 .ic { font-size: 18px; }
-  .card .sub { font-size: 12px; color: var(--dim); margin-bottom: 14px; }
-  .card.wide { grid-column: 1 / -1; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  @media (max-width: 760px) { .grid2, .grid3 { grid-template-columns: 1fr; } }
 
-  /* ── Buttons ── */
-  .btn {
-    background: linear-gradient(90deg, #0891b2, #06b6d4);
-    color: #031018; font-weight: 700; border: none;
-    padding: 10px 18px; border-radius: 10px; cursor: pointer;
-    font-size: 14px; transition: filter .15s;
-  }
-  .btn:hover { filter: brightness(1.15); }
-  .btn.gold { background: linear-gradient(90deg, #d97706, var(--gold)); color: #1c1202; }
-  .btn.ghost { background: transparent; border: 1px solid var(--border); color: var(--dim); }
-  .btn:disabled { opacity: .5; cursor: not-allowed; }
-  .btn.sm { padding: 6px 12px; font-size: 12px; }
-
-  /* ── Inputs ── */
+  label { display: block; font-size: 13px; color: var(--dim); margin: 10px 0 5px; }
   input, select {
-    width: 100%; background: #0a0f1c; color: var(--text);
-    border: 1px solid var(--border); border-radius: 10px;
-    padding: 10px 12px; font-size: 14px; margin-bottom: 10px;
-    outline: none;
+    width: 100%; padding: 10px 12px; border-radius: 8px;
+    background: var(--panel2); border: 1px solid var(--border); color: var(--text);
+    font-size: 14px; font-family: inherit;
   }
-  input:focus, select:focus { border-color: var(--cyan); }
-  label { font-size: 12px; color: var(--dim); display: block; margin-bottom: 4px; }
+  input:focus, select:focus { outline: none; border-color: var(--cyan); }
 
-  /* ── Tables ── */
-  table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  th { color: var(--dim); font-weight: 600; text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--border); font-size: 12px; }
-  td { padding: 9px 10px; border-bottom: 1px solid rgba(30,58,95,0.4); }
-  tr:last-child td { border-bottom: none; }
-  .best-row td { background: rgba(251,191,36,0.07); }
-  .num { text-align: right; font-variant-numeric: tabular-nums; }
-  .up { color: var(--green); }
-
-  /* ── Result box ── */
-  .result {
-    margin-top: 12px; background: #0a0f1c; border: 1px solid var(--border);
-    border-radius: 10px; padding: 12px; font-size: 13px;
-    font-family: Consolas, 'Courier New', monospace;
-    color: #7dd3fc; white-space: pre-wrap; word-break: break-all;
-    max-height: 220px; overflow: auto; display: none;
+  .btn {
+    display: inline-block; padding: 12px 22px; border-radius: 10px; cursor: pointer;
+    font-size: 15px; font-weight: 600; font-family: inherit; border: 1px solid transparent;
+    transition: all .2s; text-decoration: none; text-align: center;
   }
-  .result.show { display: block; }
-  .result.err { color: var(--red); }
+  .btn.primary { background: linear-gradient(90deg, var(--cyan), #0ea5e9); color: #04121f; }
+  .btn.primary:hover { filter: brightness(1.15); }
+  .btn.ghost { background: transparent; border-color: var(--border); color: var(--dim); }
+  .btn.ghost:hover { color: var(--text); border-color: var(--cyan); }
+  .btn.block { width: 100%; }
+  .btn[disabled] { opacity: .5; cursor: not-allowed; }
 
-  /* ── Split display ── */
-  .splitbars { display: flex; gap: 8px; margin-top: 12px; }
-  .splitbars .seg {
-    border-radius: 8px; padding: 10px; text-align: center; font-size: 12px;
-    color: #041018; font-weight: 700;
+  .quote {
+    background: var(--panel2); border: 1px solid var(--border); border-radius: 10px;
+    padding: 14px 16px; font-size: 14px; color: var(--text);
   }
-  .seg.node { flex: 75; background: linear-gradient(180deg, #34d399, #10b981); }
-  .seg.plat { flex: 20; background: linear-gradient(180deg, #22d3ee, #0891b2); }
-  .seg.dev  { flex: 5;  background: linear-gradient(180deg, #fbbf24, #d97706); }
-  .seg small { display: block; font-weight: 400; opacity: .85; }
+  .quote .ch { color: var(--cyan); font-weight: 600; }
+  .quote .px { float: right; color: var(--gold); font-weight: 600; }
+  .quote .meta { color: var(--dim); font-size: 12px; margin-top: 4px; }
 
-  .hint { font-size: 12px; color: var(--dim); margin-top: 10px; line-height: 1.6; }
-  .loading { color: var(--cyan); font-size: 13px; display: none; }
-  .loading.show { display: block; }
-
-  /* ── Ledger ── */
-  .ledger-row {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 9px 6px; border-bottom: 1px solid rgba(30,58,95,0.4);
-    font-size: 13px;
+  .pricebox {
+    text-align: center; padding: 16px; border-radius: 12px; margin-top: 14px;
+    border: 1px dashed rgba(251,191,36,0.5); background: rgba(251,191,36,0.05);
   }
-  .ledger-row:last-child { border-bottom: none; }
-  .ledger-row .hash { font-family: Consolas, monospace; color: var(--dim); font-size: 11px; }
-  .role-tag { font-size: 10px; padding: 2px 8px; border-radius: 999px; margin-right: 8px; }
-  .role-compute { background: rgba(34,211,238,0.15); color: var(--cyan); }
-  .role-developer { background: rgba(52,211,153,0.15); color: var(--green); }
-  .role-ambassador { background: rgba(251,191,36,0.15); color: var(--gold); }
+  .pricebox .num { font-size: 26px; font-weight: 700; color: var(--gold); }
+  .pricebox .sub { color: var(--dim); font-size: 12px; margin-top: 4px; }
 
-  .footer { text-align: center; color: var(--dim); font-size: 12px; margin-top: 26px; padding-bottom: 10px; }
+  .job {
+    display: flex; align-items: center; gap: 14px;
+    background: var(--panel2); border: 1px solid var(--border);
+    border-radius: 10px; padding: 14px 16px; margin-bottom: 10px;
+  }
+  .job .icon { font-size: 22px; }
+  .job .info { flex: 1; }
+  .job .info .name { font-size: 14px; font-weight: 600; }
+  .job .info .meta { color: var(--dim); font-size: 12px; margin-top: 3px; }
+  .status { font-size: 12px; padding: 4px 10px; border-radius: 999px; white-space: nowrap; }
+  .status.run { color: var(--cyan); border: 1px solid rgba(34,211,238,0.4); }
+  .status.done { color: var(--green); border: 1px solid rgba(52,211,153,0.4); }
+  .status.wait { color: var(--gold); border: 1px solid rgba(251,191,36,0.4); }
+
+  .balance { text-align: center; padding: 24px; }
+  .balance .amt { font-size: 34px; font-weight: 700; color: var(--gold); }
+  .balance .lbl { color: var(--dim); font-size: 13px; margin-top: 4px; }
+  .note { font-size: 12px; color: var(--dim); background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; margin-top: 12px; }
+  .footer { text-align: center; color: var(--dim); font-size: 12px; padding: 16px 0 6px; }
+  .footer a { color: var(--cyan); text-decoration: none; }
+  .spin { display: inline-block; animation: rot 1s linear infinite; }
+  @keyframes rot { to { transform: rotate(360deg); } }
 </style>
 </head>
 <body>
 <div class="wrap">
 
-  <!-- ── Header ── -->
   <div class="hero">
-    <h1>⚡ ASEAN GRID — CUSTOMER PORTAL</h1>
-    <p>โปรแกรมต้นแบบ — มุมมองลูกค้า (เชื่อมต่อระบบจริง) / Prototype — Customer View (live API)</p>
+    <h1>⚡ ASEAN GRID — Customer Portal</h1>
+    <p>ส่งงาน AI ของคุณ ไปรันบนเครือข่าย GPU ทั่วอาเซียน — ราคาโปร่งใส คำนวณได้ทันที</p>
     <div class="badges">
-      <span class="badge green">● 75/20/5 Revenue Split</span>
-      <span class="badge gold">● Pay-per-Second</span>
-      <span class="badge">● 5 Channels</span>
-      <span class="badge">● Genesis Ledger</span>
-      <span class="badge gold">🧬 DisTrO-inspired (Nous Research)</span>
+      <span class="badge">🤖 AI Training</span>
+      <span class="badge">⚡ Inference</span>
+      <span class="badge green">🎨 Rendering</span>
+      <span class="badge gold">🇹🇭 🇻🇳 🇲🇾 🇸🇬 ASEAN</span>
     </div>
   </div>
 
-  <!-- ── Status ── -->
-  <div class="statusbar">
-    <span class="dot" id="statusDot"></span>
-    <span id="statusText">กำลังเชื่อมต่อระบบ... / Connecting...</span>
-    <span style="margin-left:auto">Region: <span id="regionTag">—</span></span>
+  <div class="nav">
+    <button class="active" data-tab="submit">🚀 ส่งงาน</button>
+    <button data-tab="prices">📊 ราคาตลาด</button>
+    <button data-tab="jobs">📦 งานของฉัน</button>
+    <button data-tab="credit">💰 เครดิต</button>
   </div>
 
-  <div class="grid">
-
-    <!-- ── Market prices ── -->
-    <div class="card wide">
-      <h3><span class="ic">📊</span> ราคาตลาด 5 ช่องทาง — Market Prices</h3>
-      <div class="sub">สแกนราคาสดจาก Arbitrage Engine / Live scan from the Arbitrage Engine</div>
-      <button class="btn sm" id="btnScan" onclick="scanMarket()">🔄 สแกนราคาใหม่ / Scan Now</button>
-      <span class="loading" id="loadMarket">สแกนตลาด... / Scanning...</span>
-      <table style="margin-top:10px">
-        <thead>
-          <tr><th>ช่องทาง / Channel</th><th>สถานะ / Status</th><th class="num">ราคา ($/ชม.) / Price ($/hr)</th><th class="num">คิว / Queue</th><th class="num">Latency</th><th class="num">คะแนน AI / AI Score</th><th></th></tr>
-        </thead>
-        <tbody id="marketBody"><tr><td colspan="7" style="color:var(--dim)">กดปุ่มสแกนเพื่อดูราคา / Press Scan to load prices</td></tr></tbody>
-      </table>
-      <div class="hint" id="bestHint" style="display:none">🧠 <b>AI Strategy แนะนำ / AI Strategy:</b> <span id="bestName" style="color:var(--gold)"></span> — ช่องทางที่จ่ายสูงสุดสุทธิตอนนี้ / highest net yield right now</div>
+  <!-- ════════ 1. ส่งงาน ════════ -->
+  <section class="page active" id="tab-submit">
+    <div class="panel">
+      <h2>ส่งงานใหม่ <small>Submit Job</small></h2>
+      <div class="grid2">
+        <div>
+          <label>ประเภทงาน</label>
+          <select id="jtype">
+            <option value="AI_TRAINING">🤖 AI Training — ฝึกโมเดล</option>
+            <option value="AI_INFERENCE">⚡ AI Inference — เรียกใช้งานโมเดล</option>
+            <option value="RENDERING">🎨 Rendering — เรนเดอร์ 3D</option>
+            <option value="SIMULATION">🧪 Simulation — จำลองสถานการณ์</option>
+          </select>
+          <label>รุ่น GPU</label>
+          <select id="jgpu">
+            <option value="RTX 4090">RTX 4090 — 24GB (เรือธง)</option>
+            <option value="RTX 4080">RTX 4080 — 16GB</option>
+            <option value="RTX 3080">RTX 3080 — 10GB</option>
+            <option value="RTX 3060">RTX 3060 — 12GB (ประหยัด)</option>
+          </select>
+        </div>
+        <div>
+          <label>จำนวนเครื่อง (GPU)</label>
+          <input type="number" id="jcount" value="1" min="1" max="64">
+          <label>ระยะเวลา (ชั่วโมง)</label>
+          <input type="number" id="jhours" value="1" min="0.5" step="0.5">
+          <div style="height:14px"></div>
+          <button class="btn primary block" id="btn-est" onclick="estimate()">🧮 คำนวณราคาทันที</button>
+        </div>
+      </div>
+      <div id="est-result"></div>
+      <div class="note">💡 ราคาคำนวณจากตลาด GPU จริงแบบเรียลไทม์ (Arbitrage Engine สแกนหลายช่องทาง) — ระบบรับงานเต็มรูปแบบเปิดตัวเร็วๆ นี้ สนใจใช้งานก่อนใคร ทัก LINE: <b>cjchanan</b></div>
     </div>
+  </section>
 
-    <!-- ── Revenue split ── -->
-    <div class="card">
-      <h3><span class="ic">💰</span> เครื่องคำนวณรายได้ — Revenue Calculator</h3>
-      <div class="sub">ลูกค้าจ่ายเท่าไร → แบ่งอัตโนมัติ 75/20/5 / Enter customer payment → auto split</div>
-      <label for="amount">ยอดที่ลูกค้าจ่าย (USD) / Customer payment (USD)</label>
-      <input type="number" id="amount" value="1000" min="1" step="10">
-      <button class="btn" onclick="calcSplit()">คำนวณการแบ่งรายได้ / Calculate Split</button>
-      <div class="splitbars" id="splitBars" style="display:none"></div>
-      <div class="result" id="splitResult"></div>
+  <!-- ════════ 2. ราคาตลาด ════════ -->
+  <section class="page" id="tab-prices">
+    <div class="panel">
+      <h2>ราคาตลาด GPU แบบสด <small>Live Market — Arbitrage Engine</small></h2>
+      <div id="market-list"><div class="note">กำลังสแกนตลาด <span class="spin">◌</span></div></div>
     </div>
+  </section>
 
-    <!-- ── Genesis builders ── -->
-    <div class="card">
-      <h3><span class="ic">📜</span> จารึกผู้บุกเบิก — Genesis Builder</h3>
-      <div class="sub">ชื่อของคุณจะถูกจารึกถาวร (กันแก้ไข) / Your name is recorded forever (immutable)</div>
-      <label for="bname">ชื่อ / Name</label>
-      <input type="text" id="bname" placeholder="เช่น Tay (Chanan)">
-      <label for="brole">บทบาท / Role</label>
-      <select id="brole">
-        <option value="compute">🖥️ Compute Builder — เจ้าของเครื่อง/ร้านเน็ต / Machine & cafe owner</option>
-        <option value="developer">👨‍💻 Developer Builder — นักพัฒนา / Developer</option>
-        <option value="ambassador">📣 Ambassador Builder — ผู้ประกาศ / Promoter</option>
-      </select>
-      <label for="bdetail">รายละเอียด / Detail (เช่น รุ่นการ์ดจอ)</label>
-      <input type="text" id="bdetail" placeholder="เช่น RTX 4090 - Bangkok">
-      <button class="btn gold" onclick="addBuilder()">จารึกลง Genesis Ledger / Engrave Now</button>
-      <div class="result" id="builderResult"></div>
+  <!-- ════════ 3. งานของฉัน ════════ -->
+  <section class="page" id="tab-jobs">
+    <div class="panel">
+      <h2>งานของฉัน <small>My Jobs</small></h2>
+      <div class="job">
+        <div class="icon">🤖</div>
+        <div class="info">
+          <div class="name">Fine-tune LLM (ตัวอย่าง)</div>
+          <div class="meta">RTX 4090 × 2 · 6 ชม. · #JOB-0003</div>
+        </div>
+        <span class="status run">● รันอยู่ 45%</span>
+      </div>
+      <div class="job">
+        <div class="icon">🎨</div>
+        <div class="info">
+          <div class="name">เรนเดอร์โฆษณา 4K (ตัวอย่าง)</div>
+          <div class="meta">RTX 3080 × 4 · 3 ชม. · #JOB-0002</div>
+        </div>
+        <span class="status done">✓ เสร็จแล้ว</span>
+      </div>
+      <div class="job">
+        <div class="icon">⚡</div>
+        <div class="info">
+          <div class="name">Inference API (ตัวอย่าง)</div>
+          <div class="meta">RTX 3060 × 1 · 24 ชม. · #JOB-0001</div>
+        </div>
+        <span class="status wait">◔ รอเริ่ม</span>
+      </div>
+      <div class="note">📌 รายการด้านบนเป็น<b>ตัวอย่าง UI</b> — ประวัติงานจริงจะแสดงที่นี่เมื่อระบบรับงาน (Node Agent v0.5) เปิดใช้งาน</div>
     </div>
+  </section>
 
-    <!-- ── Ledger ── -->
-    <div class="card wide">
-      <h3><span class="ic">🔗</span> Genesis Ledger — รายชื่อผู้บุกเบิก</h3>
-      <div class="sub">บันทึกถาวร แก้ไข/ลบไม่ได้ — แต่ละชื่อผูก hash กันเป็น chain / Append-only, hash-chained</div>
-      <button class="btn sm ghost" onclick="loadLedger()">🔄 โหลดรายชื่อ / Reload</button>
-      <div id="ledgerBox" style="margin-top:10px"><div class="hint">ยังไม่มีข้อมูล — กดโหลดรายชื่อ / No data yet — press Reload</div></div>
+  <!-- ════════ 4. เครดิต ════════ -->
+  <section class="page" id="tab-credit">
+    <div class="panel">
+      <h2>เครดิตของฉัน <small>Credits</small></h2>
+      <div class="balance">
+        <div class="amt">฿ 0.00</div>
+        <div class="lbl">ยอดคงเหลือ (ตัวอย่าง) — เติมเงินเมื่อเปิดระบบรับงาน</div>
+      </div>
+      <button class="btn primary block" onclick="alert('📞 ติดต่อเติมเงิน: LINE cjchanan / 08 1848 6558')">💰 เติมเงิน</button>
+      <div class="note">จ่ายหลังใช้งานได้ (โอน 50/50 ตามสัญญา) — รายละเอียดในสัญญา Revenue Split</div>
     </div>
-
-  </div>
+  </section>
 
   <div class="footer">
-    ASEAN Grid — Democratizing Compute · AGPL-3.0 · <b>v1.3.0-nous (Aug 23, 2026)</b> · Built on DisTrO design (Nous Research) — <a href="https://github.com/Chanan1363/Asean-compute-yield-optimizer/blob/main/docs/NOUS_ALIGNMENT.md" style="color:var(--cyan)">Alignment Plan</a>
+    <a href="/">← หน้าแรก</a> · <a href="/supply">ฝั่งผู้ให้เช่า</a> · <a href="/docs">API Docs</a> ·
+    <a href="#" onclick="event.preventDefault();alert('สำหรับทีม/ผู้ร่วมทุน: Revenue Split 75/20/5 + Genesis Ledger')">สำหรับทีม/ผู้ร่วมทุน</a><br>
+    ⚡ ASEAN Grid — คอมพิวเตอร์ราคาถูกจากเครือข่ายอาเซียน
   </div>
 </div>
 
 <script>
-const API = "";
-let bestChannel = null;
+// ── Tab switching ──
+document.querySelectorAll('.nav button').forEach(b => {
+  b.addEventListener('click', () => {
+    document.querySelectorAll('.nav button').forEach(x => x.classList.remove('active'));
+    document.querySelectorAll('section.page').forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+    document.getElementById('tab-' + b.dataset.tab).classList.add('active');
+  });
+});
 
-async function api(path, opts) {
-  const r = await fetch(API + path, opts);
-  const j = await r.json();
-  if (!r.ok) throw new Error(JSON.stringify(j.detail || j));
-  return j;
-}
-
-function showResult(el, data) {
-  el.textContent = typeof data === "string" ? data : JSON.stringify(data, null, 2);
-  el.classList.remove("err"); el.classList.add("show");
-}
-function showErr(el, e) {
-  el.textContent = "⚠️ " + e.message;
-  el.classList.add("err"); el.classList.add("show");
-}
-
-/* ── Status ── */
-async function init() {
+// ── คำนวณราคางาน (API จริง /workload/estimate) ──
+async function estimate() {
+  const count = parseFloat(document.getElementById('jcount').value) || 1;
+  const hours = parseFloat(document.getElementById('jhours').value) || 1;
+  const box = document.getElementById('est-result');
+  const btn = document.getElementById('btn-est');
+  btn.disabled = true; btn.innerHTML = '⏳ คำนวณ...';
   try {
-    const h = await api("/health");
-    document.getElementById("statusDot").classList.add("on");
-    document.getElementById("statusText").textContent = "ระบบออนไลน์ พร้อมใช้งาน — System online";
-    document.getElementById("regionTag").textContent = h.region;
-    scanMarket(); loadLedger();
-    // 🧠 คิดเรื่อยๆ — สแกนตลาดอัตโนมัติทุก 10 วินาที (Maximizing Profit Seconds)
-    setInterval(scanMarket, 10000);
+    const r = await fetch('/workload/estimate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ gpu_hours: count * hours, rate_usd_per_hour: 0 })
+    });
+    const d = await r.json();
+    if (!r.ok) throw new Error(d.detail || 'error');
+    const thb = (d.total_usd * 35).toFixed(2);
+    const perHr = (d.total_usd / (count * hours) * 35).toFixed(2);
+    box.innerHTML = `
+      <div class="pricebox">
+        <div class="num">฿ ${Number(thb).toLocaleString()}</div>
+        <div class="sub">≈ US$${d.total_usd.toFixed(2)} · ${count} GPU × ${hours} ชม. (฿${perHr}/ชม./GPU)</div>
+      </div>`;
   } catch (e) {
-    document.getElementById("statusText").textContent = "เชื่อมต่อระบบไม่ได้ / Cannot reach system — " + e.message;
+    box.innerHTML = `<div class="note" style="color:var(--red)">⚠️ คำนวณไม่สำเร็จ: ${e.message}</div>`;
+  }
+  btn.disabled = false; btn.innerHTML = '🧮 คำนวณราคาทันที';
+}
+
+// ── ราคาตลาดสด (API จริง /market) ──
+async function loadMarket() {
+  const el = document.getElementById('market-list');
+  try {
+    const r = await fetch('/market');
+    const d = await r.json();
+    const quotes = (d.quotes || []).filter(q => q.price_usd_per_hour > 0);
+    if (!quotes.length) { el.innerHTML = '<div class="note">ตลาดยังไม่มีข้อมูล — ลองใหม่ภายหลัง</div>'; return; }
+    const best = quotes.slice().sort((a, b) => a.score - b.score)[0];
+    el.innerHTML = quotes.map(q => `
+      <div class="quote" style="${q.channel === best.channel ? 'border-color:var(--green)' : ''}">
+        <span class="ch">${q.channel.toUpperCase()}${q.channel === best.channel ? ' ⭐ ดีที่สุด' : ''}</span>
+        <span class="px">$${q.price_usd_per_hour.toFixed(2)}/ชม.</span>
+        <div class="meta">${q.gpu_model || ''} · score ${q.score} · latency ${q.latency_ms}ms · reliability ${Math.round((q.reliability||0)*100)}%</div>
+      </div>`).join('') + '<div class="note">💡 ราคาเรียลไทม์จาก Arbitrage Engine สแกนหลายช่องทาง — ASEAN Grid ตั้งราคาให้สู้ตลาดได้เสมอ</div>';
+  } catch (e) {
+    el.innerHTML = `<div class="note" style="color:var(--red)">⚠️ โหลดราคาไม่สำเร็จ: ${e.message}</div>`;
   }
 }
-
-/* ── Market ── */
-async function scanMarket() {
-  const btn = document.getElementById("btnScan");
-  btn.disabled = true;
-  document.getElementById("loadMarket").classList.add("show");
-  try {
-    const d = await api("/market");
-    const best = await api("/market/best");
-    bestChannel = best.best;
-    const rows = d.quotes.map(q => {
-      const isBest = q.channel === best.best;
-      const st = q.status || "connected";
-      const stMap = {
-        connected: '<span style="color:var(--green)">✅ พร้อมรับงาน / Ready</span>',
-        pending: '<span style="color:var(--gold)">⏳ รออนุมัติ / Pending</span>',
-        not_connected: '<span style="color:var(--dim)">🔒 ยังไม่เปิด / Not open</span>'
-      };
-      const canWork = st === "connected";
-      return `<tr class="${isBest && canWork ? 'best-row' : ''}" ${!canWork ? 'style="opacity:0.55"' : ''}>
-        <td>${isBest && canWork ? '🏆 ' : ''}${q.channel}</td>
-        <td>${stMap[st] || st}</td>
-        <td class="num">$${q.price_usd_per_hour.toFixed(2)}</td>
-        <td class="num">${q.queue_depth}</td>
-        <td class="num">${q.latency_ms}ms</td>
-        <td class="num ${canWork ? 'up' : ''}">${q.score.toFixed(2)}</td>
-        <td>${isBest && canWork ? '<span style="color:var(--gold);font-size:11px">AI เลือก / AI pick</span>' : (canWork ? '' : '<span style="color:var(--dim);font-size:11px">รอปลดล็อก / Locked</span>')}</td>
-      </tr>`;
-    }).join("");
-    document.getElementById("marketBody").innerHTML = rows;
-    document.getElementById("bestName").textContent = best.best;
-    document.getElementById("bestHint").style.display = "block";
-  } catch (e) {
-    document.getElementById("marketBody").innerHTML =
-      `<tr><td colspan="6" style="color:var(--red)">⚠️ ${e.message}</td></tr>`;
-  } finally {
-    btn.disabled = false;
-    document.getElementById("loadMarket").classList.remove("show");
-  }
-}
-
-/* ── Split ── */
-async function calcSplit() {
-  const amt = parseFloat(document.getElementById("amount").value);
-  const el = document.getElementById("splitResult");
-  el.classList.remove("show");
-  if (!amt || amt <= 0) { showErr(el, new Error("กรอกยอดเงินที่ถูกต้อง (มากกว่า 0) / Enter a valid amount (> 0)")); return; }
-  try {
-    const d = await api("/revenue/split", {
-      method: "POST", headers: {"Content-Type": "application/json"},
-      body: JSON.stringify({amount_usd: amt})
-    });
-    const node = (d.node_75 ?? 0), plat = (d.platform_20 ?? 0), dev = (d.developer_5 ?? 0);
-    document.getElementById("splitBars").style.display = "flex";
-    document.getElementById("splitBars").innerHTML = `
-      <div class="seg node" style="flex:75">75%<br><small>ผู้ให้เครื่อง / Node owner<br>$${node.toFixed(2)}</small></div>
-      <div class="seg plat" style="flex:20">20%<br><small>ระบบ / Platform<br>$${plat.toFixed(2)}</small></div>
-      <div class="seg dev" style="flex:5">5%<br><small>นักพัฒนา / Dev pool<br>$${dev.toFixed(2)}</small></div>`;
-    showResult(el, d);
-  } catch (e) { showErr(el, e); }
-}
-
-/* ── Builder ── */
-async function addBuilder() {
-  const el = document.getElementById("builderResult");
-  el.classList.remove("show");
-  const name = document.getElementById("bname").value.trim();
-  const role = document.getElementById("brole").value;
-  const detail = document.getElementById("bdetail").value.trim();
-  if (!name) { showErr(el, new Error("กรอกชื่อก่อนครับ / Please enter a name")); return; }
-  try {
-    const d = await api("/genesis/builders", {
-      method: "POST", headers: {"Content-Type": "application/json"},
-      body: JSON.stringify({name, role, detail})
-    });
-    showResult(el, {
-      "engraved": true,
-      "entry_hash": d.entry_hash,
-      "chain_valid": d.verify
-    });
-    document.getElementById("bname").value = "";
-    document.getElementById("bdetail").value = "";
-    loadLedger();
-  } catch (e) { showErr(el, e); }
-}
-
-/* ── Ledger ── */
-async function loadLedger() {
-  const box = document.getElementById("ledgerBox");
-  try {
-    const d = await api("/genesis/ledger");
-    const roleMap = {compute: "Compute", developer: "Developer", ambassador: "Ambassador"};
-    if (!d.entries.length) { box.innerHTML = `<div class="hint">ยังไม่มีผู้บุกเบิก — เป็นคนแรกเลยครับ 🚀 / No pioneers yet — be the first!</div>`; return; }
-    const rows = d.entries.map(e => `
-      <div class="ledger-row">
-        <div>
-          <span class="role-tag role-${e.role}">${roleMap[e.role] || e.role}</span>
-          <b>${e.builder_name}</b>
-          ${e.detail ? `<span style="color:var(--dim)">· ${e.detail}</span>` : ""}
-        </div>
-        <span class="hash">${e.entry_hash}</span>
-      </div>`).join("");
-    box.innerHTML = rows +
-      `<div class="hint" style="margin-top:10px">🔒 Chain integrity: ${d.chain_valid ? "ผ่าน ✅ (กันแก้ย้อนหลัง) / valid ✅ (tamper-proof)" : "FAIL"}</div>`;
-  } catch (e) {
-    box.innerHTML = `<div class="hint" style="color:var(--red)">⚠️ ${e.message}</div>`;
-  }
-}
-
-init();
+loadMarket();
 </script>
 </body>
 </html>
