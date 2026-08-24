@@ -1,5 +1,5 @@
-"""ASEAN Grid — Node DB (SQLite)
-เก็บโหนดถาวร (ไม่หายเมื่อ process restart / Render wake)
+"""ASEAN Grid — Node + Job DB (SQLite)
+เก็บโหนด + งาน (jobs) ถาวร (ไม่หายเมื่อ process restart / Render wake)
 อนาคต: เปลี่ยน backend เป็น Postgres ได้ — แค่เปลี่ยน connection (interface เดิม)
 """
 import sqlite3, json, time, os
@@ -14,7 +14,15 @@ def _conn():
         name TEXT, gpu_model TEXT, region TEXT,
         status TEXT, gpu_util_pct REAL, uptime_sec INTEGER,
         last_seen_ts REAL, history TEXT)""")
+    c.execute("""CREATE TABLE IF NOT EXISTS jobs (
+        job_id TEXT PRIMARY KEY,
+        job_type TEXT, gpu_model TEXT, gpu_count INTEGER, hours REAL,
+        status TEXT, node_id TEXT,
+        payload TEXT, result TEXT, elapsed_sec REAL,
+        created_ts REAL, assigned_ts REAL, done_ts REAL)""")
     return c
+
+# ────────────────────────── NODES (v0 เดิม) ──────────────────────────
 
 def register(node_id, name, gpu_model, region):
     """ลงทะเบียนโหนด (INSERT OR REPLACE)"""
@@ -60,3 +68,93 @@ def exists(node_id):
     row = c.execute("SELECT 1 FROM nodes WHERE node_id=?", (node_id,)).fetchone()
     c.close()
     return row is not None
+
+# ────────────────────────── JOBS (v0.5 ใหม่) ──────────────────────────
+
+JOB_COLS = ['job_id', 'job_type', 'gpu_model', 'gpu_count', 'hours', 'status',
+            'node_id', 'payload', 'result', 'elapsed_sec',
+            'created_ts', 'assigned_ts', 'done_ts']
+
+def _job_from_row(r):
+    if not r:
+        return None
+    d = dict(zip(JOB_COLS, r))
+    for k in ('payload', 'result'):
+        try:
+            d[k] = json.loads(d[k]) if d[k] else None
+        except Exception:
+            d[k] = None
+    return d
+
+def create_job(job_type, gpu_model, gpu_count, hours, payload=None):
+    """สร้างงานใหม่ (queued) -> คืน job_id"""
+    c = _conn()
+    rows = c.execute("SELECT job_id FROM jobs").fetchall()
+    n = max((int(r[0][1:]) for r in rows if r[0][1:].isdigit()), default=0) + 1
+    job_id = f"j{n:03d}"
+    c.execute("INSERT INTO jobs (job_id, job_type, gpu_model, gpu_count, hours, status, payload, created_ts) VALUES (?,?,?,?,?,?,?,?)",
+              (job_id, job_type, gpu_model, gpu_count, hours, 'queued',
+               json.dumps(payload or {}), time.time()))
+    c.commit(); c.close()
+    return job_id
+
+def get_job(job_id):
+    c = _conn()
+    r = c.execute("SELECT * FROM jobs WHERE job_id=?", (job_id,)).fetchone()
+    c.close()
+    return _job_from_row(r)
+
+def claim_next_job(node_id):
+    """โหนดขอรับงาน: คืน job queued ตัวแรก (FIFO) + mark assigned ให้โหนดนี้
+    (v0.5 scheduler แบบง่าย: โหนดที่ poll มาก่อน = ได้งานก่อน; v1 ต่อ trust/tariff)"""
+    c = _conn()
+    row = c.execute("SELECT job_id FROM jobs WHERE status='queued' ORDER BY created_ts LIMIT 1").fetchone()
+    if not row:
+        c.close()
+        return None
+    c.execute("UPDATE jobs SET status='assigned', node_id=?, assigned_ts=? WHERE job_id=?",
+              (node_id, time.time(), row[0]))
+    c.commit()
+    job = _job_from_row(c.execute("SELECT * FROM jobs WHERE job_id=?", (row[0],)).fetchone())
+    c.close()
+    return job
+
+def mark_running(job_id, node_id):
+    """โหนดยืนยันเริ่มรัน (assigned -> running)"""
+    c = _conn()
+    c.execute("UPDATE jobs SET status='running' WHERE job_id=? AND node_id=?", (job_id, node_id))
+    c.commit(); c.close()
+
+def submit_result(job_id, node_id, result, elapsed_sec):
+    """ส่งผลงาน (ต้องเป็นโหนดเจ้าของงาน) -> done"""
+    c = _conn()
+    row = c.execute("SELECT 1 FROM jobs WHERE job_id=? AND node_id=?", (job_id, node_id)).fetchone()
+    if not row:
+        c.close()
+        return False
+    c.execute("UPDATE jobs SET status='done', result=?, elapsed_sec=?, done_ts=? WHERE job_id=?",
+              (json.dumps(result, ensure_ascii=False), elapsed_sec, time.time(), job_id))
+    c.commit(); c.close()
+    return True
+
+def fail_job(job_id, node_id):
+    """โหนดแจ้งงานล้มเหลว (optional — requeue_stale คุ้มครองค้างอยู่แล้ว)"""
+    c = _conn()
+    c.execute("UPDATE jobs SET status='failed' WHERE job_id=? AND node_id=?", (job_id, node_id))
+    c.commit(); c.close()
+
+def requeue_stale(timeout_sec=300):
+    """no dead-end: งาน assigned/running ค้างเกิน 5 นาที -> กลับ queued (โหนดอื่นรับต่อ)"""
+    c = _conn()
+    cutoff = time.time() - timeout_sec
+    c.execute("UPDATE jobs SET status='queued', node_id=NULL, assigned_ts=NULL "
+              "WHERE status IN ('assigned','running') AND assigned_ts IS NOT NULL AND assigned_ts < ?",
+              (cutoff,))
+    c.commit(); c.close()
+
+def all_jobs(limit=50):
+    """งานทั้งหมด (ล่าสุดก่อน) — ลูกค้าดู / admin ดู"""
+    c = _conn()
+    rows = c.execute("SELECT * FROM jobs ORDER BY created_ts DESC LIMIT ?", (limit,)).fetchall()
+    c.close()
+    return [_job_from_row(r) for r in rows]
