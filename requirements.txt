@@ -1,0 +1,6 @@
+# ASEAN Grid — root requirements (Render อ่านไฟล์นี้ที่ root ของ repo)
+fastapi>=0.110
+uvicorn>=0.29
+pydantic>=2.6
+pg8000>=1.31
+certifi>=2024.6
